@@ -1,0 +1,33 @@
+{
+  "name": "sugarapp",
+  "version": "0.0.1",
+  "description": "CRUD application similar to twitter",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ./backend/server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sugarapp",
+    "api",
+    "crud",
+    "nodejs",
+    "expressjs"
+  ],
+  "author": "sugarapp",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "colors": "^1.1.2",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.13.4",
+    "express-session": "^1.15.3",
+    "lodash": "^4.13.1",
+    "mongoose": "^4.4.19",
+    "node-uuid": "^1.4.8",
+    "nodemailer": "^4.0.1",
+    "nodemon": "^1.11.0",
+    "random-string": "^0.2.0",
+    "request": "^2.72.0"
+  }
+}

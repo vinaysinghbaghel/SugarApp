@@ -1,0 +1,1 @@
+angular.module('sugarApp', ['ui.router','appRoutes', 'MainCtrl', 'UserService','toaster']);
