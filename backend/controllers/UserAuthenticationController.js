@@ -72,26 +72,25 @@ exports.signIn = function(req,res,next){
      try {
             var email = req.body.email;
             var password = req.body.password;
-            console.log('password', password)
-            // let users = await UserService.checkEmailNotRegister(req.body.email);
-            // if (users.length === 0) {
-            //     return res.render('BankCrmLogin', {
-            //         email: email,
-            //         password: password,
-            //         emailerror: 'Email not registered'
-            //     });
-            // }
+            console.log(password,'front side password')
             Users.find({email:email}).exec(function(err, user){
-             if(err) 
-                return res.json({"success" : false, message :  "Oops! Error in processing the request, Please try again."});
-            if(user.length === 0) 
-                console.log("Email not registered.")
-                return res.json({"success" : true, message :  "Email not registered."});
+                console.log(user[0].password,'server collection side password')
+             if(user.length === 0){
+                console.log("Email not registered.") 
+                return res.json({"success" : false, message :  "Email not registered."});
+
+             }if(user[0].password !== password) {
+                console.log("Incorrect password entered.")
+                return res.json({"success" : false, message :  "Incorrect password entered."});
+             }
+              if (user.passwordchanged != 0) {
+              }
+              
             // let userreport = user[0];
             // let userpassword = CryptoJS.AES.decrypt(user.password, user.useruuid).toString(CryptoJS.enc.Utf8);
-            if(user[0].password !== password)
-                 console.log("Incorrect password entered.")
-                return res.json({"success": true,message:"Incorrect password entered"});
+            // if(user[0].password !== password)
+            //      console.log("Incorrect password entered.")
+            //     return res.json({"success": true,message:"Incorrect password entered"});
             
             // console.log('req.session.user', req.session.user)
             // if (userpassword !== password) {

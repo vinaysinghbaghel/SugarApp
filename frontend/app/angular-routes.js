@@ -9,11 +9,16 @@ angular
                 templateUrl: 'app/usermanagement/views/signin.html',
                 controller: 'usersController'
             })
-            // .state('signup', {
-            //     url: '/registration',
-            //     templateUrl: 'app/usermanagement/views/usersregistration.view.html',
-            //     controller: 'usersController'
-            // });
+             .state('signup', {
+                url: '/signup',
+                templateUrl: 'app/usermanagement/views/usersregistration.view.html',
+                controller: 'usersController'
+            })
+            .state('dashboard', {
+                url: '/dashboard',
+                templateUrl: 'app/dashboard/views/dashboard.html',
+                controller: 'usersController'
+            });
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
     });

@@ -32,7 +32,7 @@ body{
 	margin:0;
 	padding:0;
     font-family: RobotoLight;
-    background: linear-gradient(to bottom, #f44195 0%, #ee82fa 100%);
+    /* background: linear-gradient(to bottom, #f44195 0%, #ee82fa 100%); */
 }
 img{
 	max-width:100%;
@@ -55,6 +55,8 @@ img{
 	color:#404040;
 	font-size:18px;
 	font-family:RobotoMedium;
+            // res.redirect('/partner?fail=1');
+            // res.redirect('/partner?fail=1');
 	margin:0;
 }
 .main_form_left{
@@ -114,6 +116,7 @@ img{
 	-o-border-radius: 3px;
 	-ms-border-radius: 3px;
     border-radius: 3px;
+            // res.redirect('/partner?fail=1');
     color: #fff;
     cursor: pointer;
     font-size: 18px;

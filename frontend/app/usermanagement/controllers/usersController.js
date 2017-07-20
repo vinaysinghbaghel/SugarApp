@@ -1,6 +1,6 @@
 
     angular.module('MainCtrl', [])
-     .controller('usersController', function($scope,UserService,toaster,$http) {
+     .controller('usersController', function($scope,$rootScope,UserService,toaster,$http,$location) {
         var showToaster = function(type, title, message) {
         toaster.pop(type, title, message);
         };
@@ -9,11 +9,11 @@
         toaster.clear();
         };
 
-        $scope.tweet={}
+        $scope.signupdata={}
         $scope.logindata={}
-      $scope.saveTweet = function() {
+      $scope.signUp = function() {
         UserService.createUser({
-          user:$scope.tweet
+          user:$scope.signupdata
         }, function(response) {
           if (response && response.data && response.data.success) {
             showToaster('success', 'Success', response.data.message);
@@ -24,8 +24,7 @@
           }
         });
       } 
-      $scope.signin = function() {
-        console.log($scope.logindata,'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
+      $scope.signIn = function() {
         // if (!$scope.logindata.email || $scope.logindata.password) {
         //   // $scope.showToaster('error', "Easybill Says", "Please enter the Username & Password.");
         //   console.log('error', "Easybill Says", "Please enter the Username & Password.")
@@ -33,17 +32,25 @@
         // }
         // $scope.showToaster('wait', "Easybill Says", "Login...");
         var res = $http.post("/signin", $scope.logindata);
-        // res.success(function(data, status, headers, config) {
-        //   $scope.clearToaster();
-        //   console.log(data.user);
-        //   if (data && data.user && data.user.userid) {
-        //     $rootScope.user = data.user;
-        //     $location.path("/dashboard");
-        //   } else {
-        //     $scope.clearToaster();
-        //     $scope.showToaster('error', "Easybill Says", data.message);
-        //   }
-        // });
+        res.success(function(data, status, headers, config) {
+          // $scope.clearToaster();
+          console.log(data.message);
+          if (!data.success) {
+            $rootScope.showLoading = false;
+            $rootScope.errorMessage = data.message;
+            // $location.path("/dashboard");
+          } else {
+             $rootScope.login = "yes";
+        console.log($rootScope.user);
+        //$rootScope.mobilesms = data.user.mobileno;
+        //$rootScope.verificationid = data.user._id;
+        $rootScope.showLoading =false;
+        $rootScope.user = angular.copy(data.user);
+        $location.path("/dashboard");   
+            // $scope.clearToaster();
+            // $scope.showToaster('error', "Easybill Says", data.message);
+          }
+        });
       };
 
 });
