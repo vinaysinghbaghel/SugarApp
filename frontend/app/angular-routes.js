@@ -14,6 +14,11 @@ angular
                 templateUrl: 'app/usermanagement/views/usersregistration.view.html',
                 controller: 'usersController'
             })
+            .state('changepassword', {
+                url: '/changepassword',
+                templateUrl: 'app/usermanagement/views/changepassword.html',
+                controller: 'usersController'
+            })
             .state('dashboard', {
                 url: '/dashboard',
                 templateUrl: 'app/dashboard/views/dashboard.html',

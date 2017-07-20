@@ -25,28 +25,35 @@
         });
       } 
       $scope.signIn = function() {
-        // if (!$scope.logindata.email || $scope.logindata.password) {
-        //   // $scope.showToaster('error', "Easybill Says", "Please enter the Username & Password.");
-        //   console.log('error', "Easybill Says", "Please enter the Username & Password.")
-        //   return;
-        // }
         // $scope.showToaster('wait', "Easybill Says", "Login...");
         var res = $http.post("/signin", $scope.logindata);
-        res.success(function(data, status, headers, config) {
-          // $scope.clearToaster();
-          console.log(data.message);
+        res.success(function(data) {
           if (!data.success) {
             $rootScope.showLoading = false;
             $rootScope.errorMessage = data.message;
-            // $location.path("/dashboard");
           } else {
-             $rootScope.login = "yes";
-        console.log($rootScope.user);
-        //$rootScope.mobilesms = data.user.mobileno;
-        //$rootScope.verificationid = data.user._id;
-        $rootScope.showLoading =false;
-        $rootScope.user = angular.copy(data.user);
-        $location.path("/dashboard");   
+            console.log(data,'HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIii')
+            //  $rootScope.login = "yes";
+            //  $rootScope.showLoading =false;
+            //  $rootScope.user = angular.copy(data.user);
+             $location.path("/changepassword");   
+            // $scope.clearToaster();
+            // $scope.showToaster('error', "Easybill Says", data.message);
+          }
+        });
+      };
+       $scope.changePassword = function() {
+        // $scope.showToaster('wait', "Easybill Says", "Login...");
+        var res = $http.post("/changepassword", $scope.changepassworddata);
+        res.success(function(data) {
+          if (!data.success) {
+            $rootScope.showLoading = false;
+            $rootScope.errorMessage = data.message;
+          // } else {
+          //   //  $rootScope.login = "yes";
+          //   //  $rootScope.showLoading =false;
+          //   //  $rootScope.user = angular.copy(data.user);
+          //    $location.path("/changepassword");   
             // $scope.clearToaster();
             // $scope.showToaster('error', "Easybill Says", data.message);
           }

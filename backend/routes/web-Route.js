@@ -11,6 +11,7 @@ const UserAuthenticationController = require('./../controllers/UserAuthenticatio
 // ]);
  router.post('/userdata',UserAuthenticationController.signUp)
  router.post('/signin', UserAuthenticationController.signIn);
+ router.post('/changepassword', UserAuthenticationController.changePassword);
 
 // /* Update Tweet */
 // router.put('/:id', [
