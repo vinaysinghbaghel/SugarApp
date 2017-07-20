@@ -34,6 +34,18 @@ body{
     font-family: RobotoLight;
     /* background: linear-gradient(to bottom, #f44195 0%, #ee82fa 100%); */
 }
+.bg{
+	height:300px;
+	width: 100%;
+	background: #fff;
+	background: linear-gradient(to bottom, #f44195 0%, #ee82fa 100%);
+}
+.bg1{
+	height:350px;
+	width: 100%;
+	background: #fff;
+	background: linear-gradient(to bottom, #f44195 0%, #ee82fa 100%);
+}
 img{
 	max-width:100%;
 	height:auto;
@@ -42,14 +54,18 @@ img{
     padding: 1.5em 0;
 }
 .form_login{
-	background:#eeeeee;
-	width:59.5%;
-	margin:7.4em auto;
-	padding:0;
-}
+	background:#fff;
+	width:50%;
+	/* margin:4.4em;
+	padding:0; */
+	left: 24%;
+	top: 50%;
+	position: absolute;
+	margin-top: -200px;
+}	
 .main_form{
 	padding:28px 50px;
-	margin:0;
+	margin-left:30px;
 }
 .main_form h1{
 	color:#404040;
@@ -79,11 +95,11 @@ img{
 	padding:0;
 }
 .main_form_right{
-	width:55%;
+	width:85%;
 	float:left;
 	margin:0;
 	padding:0 0 0 33px;
-	border-left:1px solid #bbbbbb;
+	/* border-left:1px solid #bbbbbb; */
 
 }
 .right_form_main{
@@ -149,11 +165,17 @@ padding:0.4em 1.5em;
 }
 .forget{
 	font-size:13px;
-	color:#404040;
-	font-style:italic;
-	font-family:Roboto;
+	color:#a083ea !important;
+	/* font-style:italic; */
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
 	margin-right:2%;
-
+	margin-top: 5px;
+}
+.btn{
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif !important;
+	margin-top: 20px;
+	text-decoration: none !important;
+	margin-bottom: -25px !important;
 }
 .check5 input[type=radio],
 .check5 input[type=checkbox] {
@@ -205,7 +227,7 @@ padding:0.4em 1.5em;
     line-height: 15px;
 }
 .check5 {
-    font-family: robotolight;
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif !important;
     margin-left: 0%;
 	margin-top:6%;
 }
@@ -217,8 +239,8 @@ padding:0.4em 1.5em;
 }
 .form-group label{
 	font-weight:normal;
-	color:#404040;
-	font-family:RobotoLight;
+	color:#292c33;
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
 }
 .foot_social {
     padding: 1.5em 0;
@@ -297,4 +319,97 @@ padding:0.4em 1.5em;
     margin: 0;
     padding: 28px 12px;
 }
+}
+
+.btn:hover {background-color: #3e8e41}
+
+.btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+@-webkit-keyframes hvr-bob {
+  0% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+  50% {
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+  }
+  100% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+}
+@keyframes hvr-bob {
+  0% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+  50% {
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+  }
+  100% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+}
+@-webkit-keyframes hvr-bob-float {
+  100% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+}
+@keyframes hvr-bob-float {
+  100% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+  }
+}
+.hvr-bob {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif !important;
+margin-top: 20px;
+text-decoration: none !important;
+margin-bottom: -25px !important;
+display: inline-block;
+/* margin-bottom: 0; */
+font-weight: normal;
+text-align: center;
+vertical-align: middle;
+/* -ms-touch-action: manipulation; */
+touch-action: manipulation;
+cursor: pointer;
+background-image: none;
+border: 1px solid transparent;
+white-space: nowrap;
+padding: 6px 12px;
+font-size: 14px;
+line-height: 1.42857143;
+border-radius: 4px;
+
+}
+.hvr-bob:hover, .hvr-bob:focus, .hvr-bob:active {
+  -webkit-animation-name: hvr-bob-float, hvr-bob;
+  animation-name: hvr-bob-float, hvr-bob;
+  -webkit-animation-duration: .3s, 1.5s;
+  animation-duration: .3s, 1.5s;
+  -webkit-animation-delay: 0s, .3s;
+  animation-delay: 0s, .3s;
+  -webkit-animation-timing-function: ease-out, ease-in-out;
+  animation-timing-function: ease-out, ease-in-out;
+  -webkit-animation-iteration-count: 1, infinite;
+  animation-iteration-count: 1, infinite;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-direction: normal, alternate;
+  animation-direction: normal, alternate;
 }
