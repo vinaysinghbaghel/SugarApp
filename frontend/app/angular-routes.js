@@ -6,17 +6,17 @@ angular
         $stateProvider
              .state('home', {
                 url: '/',
-                templateUrl: 'app/authentication/views/signin.html',
+                templateUrl: 'app/usermanagement/views/signin.html',
                 controller: 'usersController'
             })
              .state('signup', {
                 url: '/signup',
-                templateUrl: 'app/authentication/views/usersregistration.view.html',
+                templateUrl: 'app/usermanagement/views/usersregistration.view.html',
                 controller: 'usersController'
             })
             .state('changepassword', {
                 url: '/changepassword',
-                templateUrl: 'app/authentication/views/changepassword.html',
+                templateUrl: 'app/usermanagement/views/changepassword.html',
                 controller: 'usersController'
             })
             .state('dashboard', {
