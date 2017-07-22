@@ -23,6 +23,11 @@ angular
                 url: '/dashboard',
                 templateUrl: 'app/dashboard/views/dashboard.html',
                 controller: 'usersController'
+            })
+            .state('userprofile', {
+                url: '/userprofile',
+                templateUrl: 'app/userprofilemanagement/views/usermanagement.html',
+                controller: 'usersController'
             });
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
