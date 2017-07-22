@@ -20,6 +20,9 @@
 				<div class="right_form_main">
 					<form name="loginform" ng-submit="signIn(loginform)">
 						<div class="form-group">
+			                 	<p class="err-messg">{{errorMessage}}</p>		
+			                </div> 
+						<div class="form-group">
 							<label for="username">Username</label>
 							<input type="text" class="form-control" id="username" ng-model="logindata.email" required>
 						</div>
@@ -38,9 +41,7 @@
 								<a href="/signup" class="hvr-bob" style="background-color: #f44195;color: #fff;width: 100%">Sign up</a>
 							</div>
 						</div> 
-						<div class="form-group">
-			                 	<p class="err-messg">{{errorMessage}}</p>		
-			                </div> 
+						
 					</form>
 				</div>
 			</div>
