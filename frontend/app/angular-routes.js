@@ -28,6 +28,11 @@ angular
                 url: '/userprofile',
                 templateUrl: 'app/userprofilemanagement/views/usermanagement.html',
                 controller: 'usersController'
+            })
+            .state('userdealhistory', {
+                url: '/userdealhistory',
+                templateUrl: 'app/userprofilemanagement/views/userdealhistory.html',
+                controller: 'usersController'
             });
             // .state('logout', {
             //     url: '/login',

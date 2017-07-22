@@ -151,13 +151,13 @@ exports.signIn = function(req,res,next){
             // });
         }
     }
- exports.logout=function(req, res) {
-        req.session.destroy((err) => {
-            "use strict";
-            console.error(err);
-        });
-        res.json({success : true});
-    }
+//  exports.logout=function(req, res) {
+//         req.session.destroy((err) => {
+//             "use strict";
+//             console.error(err);
+//         });
+//         res.json({success : true});
+//     }
 // exports.getTweets = function(req, res, next) {
 //     Tweet
 //         .find({}, function(err, tweets) {
