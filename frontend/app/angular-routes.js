@@ -5,7 +5,7 @@ angular
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
         $stateProvider
              .state('home', {
-                url: '/',
+                url: '/login',
                 templateUrl: 'app/usermanagement/views/signin.html',
                 controller: 'usersController'
             })
@@ -29,6 +29,10 @@ angular
                 templateUrl: 'app/userprofilemanagement/views/usermanagement.html',
                 controller: 'usersController'
             });
+            // .state('logout', {
+            //     url: '/login',
+            //     controller: 'usersController'
+            // });
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
     });

@@ -73,6 +73,12 @@ exports.signIn = function(req,res,next){
             var email = req.body.email;
             var password = req.body.password;
             Users.find({email:email}).exec(function(err, user){
+             if (err) {
+             return res.json({
+             success: false,
+             "message": err
+             });
+             }   
              if(user.length === 0){
                 console.log("Email not registered.") 
                 return res.json({"success" : false, message :  "Email not registered."});
@@ -81,20 +87,23 @@ exports.signIn = function(req,res,next){
                 console.log("Incorrect password entered.")
                 return res.json({"success" : false, message :  "Incorrect password entered."});
              }else{
-              if (user.passwordchanged != 0) {
+                 
+            //   if (user.passwordchanged != 0) {
+             console.log(user,'user is always in controlllerrrrrrrr')
+              req.session.userid = user[0]._id;
 
-                //   req.session.userid = user[0].id;
-                //   console.log(req.session.userid,'id in sessionsssssssssssssssssssssssssssssssss')
 
-                 return res.json({"success" : true});
+              return res.json({"success" : true,user:user[0]});
               
-              } else {
-                var email = req.body.email;
-                console.log(email,'email in server side...........................')
-                 return res.se({"success" : true,email:email});
-            }
+            //   } else {
+            //     var email = req.body.email;
+            //      console.log(user,'user is elseseeeeeeeeeeeeeeeeeeeeeeeeeeee')
+            //     console.log(email,'email in server side...........return ................')
+                //  res.se({"success" : true,email:email});
+            // }
 
-           }         
+           } 
+                
            });
         } catch (e) {
             // res.redirect('/partner?fail=1');
@@ -104,29 +113,36 @@ exports.signIn = function(req,res,next){
 }
     exports.changePassword = function(req, res) {
         try {
-
-            // var id = req.session.userid;
-            // var result = await r.table('usermaster').filter({ 'id': id }).coerceTo('array').run(connection);
-            // let oldpassword = req.body.oldpassword;
-            // var userpassword = CryptoJS.AES.decrypt(result[0].password, result[0].userguid).toString(CryptoJS.enc.Utf8);
-            // if (userpassword !== oldpassword) {
-            //     return res.render('BankCrmLogin', {
-            //         passerror: 'password not match ',
-            //         me: req.session.user
-            //     });
+            let id=req.session.userid ;
+            console.log(id,'vinay singh baghellllllllllllllllllllllllllllllllllllllllll')
+            let email = req.body.email;
+            let password = req.body.password;
+            Users.find({_id:id}).exec(function(err, user){
+             if (err) {
+             return res.json({success: false, "message": err });
+            }else if(user){
+            // var salt = new Buffer(user.salt, 'base64');
+            // var p = crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
+            // if(password === user[0].password) {
+            // var s = crypto.randomBytes(16).toString('base64');
+            //     salt = new Buffer(s, 'base64');
+            //     var encryptNewPwd = crypto.pbkdf2Sync(newpassword, salt, 10000, 64).toString('base64');
+                Users.update({email:email},{password:password,passwordchanged:1},function(err,newpassword){
+                    if(err){
+                    res.json({success : false, message : "Erron in processing the request. Please try again."});
+                    }
+                    else{
+                    res.json({success : true, message:"Password successfully changed."});
+                    }                 
+                })
+            // }else{
+            //     res.json({status : false, message : "Invalid old password"});
             // }
-            // if (req.body.newpassword != req.body.confirmpassword) {
-            //     return res.render('updatepassword', {
-            //         passerror: 'New password and confirm password does not match',
-            //         me: req.session.user
-            //     });
-            // } else {
-            //     let bankuser = await UserService.changepassword(result[0].email, req.body.newpassword);
-            //     res.render('BankCrmLogin', {
-            //         passwordsuccess: 'Password successfully changed',
-            //         me: req.session.user
-            //     })
-            // }
+            }
+            else {
+            res.json({message : "Invalid username or password", success : false});
+            }     
+            })
         } catch (e) {
             console.error(e.stack);
             // res.send({
@@ -135,7 +151,13 @@ exports.signIn = function(req,res,next){
             // });
         }
     }
-
+ exports.logout=function(req, res) {
+        req.session.destroy((err) => {
+            "use strict";
+            console.error(err);
+        });
+        res.json({success : true});
+    }
 // exports.getTweets = function(req, res, next) {
 //     Tweet
 //         .find({}, function(err, tweets) {

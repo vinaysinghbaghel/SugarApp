@@ -12,6 +12,11 @@ let apiRoutes = require('./routes/index');
 let webRoutes = require('./routes/web-Route');
 let mail = require('./utils/mail');
 const session = require('express-session');
+// const MemoryStore = require('connect').session.MemoryStore
+// let MemoryStore ;
+// app.use(session({secret:'XASDASDA'}));
+// create our app
+
 
 /**
  * Connection to DB
@@ -57,6 +62,26 @@ app.use(function(req, res, next) {
 
     next();
 });
+// app.use(session());
+app.use(session({
+    secret: "secret",
+    
+}));
+// app.use(function (req, res, next) {
+//     res.locals.session = req.session;
+//     try {
+//         let r = next();
+//         if (r && r.catch && typeof r.catch === 'function') {
+//             r.catch((err)=> {
+//                 "use strict";
+//                 console.error(err);
+//             });
+//         }
+//     }
+//     catch (err) {
+//         console.error(err);
+//     }
+// });
 
 /* Routes */
 
