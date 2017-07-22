@@ -12,6 +12,7 @@
         $scope.signupdata={}
         $scope.logindata={}
         $scope.changepassworddata={}
+        $scope.userprofiledata={}
       $scope.signUp = function() {
         UserService.createUser({
           user:$scope.signupdata
@@ -107,22 +108,23 @@
     //   console.log(error);
     // });
   }
+  $scope.userprofile = function() {
+  console.log($scope.userprofiledata,'userprofilreeedeadsdsdsadsadsdsadsadsadsadsadaddd')
+         var res=   $http
+                .post('/api/userprofile', $scope.userprofiledata)
+                res.success(function(data) {
+          if (data.success) {
+              $rootScope.errorMessage = data.message;
+          } else {
+            $rootScope.showLoading = false;
+          
+          }
+        });
+        };
 
 });
 
-// $scope.getTweets = function() {
-        //     $http
-        //         .get('/api/tweets')
-        //         .then(function(res) {
-        //             if (res.status === 200) {
-        //                 $scope.tweetList = res.data.data;
-        //             } else {
-        //                 /* Handle error */
-        //             }
-        //         }, function(res) {
-        //             /* Handle error */
-        //         });
-        // };
+
 
         // $scope.editTweet = function(tweet, index) {
         //     $scope.tweet.showSave = false;

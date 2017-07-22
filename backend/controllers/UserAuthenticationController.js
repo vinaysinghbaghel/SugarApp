@@ -1,6 +1,7 @@
 'use strict';
 
 let Users = require('./../models/Users');
+let UserProfile = require('./../models/UserProfile');
 const mongoose = require('mongoose');
 const randomString = require('random-string');
 const nodemailer = require('nodemailer');
@@ -151,30 +152,47 @@ exports.signIn = function(req,res,next){
             // });
         }
     }
- exports.logout=function(req, res) {
-        req.session.destroy((err) => {
-            "use strict";
-            console.error(err);
-        });
-        res.json({success : true});
-    }
-// exports.getTweets = function(req, res, next) {
-//     Tweet
-//         .find({}, function(err, tweets) {
-//             if (err) {
-//                 return res.status(500).json({
-//                     'message': 'Error in processing your request',
-//                     'success': false,
-//                     'data': []
-//                 });
-//             }
-//             return res.json({
-//                 'message': 'Here are your tweets. Enjoy!',
-//                 'success': true,
-//                 'data': tweets
-//             });
+//  exports.logout=function(req, res) {
+//         req.session.destroy((err) => {
+//             "use strict";
+//             console.error(err);
 //         });
-// };
+//         res.json({success : true});
+//     }
+exports.userprofiledetails = function(req, res, next) {
+    try {
+    console.log(req.body,'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiidata')
+    let userprofiledetails = new UserProfile({
+      custID:req.body.customerid,
+      name:req.body.name,
+      email:req.body.userid,
+      phonenumber:req.body.phone,
+      img:req.body.image,
+      password:req.body.password,
+      homelocation:req.body.homelocation,
+      worklocation:req.body.worklocation
+
+    })
+     userprofiledetails
+        .save(function(err) {
+            if (err) {
+                return res.status(500).json({
+                    'message': 'Error in processing your request',
+                    'success': false,
+                    'data': null
+                });
+            }
+            return res.json({
+                'message': 'User profile created successfully',
+                'success': true,
+                'data': []
+            });
+        });
+    }catch (e) {
+    console.error(e.stack);
+
+    }
+};
 
 // exports.updateTweet = function(req, res, next) {
 //     var body = req.body;

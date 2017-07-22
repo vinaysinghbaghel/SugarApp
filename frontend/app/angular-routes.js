@@ -28,11 +28,12 @@ angular
                 url: '/userprofile',
                 templateUrl: 'app/userprofilemanagement/views/usermanagement.html',
                 controller: 'usersController'
+            })
+            .state('userprofiledetails', {
+                url: '/userprofiledetails',
+                templateUrl: 'app/userprofilemanagement/views/userprofile.html',
+                controller: 'usersController'
             });
-            // .state('logout', {
-            //     url: '/login',
-            //     controller: 'usersController'
-            // });
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
     });
