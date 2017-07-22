@@ -1208,7 +1208,7 @@ ul.dropdown-menu {
     position: absolute;
     top: 34%;
     right: 8%;
-    color: #68AE00;
+    color: #fff;
     font-size: 1.6em;
 }
 .profile_details ul li ul.dropdown-menu.drp-mnu {
@@ -2039,15 +2039,16 @@ code {
     width: 98%;
     float: left;
     margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     background-color: #fff;
-    /* border: 1px solid rgba(0, 0, 0, 0.18); */
+    border: 1px solid rgba(0, 0, 0, 0.18);
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius:4px;
     -o-border-radius:4px;    
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
-}
+box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);}
 .fav-button {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -2993,7 +2994,7 @@ span.per-month {
     color: #545454;
 }
 .price-selet {
-    padding: 1em 0em;
+    padding: 0em 0em;
     text-align: center;
     background: #78A239;
     border-radius: 0px 0px 5px 5px;
@@ -5207,4 +5208,71 @@ ul.dropdown-menu {
 .b_tooltip {
     padding: 4px 7px 7px 7px;
 }
+}
+
+.dropbtn {
+    background-color: #f44195;
+    color: white;
+    padding: 6px 15px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    margin-top: 9px;
+    border-radius: 30px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #a083ea;
+} 
+
+   .media
+    {
+        /*box-shadow:0px 0px 4px -2px #000;*/
+        margin: 20px 0;
+        padding:30px;
+    }
+    .dp
+    {
+        border:10px solid #eee;
+        transition: all 0.2s ease-in-out;
+    }
+    .dp:hover
+    {
+        border:2px solid #eee;
+        transform:rotate(360deg);
+        -ms-transform:rotate(360deg);  
+        -webkit-transform:rotate(360deg);  
+        /*-webkit-font-smoothing:antialiased;*/
+    }
+    
+.userdetails{
+    margin-top: -45px;
 }

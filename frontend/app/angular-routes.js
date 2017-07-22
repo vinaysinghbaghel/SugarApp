@@ -32,6 +32,10 @@ angular
             .state('userprofiledetails', {
                 url: '/userprofiledetails',
                 templateUrl: 'app/userprofilemanagement/views/userprofile.html',
+            })
+            .state('userdealhistory', {
+                url: '/userdealhistory',
+                templateUrl: 'app/userprofilemanagement/views/userdealhistory.html',
                 controller: 'usersController'
             });
         $locationProvider.html5Mode(true);

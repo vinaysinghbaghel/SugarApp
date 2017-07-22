@@ -159,6 +159,7 @@ exports.signIn = function(req,res,next){
 //         });
 //         res.json({success : true});
 //     }
+
 exports.userprofiledetails = function(req, res, next) {
     try {
     console.log(req.body,'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiidata')
@@ -193,6 +194,23 @@ exports.userprofiledetails = function(req, res, next) {
 
     }
 };
+// exports.getTweets = function(req, res, next) {
+//     Tweet
+//         .find({}, function(err, tweets) {
+//             if (err) {
+//                 return res.status(500).json({
+//                     'message': 'Error in processing your request',
+//                     'success': false,
+//                     'data': []
+//                 });
+//             }
+//             return res.json({
+//                 'message': 'Here are your tweets. Enjoy!',
+//                 'success': true,
+//                 'data': tweets
+//             });
+//         });
+// };
 
 // exports.updateTweet = function(req, res, next) {
 //     var body = req.body;
