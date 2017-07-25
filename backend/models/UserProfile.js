@@ -28,7 +28,8 @@ var userprofileSchema = new mongoose.Schema({
         type: String,
     },
     membersince: {
-        type: String,
+          type: Date,
+        'default': Date.now,
     },
     logindata: {
          type: Date,
@@ -50,12 +51,12 @@ var userprofileSchema = new mongoose.Schema({
          type:String,
     },                      
     homelocation: {
-        type: { type: String },
-        coordinates: [Number],
+        type: Array,
+        // coordinates: [Number],
     },
     worklocation: {
-        type: { type: String },
-        coordinates: [Number],
+        type: Array,
+        // coordinates: [Number],
     },
     created_at: {
         type: Date,

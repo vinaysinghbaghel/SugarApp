@@ -29,6 +29,10 @@ angular
                 templateUrl: 'app/userprofilemanagement/views/usermanagement.html',
                 controller: 'usersController'
             })
+            .state('userprofiledetails', {
+                url: '/userprofiledetails',
+                templateUrl: 'app/userprofilemanagement/views/userprofile.html',
+            })
             .state('userdealhistory', {
                 url: '/userdealhistory',
                 templateUrl: 'app/userprofilemanagement/views/userdealhistory.html',
@@ -44,10 +48,6 @@ angular
                 templateUrl: 'app/vendormanagement/views/vendorcustomerlist.html',
                 controller: 'usersController'
             });
-            // .state('logout', {
-            //     url: '/login',
-            //     controller: 'usersController'
-            // });
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
     });

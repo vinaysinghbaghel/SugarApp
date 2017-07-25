@@ -13,6 +13,7 @@ const UserAuthenticationController = require('./../controllers/UserAuthenticatio
  router.post('/signin', UserAuthenticationController.signIn);
  router.post('/changepassword', UserAuthenticationController.changePassword);
 //  router.get('/signout', UserAuthenticationController.logout);
+ router.post('/api/userprofile', UserAuthenticationController.userprofiledetails);
 
 // /* Update Tweet */
 // router.put('/:id', [
