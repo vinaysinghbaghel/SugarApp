@@ -201,8 +201,9 @@
 				     <div class="clearfix"> </div>	
 				</div>
 <!--heder end here-->
+<div class="clearfix"> </div>
 <!-- script-for sticky-nav -->
-		<script>
+		<!-- <script>
 		$(document).ready(function() {
 			 var navoffeset=$(".header-main").offset().top;
 			 $(window).scroll(function(){
@@ -215,7 +216,7 @@
 			 });
 			 
 		});
-		</script>
+		</script> -->
 		<!-- /script-for sticky-nav -->
 <!--inner block start here-->
 <div class="inner-block">
@@ -247,18 +248,17 @@ input[type=text]:focus {
 </form>
  <!-- search box -->
 
+ <div class="userdetails">
  <div class="row">
-
-
     <div class="col-lg-5">
         <div class="media">
             <a class="pull-left" href="#">
                 <img class="media-object dp img-circle" src="images/photo1.png" style="width: 100px;height:100px;">
             </a>
             <div class="media-body">
-                <h4 class="media-heading">Akshay Palkar<small> India</small></h4>
+                <h4 class="media-heading" style="margin-top: 15px;">Akshay Palkar<small> India</small></h4>
                 <h5>123456789</h5>
-                <hr style="margin:8px auto">
+                <!-- <hr style="margin:8px auto"> -->
 
                 <span class="label label-default">20/12/2016</span>
                 <span class="label label-default">00:00:00</span>
@@ -266,7 +266,36 @@ input[type=text]:focus {
             </div>
         </div>
 
-    </div>
+	</div>
+	<div class="col-lg-7">
+		<!-- <div class="price-tables"> -->
+	    		<div class="col-md-4 price-grid">
+	    		   <div class="price-block">
+		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
+							<h5 style="text-align: center">Users Registered Today</h5>
+		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
+		    			</div>
+		    		</div>
+				</div>
+				<div class="col-md-4 price-grid">
+	    		   <div class="price-block">
+		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
+							<h5 style="text-align: center">Users Registered<br>Till Date</h5>
+		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
+		    			</div>
+		    		</div>
+				</div>
+				<div class="col-md-4 price-grid">
+	    		   <div class="price-block">
+		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
+							<h5 style="text-align: center">Active<br>Users</h5>
+		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
+		    			</div>
+		    		</div>
+				</div>
+			
+		</div>
+</div>
 </div>
  
    <div class="stripe" style="height: 50px;width: 100%;background-color: #292c33;margin-left: -25px;margin-bottom: 30px;">

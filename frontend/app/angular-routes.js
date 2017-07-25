@@ -33,6 +33,16 @@ angular
                 url: '/userdealhistory',
                 templateUrl: 'app/userprofilemanagement/views/userdealhistory.html',
                 controller: 'usersController'
+            })
+            .state('vendorprofile', {
+                url: '/vendorprofile',
+                templateUrl: 'app/vendormanagement/views/vendorprofile.html',
+                controller: 'usersController'
+            })
+            .state('vendorcustomerlist', {
+                url: '/vendorcustomerlist',
+                templateUrl: 'app/vendormanagement/views/vendorcustomerlist.html',
+                controller: 'usersController'
             });
             // .state('logout', {
             //     url: '/login',

@@ -688,7 +688,7 @@ a:hover {
 }
 .logo-name {
     float: left;
-    width: 55%;
+    width: 65%;
     margin: 0% 3% 0% 2%;
 }
 .logo-name h1 {
@@ -1320,10 +1320,10 @@ ul.dropdown-menu.drp-mnu li {
 }
 .market-update-right i.fa.fa-file-text-o {
     font-size: 3em;
-    color:#68AE00;
+    color:#fff;
     width: 80px;
     height: 80px;
-    background: #fff;
+    background: #f44195;
     text-align: center;
     border-radius: 49px;
     -webkit-border-radius: 49px;
@@ -2952,8 +2952,8 @@ ul.nav.tabs li a span {
     list-style: none;
 }
 .price-gd-top {
-    background:#78A239;
-    text-align: center;
+    background:#f44195;
+    text-align: left;
     border-radius: 5px 5px 0px 0px;
 }
 .price-gd-top h4 {
@@ -2980,7 +2980,7 @@ span.per-month {
 .price-gd-top h5 {
     font-size: 1em;
     color: #fff;
-    padding: 0.2em 0em 0.8em 0em;
+    padding: 1.2em 0em 0.8em 0em;
     font-family: 'Carrois Gothic', sans-serif;
 }
 .price-gd-bottom {
@@ -2996,8 +2996,8 @@ span.per-month {
 .price-selet {
     padding: 0em 0em;
     text-align: center;
-    background: #78A239;
-    border-radius: 0px 0px 5px 5px;
+    background: #fff;
+    /* border-radius: 0px 0px 5px 5px; */
 }
 .price-selet a {
     font-size: 1.1em;
@@ -3006,8 +3006,14 @@ span.per-month {
 }
 .price-selet a {
     font-size: 1.1em;
-    color: #fff;
+    color: #292c33;
     display:block;
+    font-weight: bold;
+}
+.img-circle{
+    width:80px;
+    height: 80px;
+    background-color: #f44195;
 }
 .price-grid {
     margin-bottom: 3em;
@@ -3017,7 +3023,7 @@ span.per-month {
 }
 
 .pric-clr1 {
-    background:#f44195;
+    /* background:#f44195; */
 }
 .pric-clr3 h4 {
     background: #CC660E;
@@ -3026,7 +3032,6 @@ span.per-month {
     background: #E07D28;
 }
 .price-block {
-    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.15);
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
@@ -5275,4 +5280,8 @@ ul.dropdown-menu {
     
 .userdetails{
     margin-top: -45px;
+}
+
+#myDIV {
+
 }
