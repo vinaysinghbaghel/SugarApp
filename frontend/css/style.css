@@ -2954,7 +2954,7 @@ ul.nav.tabs li a span {
 .price-gd-top {
     background:#f44195;
     text-align: left;
-    border-radius: 5px 5px 0px 0px;
+    border-radius: 5px 5px 5px 5px;
 }
 .price-gd-top h4 {
     font-size: 1.8em;
@@ -3020,10 +3020,6 @@ span.per-month {
 }
 .pric-clr1 h4 {
     background:#f44195;
-}
-
-.pric-clr1 {
-    /* background:#f44195; */
 }
 .pric-clr3 h4 {
     background: #CC660E;
@@ -3174,7 +3170,7 @@ input#datepicker {
 	background:#FC8213;
 }
 a.order {
-	background:#FC8213;
+	background:#f44195;
 	padding: 10px 25px;
 	border: none;
 	color: #fff;
@@ -3189,10 +3185,35 @@ a.order {
 	outline: none;
     text-decoration: none;
     border-radius: 3px;
+    width: 95%;
+    margin-top: 20px;
+}
+input.order{
+    background:#f44195;
+	padding: 10px 25px;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	font-size:0.95em;
+	display: inline-block;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	-webkit-appearance: none;
+	outline: none;
+    text-decoration: none;
+    border-radius: 3px;
+    width: 95%;
+    margin-top: 20px;
+}
+input.order:hover{
+	color:#fff;
+	background:#a083ea;
 }
 a.order:hover{
 	color:#fff;
-	background:#68AE00;
+	background:#a083ea;
 }
 .payment-sendbtns li{
 	display:inline-block;
@@ -5284,4 +5305,27 @@ ul.dropdown-menu {
 
 #myDIV {
 
+}
+
+hr.style1{
+	border: 0px solid rgba(0, 0, 0, 0.18);
+}
+.numberCircle {
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+
+    background: #fff;
+    border: 5px solid #f44195;
+    color: #f44195;
+    text-align: center;
+
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif !important;
+    font-size: 48px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
 }

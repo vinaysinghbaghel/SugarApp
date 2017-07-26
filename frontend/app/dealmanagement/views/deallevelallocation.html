@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Shoppy an Admin Panel Category Flat Bootstrap Responsive Website Template | Portlet :: w3layouts</title>
+<title>Sugar</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -13,7 +13,29 @@
 <script src="js/jquery-2.1.1.min.js"></script> 
 <!--icons-css-->
 <link href="css/font-awesome.css" rel="stylesheet"> 
-
+<!--Google Fonts-->
+<!-- <link href='//fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'> -->
+<!--//skycons-icons-->
+<!--pop up strat here-->
+<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+ <script>
+						$(document).ready(function() {
+						$('.popup-with-zoom-anim').magnificPopup({
+							type: 'inline',
+							fixedContentPos: false,
+							fixedBgPos: true,
+							overflowY: 'auto',
+							closeBtnInside: true,
+							preloader: false,
+							midClick: true,
+							removalDelay: 300,
+							mainClass: 'my-mfp-zoom-in'
+						});
+																						
+						});
+				</script>
+<!--pop up end here-->
 </head>
 <body>	
 <div class="page-container">	
@@ -31,7 +53,7 @@
 									</form>
 								</div><!--//end-search-box-->
 								<div class="logo-name">
-									 <a href="index.html"> <h1>User Management</h1>
+									 <a href="index.html"> <h1>Deal Management</h1>
 									<!--<img id="logo" src="" alt="Logo"/>--> 
 								  </a> 								
 							</div>
@@ -201,7 +223,6 @@
 				     <div class="clearfix"> </div>	
 				</div>
 <!--heder end here-->
-<div class="clearfix"> </div>
 <!-- script-for sticky-nav -->
 		<!-- <script>
 		$(document).ready(function() {
@@ -217,10 +238,10 @@
 			 
 		});
 		</script> -->
-		<!-- /script-for sticky-nav -->
+<!-- /script-for sticky-nav -->
 <!--inner block start here-->
 <div class="inner-block">
-    <div class="portlet-grid-page">
+    <div class="price-block-main">
         <!-- search box -->
         <style> 
 input[type=text] {
@@ -247,8 +268,7 @@ input[type=text]:focus {
   <input type="text" name="search" placeholder="">
 </form>
  <!-- search box -->
-
- <div class="userdetails">
+<!-- <div class="userdetails">
  <div class="row">
     <div class="col-lg-5">
         <div class="media">
@@ -258,7 +278,6 @@ input[type=text]:focus {
             <div class="media-body">
                 <h4 class="media-heading" style="margin-top: 15px;">Akshay Palkar<small> India</small></h4>
                 <h5>123456789</h5>
-                <!-- <hr style="margin:8px auto"> -->
 
                 <span class="label label-default">20/12/2016</span>
                 <span class="label label-default">00:00:00</span>
@@ -268,7 +287,6 @@ input[type=text]:focus {
 
 	</div>
 	<div class="col-lg-7">
-		<!-- <div class="price-tables"> -->
 	    		<div class="col-md-4 price-grid">
 	    		   <div class="price-block">
 		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
@@ -296,17 +314,22 @@ input[type=text]:focus {
 			
 		</div>
 </div>
-</div>
- 
-   <div class="stripe" style="height: 50px;width: 100%;background-color: #292c33;margin-left: -25px;margin-bottom: 30px;">
+</div> -->
+<div class="stripe" style="height: 50px;width: 100%;background-color: #292c33;margin-left: -25px;margin-bottom: 30px;">
 	<div class="row">
-		<div class="col-md-2">
-	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">User Profile</div></a> 
+		<div class="col-md-3">
+	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">Deal Verification</div></a> 
 		</div>
-		<div class="col-md-4">
-	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">User Deal History</div></a> 
+		<div class="col-md-3">
+	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">Deal Level Allocation</div></a> 
+        </div>
+<div class="col-md-3">
+	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">Special Deal Allocation</div></a> 
 		</div>
-	<div class="col-md-2">
+		<div class="col-md-3">
+	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">Broadcast List Allotment</div></a> 
+		</div>
+	<!-- <div class="col-md-2">
 	<div class="dropdown">
   <button class="dropbtn">Login Data</button>
   <div class="dropdown-content">
@@ -315,175 +338,161 @@ input[type=text]:focus {
     <a href="#">Data 3</a>
   </div>
 </div>
-	</div>	
+	</div>	 -->
 </div> 
-   </div>   
- <div class="portlet-grid panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">GENERAL INFORMATION</h3>
-              </div> 
-                  <div class="row">
-                      <div class="col-md-4" style="margin-left: 20px;margin-top: 13px">
-                        <h4 style="margin-top: 10px">First Name<h4>
-                        <h4 style="margin-top: 10px">Last Name<h4>
-                        <h4 style="margin-top: 10px">Email<h4>
-                        <h4 style="margin-top: 10px">Password<h4>
-                        <h4 style="margin-top: 10px;margin-bottom: 20px">Member Since<h4>
+   </div>
+    	<div class="price-tables">
+	    		<div class="col-md-4 price-grid" style="width: 33.33%;cursor: pointer;margin-top: 30px;">
+		    			<div class="price-gd-top pric-clr1" style="background-color: #fff;box-shadow: 0px 0px 3px 3px rgba(0.15,0.15,0.15,0.15);">
+							<div class="numberCircle">1</div>
+								<h5 style="text-align: center;color: #292c33">Create responsive images by adding an .img-responsive class to the  tag. 
+                                 The image will then scale nicely to the parent element.Create responsive images by adding an .img-responsive class to the  tag. 
+                                 The image will then scale nicely to the parent element.Create responsive images by adding an .img-responsive class to the  tag. 
+								 The image will then scale nicely to the parent element.</h5>
+								 <a href="#" style="text-align: center;width: 100%" class="order">Confirm</a>  
+							<!-- <span><img src="images/food-08.jpg"></span> -->
+<!-- <div class="dropdown">
+  <button class="dropbtn">Deal Info</button>
+  <div class="dropdown-content">
+    <h6>Create responsive images by adding an .img-responsive class to the <img> tag. The image will then scale nicely to the parent element.
 
-					  </div>
-						<div class="col-md-6" style="color: #f44195;margin-left: 70px;margin-top: 13px">
-                        <h4 style="margin-top: 10px">Akshay<h4>
-                        <h4 style="margin-top: 10px">Palkar<h4>
-                        <h4 style="margin-top: 10px">mymail@mail.com<h4>
-                        <h4 style="margin-top: 10px">**********<h4>
-                        <h4 style="margin-top: 10px;margin-bottom: 20px">20/20/2016<h4>
-
-                      </div>
-                  </div>
-		</div>  
-			
-		<div class="portlet-grid panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">SAVED LOCATION</h3>
-              </div> 
-                  <div class="row">
-                      <div class="col-md-4" style="margin-left: 10px;">
-                        <h4 style="margin-top: 10px;">Home Location<i class="fa fa-home" aria-hidden="true" style="color: #f44195;margin-left: 5px;"></i><h4>
-                        <h4 style="margin-top: 10px;margin-bottom: 20px">Saved Location<i class="fa fa-briefcase" aria-hidden="true" style="color: #f44195;margin-left: 5px;"></i><h4>
-					  </div>
-						<div class="col-md-6" style="color: #f44195;margin-left: 70px">
-                        <h4 style="margin-top: 10px">Vasai (West)<h4>
-                        <h4 style="margin-top: 10px;margin-bottom: 20px">Juhu<h4>
-
-                      </div>
-                  </div>
-		</div>
-			
-		<div class="portlet-grid panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">LOGIN DATA</h3>
-              </div> 
-                  <!-- <div class="row">
-                      <div class="col-md-4" style="margin-left: 10px">
-                        <h4 style="margin-top: 10px">Home Location<i class="fa fa-home" aria-hidden="true" style="color: #f44195;margin-left: 5px;"></i><h4>
-                        <h4 style="margin-top: 10px">Saved Location<i class="fa fa-briefcase" aria-hidden="true" style="color: #f44195;margin-left: 5px;"></i><h4>
-					  </div>
-						<div class="col-md-6" style="color: #f44195">
-                        <h4 style="margin-top: 10px">Vasai (West)<h4>
-                        <h4 style="margin-top: 10px">Juhu<h4>
-
-                      </div>
-                  </div> -->
-    		  <div class="panel-body">
-    		  	  
-    		  </div> 
-		</div>
-		<div class="clearfix"> </div>	
-		<div class="portlet-grid-fav panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">FOVOURITES</h3>
-			  </div> 
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-
-		</div>
-
-		<div class="portlet-grid-fav panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">PREFERENCES</h3>
-			  </div> 
-				  <div class="portlet-grid-pref panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">Location</h3>
-			  </div> 
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-
-		</div>
-
-		<div class="portlet-grid-pref panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">Merchant</h3>
-			  </div> 
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-
-		</div>
-
-		<div class="portlet-grid-pref panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">Food</h3>
-			  </div> 
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-
-		</div>
-
-		<div class="portlet-grid-pref panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">Broadcast Merchant</h3>
-			  </div> 
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-
-		</div>
-
-		</div>
-		
-		<div class="clearfix"> </div>
+The .img-responsive class applies max-width: 100%, height: auto, and display:block to the image:</h6>
   </div>
+</div>  -->
+                        <!-- <div class="col-md-8">
+                          <h5 style="color: #f44195;margin-right: 60px;font-weight: bold;padding: 0.2em 0em 0.8em 0em;">123456789</h5>
+
+                        
+					<div class="row">
+						<div class="col-md-6">
+							<h6 style="color: #292c33;margin-right: 30px;font-size: 14px;line-height: 1.5;">Saved:</h6>
+							<h6 style="color: #292c33;margin-right: 30px;font-size: 14px;line-height: 1.5;">Redeemed:</h6>
+							<h6 style="color: #292c33;margin-right: 30px;font-size: 14px;line-height: 1.5;">Category:</h6>
+							<h6 style="color: #292c33;margin-right: 30px;font-size: 14px;line-height: 1.5;">Level:</h6>
+
+						</div>
+						<div class="col-md-6">
+							<h6 style="color: #292c33;margin-right: 30px;font-weight: bold;font-size: 14px;line-height: 1.5;">00:00:00</h6>
+							<h6 style="color: #292c33;margin-right: 30px;font-weight: bold;font-size: 14px;line-height: 1.5;">00:00:00</h6>
+							<h6 style="color: #292c33;margin-right: 30px;font-weight: bold;font-size: 14px;line-height: 1.5;">Cafe</h6>
+							<h6 style="color: #292c33;margin-right: 30px;font-weight: bold;font-size: 14px;line-height: 1.5;">Regular</h6>
+
+						</div>
+					</div>
+					</div> -->
+							
+					</div>
+		    				<!-- <h3><span class="usa-dollar">$</span> 5<span class="per-month">/mon</span></h3>
+		    				<h5>Free for 15days</h5> -->
+		    			
+		    			<!-- <div class="price-gd-bottom">
+		    				<div class="price-list">
+			    				<ul>
+			    					<li>1Gb Disk</li>
+			    					<li>10Gb Bandwidth Monthly</li>
+			    					<li>2 Email Account</li>
+			    					<li>Unlimited Sub Domains</li>
+			    				</ul>
+		    				</div>
+                        </div> -->
+                        <!-- <div class="row">
+                        <div class="col-md-6">                
+		    		    <div class="price-selet pric-clr1">		    			   
+		    			   	  <a href="#" style="background-color: #f44195;color: #fff">Regular</a>
+                        </div>
+                        </div>
+                    <div class="col-md-6">                
+		    		    <div class="price-selet pric-clr1">		    			   
+		    			   	  <a class="popup-with-zoom-anim" href="#small-dialog" style="">Deal Info</a>
+                        </div>
+                        </div>
+                        </div> -->
+		    		
+	    		</div>
+    	  <div class="clearfix"> </div>
+    	  </div>
+   </div>
 </div>
 <!--inner block end here-->
+<!--pop-up-grid-->
+				                  <div id="popup">
+								 <div id="small-dialog" class="mfp-hide"  style="max-width: 100%;">
+									<div class="pop_up">
+									 	<div class="payment-online-form-left">
+
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <img style="margin-left: 30px;" src="images/food-08.jpg"></img>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h3 style="text-align: left;font-weight: bold;margin-left: 30px;">Deal Info</h3>
+                                                    <h4 style="text-align: left;margin-left: 30px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+                                                </div>
+                                            </div>
+                                            <div style="overflow: auto; width:95%; height:200px;margin-left: 30px;
+                                            text-align: left;border: 1px solid #ccc;margin-top: 20px">
+                                                Lorem Ipsum is simply dummy text of the printing and 
+                                                typesetting industry. Lorem Ipsum has been the industry's 
+                                                standard dummy text ever since the 1500s, when an unknown 
+                                                printer took a galley of type and scrambled it to make a 
+                                                type specimen book. It has survived not only five centuries, 
+                                                but also the leap into electronic typesetting, remaining 
+                                                essentially unchanged. It was popularised in the 1960s with 
+                                                the release of Letraset sheets containing Lorem Ipsum passages, 
+                                                and more recently with desktop publishing software like Aldus 
+                                                PageMaker including versions of Lorem Ipsum.
+                                            </div>
+                                            <a href="#" class="order">Confirm</a>	
+                                                <!-- <div class="dealterms" style="border: 1px solid #ccc;max-width: 95%;margin-left: 30px;margin-top: 50px;">
+                                                  <h4 style="text-align: left">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the 
+                                                      industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type 
+                                                      and scrambled it to make a type specimen book. It has survived not only five centuries, but also the 
+                                                      leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with 
+                                                      the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
+                                                      software like Aldus PageMaker including versions of Lorem Ipsum.</h4>  
+                                                </div> -->
+                                                
+											<!-- <form>
+												<h4><span class="shoppong-pay-1"> </span>Shipping Details</h4>
+												<ul>
+													<li><input class="text-box-dark" type="text" value="First Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'First Name';}"></li>
+													<li><input class="text-box-dark" type="text" value="Last Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Last Name';}"></li>
+												</ul>
+												<ul>
+													<li><input class="text-box-dark" type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}"></li>
+													<li><input class="text-box-dark" type="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}"></li>
+												</ul>
+												<ul>
+													<li><input class="text-box-dark" type="text" value="Address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Address';}"></li>
+													<li><input class="text-box-dark" type="text" value="Pin Code" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Pin Code';}"></li>
+													
+												</ul>
+												<div class="clear"></div>
+												<h4 class="paymenthead"><span class="payment"></span>Payment Details</h4>
+												<div class="clear"></div>										
+												<ul>
+													<li><input class="text-box-dark" type="text" value="Card Number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Card Number';}"></li>
+													<li><input class="text-box-dark" type="text" value="Name on card" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name on card';}"></li>
+												
+												</ul>
+												<ul>
+													<li><input class="text-box-light hasDatepicker" type="text" id="datepicker" value="Expiration Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Expiration Date';}"><em class="pay-date"> </em></li>
+													<li><input class="text-box-dark" type="text" value="Security Code" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Security Code';}"></li>
+												
+												</ul>
+												<ul class="payment-sendbtns">
+													<li><input type="reset" value="Reset"></li>
+													<li><a href="#" class="order">Process order</a></li>
+												</ul>
+												<div class="clear"></div>
+											</form> -->
+										</div>
+						  			</div>
+								</div>
+								</div>
+								
+<!--pop-up-grid-->
 
 </div>
 </div>
@@ -569,7 +578,3 @@ $(".sidebar-icon").click(function() {
 <!-- mother grid end here-->
 </body>
 </html>
-
-
-                      
-						
