@@ -12,9 +12,9 @@ var venderprofileSchema = new mongoose.Schema({
     address: {
         type: String,
     },
-    addressloc: {
-        type: { type: String },
-        coordinates: [Number],
+    loc: {
+        type: [Number],
+    index: '2d'
     },
     name: {
         type: String,
@@ -29,8 +29,7 @@ var venderprofileSchema = new mongoose.Schema({
         type: Number,
     },
     logo: {
-        data: Buffer, 
-        contentType: String,
+         type: String,
     },
     membersince: {
         type: String,
@@ -38,10 +37,7 @@ var venderprofileSchema = new mongoose.Schema({
     merchantcategory: {
         type: String,
     },
-    levelregular: {
-        type: String,
-    },
-    levelJFY: {
+    merchantlevel: {
         type: String,
     },
     password: {

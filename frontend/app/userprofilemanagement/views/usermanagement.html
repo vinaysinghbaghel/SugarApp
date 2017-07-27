@@ -16,7 +16,7 @@
 
 </head>
 <body>	
-<div class="page-container">	
+<div class="page-container" ng-init="getUserProfile()" ng-controller="userprofileController">	
    <div class="left-content">
 	   <div class="mother-grid-inner">
             <!--header start here-->
@@ -202,7 +202,7 @@
 				</div>
 <!--heder end here-->
 <!-- script-for sticky-nav -->
-		<script>
+		<!-- <script>
 		$(document).ready(function() {
 			 var navoffeset=$(".header-main").offset().top;
 			 $(window).scroll(function(){
@@ -215,7 +215,7 @@
 			 });
 			 
 		});
-		</script>
+		</script> -->
 		<!-- /script-for sticky-nav -->
 <!--inner block start here-->
 <div class="inner-block">
@@ -242,11 +242,16 @@ input[type=text]:focus {
     width: 100%;
 }
 </style>
-<form>
-  <input type="text" name="search" placeholder="">
-</form>
- <!-- search box -->
-
+<div class="container">
+  <typeahead items="items" prompt="Start typing a US state" title="name"  model="name" on-select="onItemSelected()" />
+</div>
+<input type="text" ng-model="model.name" placeholder="{{prompt}}" ng-keydown="selected=false">
+ <br/>
+<div class="items" ng-hide="!model.name || selected">
+  <div class="item" ng-repeat="item in items | filter:model.name  track by $index" ng-click="handleSelection(item)" style="cursor:pointer" ng-class="{actives:isCurrent($index)}" ng-mouseenter="setCurrent($index)">
+    <p class="title">{{item.name}}</p>
+  </div>
+</div>
  <div class="row">
 
 
@@ -256,8 +261,8 @@ input[type=text]:focus {
                 <img class="media-object dp img-circle" src="images/photo1.png" style="width: 100px;height:100px;">
             </a>
             <div class="media-body">
-                <h4 class="media-heading">Akshay Palkar<small> India</small></h4>
-                <h5>123456789</h5>
+                <h4 class="media-heading">{{model.name}}</h4>
+                <h5>{{model.phonenumber}}</h5>
                 <hr style="margin:8px auto">
 
                 <span class="label label-default">20/12/2016</span>
@@ -272,10 +277,13 @@ input[type=text]:focus {
    <div class="stripe" style="height: 50px;width: 100%;background-color: #292c33;margin-left: -25px;margin-bottom: 30px;">
 	<div class="row">
 		<div class="col-md-10">
-	<div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">Personal Profile</div>   
+	<div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">Personal Profile</div> 
+	<button class="text" ng-click="getDealHistory(model.custID)">User Deal History</button>  
 		</div>
+<!-- <li><a >User Deal History</a></li>	 -->
 	<div class="col-md-2">
 	<div class="dropdown">
+		
   <button class="dropbtn">Login Data</button>
   <div class="dropdown-content">
     <a href="#">Data 1</a>
@@ -293,18 +301,18 @@ input[type=text]:focus {
                   <div class="row">
                       <div class="col-md-4" style="margin-left: 20px;margin-top: 13px">
                         <h4 style="margin-top: 10px">First Name<h4>
-                        <h4 style="margin-top: 10px">Last Name<h4>
+                        <!-- <h4 style="margin-top: 10px">Last Name<h4> -->
                         <h4 style="margin-top: 10px">Email<h4>
-                        <h4 style="margin-top: 10px">Password<h4>
+                        <!-- <h4 style="margin-top: 10px">Password<h4> -->
                         <h4 style="margin-top: 10px;margin-bottom: 20px">Member Since<h4>
 
 					  </div>
 						<div class="col-md-6" style="color: #f44195;margin-left: 70px;margin-top: 13px">
-                        <h4 style="margin-top: 10px">Akshay<h4>
-                        <h4 style="margin-top: 10px">Palkar<h4>
-                        <h4 style="margin-top: 10px">mymail@mail.com<h4>
-                        <h4 style="margin-top: 10px">**********<h4>
-                        <h4 style="margin-top: 10px;margin-bottom: 20px">20/20/2016<h4>
+                        <h4 style="margin-top: 10px">{{model.name}}<h4>
+                        <!-- <h4 style="margin-top: 10px">Palkar<h4> -->
+                        <h4 style="margin-top: 10px">{{model.email}}<h4>
+                        <!-- <h4 style="margin-top: 10px">**********<h4> -->
+                        <h4 style="margin-top: 10px;margin-bottom: 20px">{{model.membersince}}<h4>
 
                       </div>
                   </div>
@@ -317,11 +325,11 @@ input[type=text]:focus {
                   <div class="row">
                       <div class="col-md-4" style="margin-left: 10px;">
                         <h4 style="margin-top: 10px;">Home Location<i class="fa fa-home" aria-hidden="true" style="color: #f44195;margin-left: 5px;"></i><h4>
-                        <h4 style="margin-top: 10px;margin-bottom: 20px">Saved Location<i class="fa fa-briefcase" aria-hidden="true" style="color: #f44195;margin-left: 5px;"></i><h4>
+                        <h4 style="margin-top: 10px;margin-bottom: 20px">Work Location<i class="fa fa-briefcase" aria-hidden="true" style="color: #f44195;margin-left: 5px;"></i><h4>
 					  </div>
 						<div class="col-md-6" style="color: #f44195;margin-left: 70px">
-                        <h4 style="margin-top: 10px">Vasai (West)<h4>
-                        <h4 style="margin-top: 10px;margin-bottom: 20px">Juhu<h4>
+                        <h4 style="margin-top: 10px">{{model.homelocation[0]}}<h4>
+                        <h4 style="margin-top: 10px;margin-bottom: 20px">{{model.worklocation[0]}}<h4>
 
                       </div>
                   </div>
@@ -343,7 +351,7 @@ input[type=text]:focus {
                       </div>
                   </div> -->
     		  <div class="panel-body">
-    		  	  
+    		  	  {{model.logindata}}
     		  </div> 
 		</div>
 		<div class="clearfix"> </div>	
@@ -351,6 +359,7 @@ input[type=text]:focus {
     		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
     		      <h3 class="panel-title" style="font-weight: bold">FOVOURITES</h3>
 			  </div> 
+				<!-- <a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
@@ -360,9 +369,8 @@ input[type=text]:focus {
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
+				<a href="#" class="fav-button">MUMBAI</a> -->
+				<a href="#" class="fav-button">{{model.favourites}}</a>
 
 		</div>
 
@@ -374,6 +382,8 @@ input[type=text]:focus {
     		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
     		      <h3 class="panel-title" style="font-weight: bold">Location</h3>
 			  </div> 
+				<a href="#" class="fav-button">{{model.preferenceslocation}}</a>
+				<!-- <a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
@@ -383,9 +393,7 @@ input[type=text]:focus {
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
+				<a href="#" class="fav-button">MUMBAI</a> -->
 
 		</div>
 
@@ -393,6 +401,7 @@ input[type=text]:focus {
     		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
     		      <h3 class="panel-title" style="font-weight: bold">Merchant</h3>
 			  </div> 
+				<!-- <a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
@@ -402,9 +411,8 @@ input[type=text]:focus {
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
+				<a href="#" class="fav-button">MUMBAI</a> -->
+				<a href="#" class="fav-button">{{model.merchant}}</a>
 
 		</div>
 
@@ -412,6 +420,7 @@ input[type=text]:focus {
     		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
     		      <h3 class="panel-title" style="font-weight: bold">Food</h3>
 			  </div> 
+				<!-- <a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
@@ -421,9 +430,8 @@ input[type=text]:focus {
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
+				<a href="#" class="fav-button">MUMBAI</a> -->
+				<a href="#" class="fav-button">{{model.food}}</a>
 
 		</div>
 
@@ -431,6 +439,7 @@ input[type=text]:focus {
     		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
     		      <h3 class="panel-title" style="font-weight: bold">Broadcast Merchant</h3>
 			  </div> 
+				<!-- <a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
@@ -440,9 +449,8 @@ input[type=text]:focus {
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
 				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
+				<a href="#" class="fav-button">MUMBAI</a> -->
+				<a href="#" class="fav-button">{{model.broadcastmerchant}}</a>
 
 		</div>
 

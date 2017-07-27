@@ -12,6 +12,7 @@ let apiRoutes = require('./routes/index');
 let webRoutes = require('./routes/web-Route');
 let mail = require('./utils/mail');
 const session = require('express-session');
+const busboy = require('connect-busboy');
 // const MemoryStore = require('connect').session.MemoryStore
 // let MemoryStore ;
 // app.use(session({secret:'XASDASDA'}));
@@ -67,6 +68,7 @@ app.use(session({
     secret: "secret",
     
 }));
+app.use(busboy());
 // app.use(function (req, res, next) {
 //     res.locals.session = req.session;
 //     try {
@@ -87,7 +89,6 @@ app.use(session({
 
 app.use('/', apiRoutes);
 app.use('/', webRoutes);
-
 app.use('/', function(req, res) {
     return res.sendFile(path.join(__dirname, './../frontend/app.html'));
 });

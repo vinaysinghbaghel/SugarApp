@@ -1,13 +1,5 @@
-
     angular.module('MainCtrl', [])
      .controller('usersController', function($scope,$rootScope,UserService,toaster,$http,$location) {
-        var showToaster = function(type, title, message) {
-        toaster.pop(type, title, message);
-        };
-
-        var clearToaster = function() {
-        toaster.clear();
-        };
 
         $scope.signupdata={}
         $scope.logindata={}
@@ -18,39 +10,29 @@
           user:$scope.signupdata
         }, function(response) {
           if (response && response.data && response.data.success) {
-            showToaster('success', 'Success', response.data.message);
             console.log('success', 'Success', response.data.message)
-           
+           $location.path("/login")
           } else {
             showToaster('error', 'Error', response.data.message);
           }
         });
       } 
       $scope.signIn = function() {
-        // $scope.showToaster('wait', "Easybill Says", "Login...");
         var res = $http.post("/signin", $scope.logindata);
         res.success(function(data) {
           if (!data.success) {
-            $rootScope.showLoading = false;
             $rootScope.errorMessage = data.message;
           } else {
-            console.log(data,'HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIii')
             if(data.user.passwordchanged!=0)
               {
-                //  $location.path("/changepassword");  
-                 $location.path("/dashboard");
+               $location.path("/dashboard");
               }else{
-            //  $rootScope.login = data.email;
-            //  $rootScope.showLoading =false;
-            //  $rootScope.user = angular.copy(data.user);
              $location.path("/changepassword");  
-              // $location.path("/dashboard"); 
-            // $scope.clearToaster();
-           } // $scope.showToaster('error', "Easybill Says", data.message);
+           } 
           }
         });
       };
-       $scope.changePassword = function(form) {
+      $scope.changePassword = function(form) {
         // $scope.showToaster('wait', "Easybill Says", "Login...");
          $rootScope.errorMessage = '';
         if(!form.$valid){     
@@ -71,8 +53,7 @@
         //   $rootScope.submitted = true;
         //   $rootScope.errorMessage = 'Please accept the Terms and conditions and Privacy Policy.';
         //   return;
-        // }  
-        console.log($scope.changepassworddata,'vinnnauassudadanffnsfnsfjfjsfbksfkjfkdsfbdsfksfkjfb')
+        // } 
         var res = $http.post("/changepassword", $scope.changepassworddata);
         res.success(function(data) {
           if (data.success) {
@@ -81,35 +62,13 @@
           } else {
             $rootScope.showLoading = false;
             $rootScope.errorMessage = data.message;
-            //  $rootScope.login = "yes";
-            //  $rootScope.showLoading =false;
-            //  $rootScope.user = angular.copy(data.user);
-            //  $location.path("/login");   
-            // $scope.clearToaster();
-            // $scope.showToaster('error', "Easybill Says", data.message);
           }
         });
       };
-     $scope.logout = function(){
-         console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
-         $location.path("/login");   
-    // $http.get('/logout')
-    //  var res = $http.post("/logout");
-    // res.success(function(data){
-    //   clearInterval($rootScope.refreshIntervalId);
-    //   if(data.success){
-    //    $location.path("/login");   
-    //   } else {
-    //     console.log(data);
-    //     alert(data.message);
-    //   }
-    // })
-    // .error(function(error){
-    //   console.log(error);
-    // });
-  }
+    $scope.logout = function () {
+          $location.path('/login');
+    };
   $scope.userprofile = function() {
-  console.log($scope.userprofiledata,'userprofilreeedeadsdsdsadsadsdsadsadsadsadsadaddd')
          var res=   $http
                 .post('/api/userprofile', $scope.userprofiledata)
                 res.success(function(data) {

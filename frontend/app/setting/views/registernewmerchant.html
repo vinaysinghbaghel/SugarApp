@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+<body>
+
+<div class="form_login" ng-controller="registermerchantController">
+   
+			<div class="col-md-6 main_form_right">
+				<!-- <h1>Sign Up</h1> -->
+				<div class="right_form_main">
+					<form name="signup_form" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+			                 	<!-- <p class="err-messg">{{errorMessage}}</p>		 -->
+			                </div> 
+						 <div class="form-group">
+							<label for="username">Name</label>							
+							<input type="text" class="form-control" id="username" name="username" ng-model="merchantregister.name" required="true"/>
+						</div>
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input type="email" class="form-control" id="email" name="email" ng-model="merchantregister.email" required>
+						</div>
+						<div class="form-group">
+							<label for="phone">Contact Number</label>
+							<input type="text" class="form-control" id="phone" name="phone" ng-model="merchantregister.phone" required>
+                        </div>
+                          <div class="form-group">
+							<label for="customerid">Contact Person</label>							
+							<input type="text" class="form-control" id="customerid" name="customerid" ng-model="merchantregister.contactperson" required="true"/>
+						</div> 
+                        <div class="form-group">
+							<label for="image">Merchant Logo</label>
+							<!-- <input type="file" accept="image/x-png, image/gif, image/jpeg"  id="profileimage" fileread="uploadme"> -->
+							<input type="file" name="file" id="profileimage" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+                            <!-- <hr>
+                        <img src="{{users.photourl?users.photourl:uploadme}}" width="200" height="100" alt="Image preview...">
+                        <br/> -->
+                        </div>
+                        
+                        <div class="form-group">
+							<label for="homelocation">Merchant Category</label>
+							<input type="text" class="form-control" id="password" name="password" ng-model="merchantregister.merchantcategory" required>
+                        </div>
+                        <div class="form-group">
+							<label for="phone">Merchant Level</label>
+							<input type="text" class="form-control" id="password" name="password" ng-model="merchantregister.merchantlevel" required>
+						</div>
+						<div class="form-group">
+							<label for="phone">Address</label>
+							<textarea rows="4" cols="50" ng-model="merchantregister.address"></textarea>
+						</div> 
+						<div class="form-group">
+                        <label for="phone">Set Location</label>
+                        </div>
+                        <div id="map"></div>
+                        <div class="form-group">
+                        <label>Enter Latitude</label>
+                        <input type="number" ng-model="merchantregister.markerLat" required="">
+                        </div>
+                        <div class="form-group">
+                        <label>Enter Longitude</label>
+                        <input type="number" ng-model="merchantregister.markerLng" required="" ng-model="defaultLng">
+                        </div>
+                        <div class="form-group">
+                        <label>Enter Title</label>
+                        <input type="text" ng-model="merchantregister.infoTitle" required="">
+                        </div>
+            
+								<button ng-click="addMarker(merchantregister)" class="hvr-bob" style="background-color: #f44195;color: #fff;width: 100%">Submit</button>
+					</form>					
+				</div>
+			<!-- </div>
+		</div> -->
+		<div class="clearfix"></div>
+	</div><!--end of the main_form-->
+</div>
+
+</body>
+</html>

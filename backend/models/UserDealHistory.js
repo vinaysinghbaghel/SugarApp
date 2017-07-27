@@ -9,6 +9,10 @@ var userdealhistorySchema = new mongoose.Schema({
         type: String,
         unique:true
     },
+    //  custID: {
+    //     type: String,
+    //     unique:true
+    // },
     dealimg: {
         data: Buffer, 
         contentType: String,

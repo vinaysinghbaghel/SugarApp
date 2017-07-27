@@ -38,7 +38,7 @@
 <!--pop up end here-->
 </head>
 <body>	
-<div class="page-container">	
+<div class="page-container"  ng-controller="userprofileController">	
    <div class="left-content">
 	   <div class="mother-grid-inner">
             <!--header start here-->
@@ -224,7 +224,7 @@
 				</div>
 <!--heder end here-->
 <!-- script-for sticky-nav -->
-		<script>
+		<!-- <script>
 		$(document).ready(function() {
 			 var navoffeset=$(".header-main").offset().top;
 			 $(window).scroll(function(){
@@ -237,7 +237,7 @@
 			 });
 			 
 		});
-		</script>
+		</script> -->
 <!-- /script-for sticky-nav -->
 <!--inner block start here-->
 <div class="inner-block">
@@ -264,11 +264,18 @@ input[type=text]:focus {
     width: 100%;
 }
 </style>
-<form>
-  <input type="text" name="search" placeholder="">
-</form>
+<!-- <div class="container">
+  <typeahead items="items" prompt="Start typing a US state" title="name"  model="name" on-select="onItemSelected()" />
+</div>
+<input type="text" ng-model="model.name" placeholder="{{prompt}}" ng-keydown="selected=false">
+ <br/>
+<div class="items" ng-hide="!model.name || selected">
+  <div class="item" ng-repeat="item in items | filter:model.name  track by $index" ng-click="handleSelection(item)" style="cursor:pointer" ng-class="{actives:isCurrent($index)}" ng-mouseenter="setCurrent($index)">
+    <p class="title">{{item.name}}</p>
+  </div>
+</div> -->
  <!-- search box -->
-<div class="userdetails">
+<!-- <div class="userdetails">
  <div class="row">
     <div class="col-lg-5">
         <div class="media">
@@ -276,8 +283,8 @@ input[type=text]:focus {
                 <img class="media-object dp img-circle" src="images/photo1.png" style="width: 100px;height:100px;">
             </a>
             <div class="media-body">
-                <h4 class="media-heading">Akshay Palkar<small> India</small></h4>
-                <h5>123456789</h5>
+                <h4 class="media-heading">{{model.name}}</h4>
+                <h5>{{model.phonenumber}}</h5>
                 <hr style="margin:8px auto">
 
                 <span class="label label-default">20/12/2016</span>
@@ -288,7 +295,7 @@ input[type=text]:focus {
 
     </div>
 </div>
-</div>
+</div> -->
 <div class="stripe" style="height: 50px;width: 100%;background-color: #292c33;margin-left: -25px;margin-bottom: 30px;">
 	<div class="row">
 		<div class="col-md-10">
@@ -335,16 +342,34 @@ input[type=text]:focus {
 		    				</div>
                         </div> -->
                         <div class="row">
-                        <div class="col-md-6">                
+					<table class="table table-bordered">
+					<thead>
+					<tr>
+						<th class="text-center">Deal ID</th>
+						<th class="text-center">Deal Info</th>
+						<th class="text-center">Deal Category</th>
+						<th class="text-center">Deal Type</th>
+					</tr>
+					</thead>
+					<tbody class="text-center">
+					<tr ng-repeat="user in user">
+						<td>{{user.dealID}}</td>
+						<td>{{user.dealinfo}}</td>
+						<td>{{user.dealcategory}}</td>
+						<td>{{user.dealtype}}</td>
+					</tr>
+					</tbody>
+				</table>
+                        <!-- <div class="col-md-6">                
 		    		    <div class="price-selet pric-clr1">		    			   
-		    			   	  <a href="#" style="background-color: #f44195">Regular</a>
+		    			   	  <a href="#" style="background-color: #f44195">{{user.dealtype}}</a>
                         </div>
                         </div>
                     <div class="col-md-6">                
 		    		    <div class="price-selet pric-clr1">		    			   
-		    			   	  <a class="popup-with-zoom-anim" href="#small-dialog" style="background-color: #a083ea">Deal Info</a>
+		    			   	  <a class="popup-with-zoom-anim" href="#small-dialog" style="background-color: #a083ea">{{user.dealinfo}}</a>
                         </div>
-                        </div>
+                        </div> -->
                         </div>
 		    		</div>
 	    		</div>

@@ -31,7 +31,7 @@
   angular.module('UserService', []).factory('UserService', ['$http', function($http) {
 
     return {
-          createUser: function(data, callback) {
+    createUser: function(data, callback) {
         $http({
           method: 'POST',
           url: 'userdata',
@@ -44,8 +44,17 @@
             callback(response);
           }
         );
-      },
-
+    },
+    logout: function(callback){
+      $http({
+          method: 'GET',
+          url: '/logout',
+        }).then(
+          function(response) {
+            callback(response);
+          }
+        );
+    }
         
     }       
 

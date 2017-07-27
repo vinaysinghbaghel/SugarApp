@@ -17,17 +17,17 @@ exports.signUp = function(req, res, next) {
     Users.findOne(search).exec(function(err, user){
     if(err) return res.json({"success" : false, message :  "Oops! Error in processing the request, Please try again."});
     if(user) return res.json({"success" : true, message :  "Userid is already registered."});
-    let randomstrings = randomString({length: 10});
+    let userpassword = randomString({length: 10});
+    console.log(userpassword,'password of user')
     let uuids = uuid();
-    let userpass= CryptoJS.AES.encrypt(uuids,randomstrings).toString();
-    console.log(userpass,'password of users')
-
+    let userpass= CryptoJS.AES.encrypt(userpassword,uuids).toString();
+    
 // setup email data with unicode symbols
 let mailOptions = {
     from: 'Sugar@wishto.co', // sender address
     to: body.userid, // list of receivers
     subject: 'SugarApp Credentials', // Subject line
-    html: 'Welcome to SugarApp,<br/> Your credentials are <br/> username: ' + body.userid + '<br/> password: '+'wishto@23'+'<br/> url:',
+    html: 'Welcome to SugarApp,<br/> Your credentials are <br/> username: ' + body.userid + '<br/> password: '+ userpassword +'<br/> url:',
 };
 
 // send mail with defined transport object
@@ -41,7 +41,7 @@ mail.sendEmail(mailOptions, (error, info) => {
         'name': body.name,
         'email':body.userid,
         'phonenumber':body.phonenumber,
-        'password':'wishto@23',
+        'password':userpass,
         'isDelete': 0,
         'passwordchanged': 0,
         'useruuid': uuids,
@@ -60,7 +60,7 @@ mail.sendEmail(mailOptions, (error, info) => {
             return res.json({
                 'message': 'User Registered successfully',
                 'success': true,
-                'data': userObj
+                'data': []
             });
         });
         });
@@ -75,36 +75,19 @@ exports.signIn = function(req,res,next){
             var password = req.body.password;
             Users.find({email:email}).exec(function(err, user){
              if (err) {
-             return res.json({
-             success: false,
-             "message": err
-             });
+             return res.json({ success: false, "message": err}); 
              }   
              if(user.length === 0){
-                console.log("Email not registered.") 
                 return res.json({"success" : false, message :  "Email not registered."});
-
-             }if(user[0].password !== password) {
-                console.log("Incorrect password entered.")
+             }
+            let users=user[0];
+            let userpassword = CryptoJS.AES.decrypt(users.password, users.useruuid).toString(CryptoJS.enc.Utf8);
+            if(userpassword !== password) {
                 return res.json({"success" : false, message :  "Incorrect password entered."});
              }else{
-                 
-            //   if (user.passwordchanged != 0) {
-             console.log(user,'user is always in controlllerrrrrrrr')
               req.session.userid = user[0]._id;
-
-
               return res.json({"success" : true,user:user[0]});
-              
-            //   } else {
-            //     var email = req.body.email;
-            //      console.log(user,'user is elseseeeeeeeeeeeeeeeeeeeeeeeeeeee')
-            //     console.log(email,'email in server side...........return ................')
-                //  res.se({"success" : true,email:email});
-            // }
-
-           } 
-                
+           }            
            });
         } catch (e) {
             // res.redirect('/partner?fail=1');
@@ -115,20 +98,15 @@ exports.signIn = function(req,res,next){
     exports.changePassword = function(req, res) {
         try {
             let id=req.session.userid ;
-            console.log(id,'vinay singh baghellllllllllllllllllllllllllllllllllllllllll')
             let email = req.body.email;
             let password = req.body.password;
+            let uuids = uuid();
             Users.find({_id:id}).exec(function(err, user){
              if (err) {
              return res.json({success: false, "message": err });
             }else if(user){
-            // var salt = new Buffer(user.salt, 'base64');
-            // var p = crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
-            // if(password === user[0].password) {
-            // var s = crypto.randomBytes(16).toString('base64');
-            //     salt = new Buffer(s, 'base64');
-            //     var encryptNewPwd = crypto.pbkdf2Sync(newpassword, salt, 10000, 64).toString('base64');
-                Users.update({email:email},{password:password,passwordchanged:1},function(err,newpassword){
+                let userpass= CryptoJS.AES.encrypt(password,uuids).toString();
+                Users.update({email:email},{password:userpass,useruuid:uuids,passwordchanged:1},function(err,newpassword){
                     if(err){
                     res.json({success : false, message : "Erron in processing the request. Please try again."});
                     }
@@ -137,7 +115,7 @@ exports.signIn = function(req,res,next){
                     }                 
                 })
             // }else{
-            //     res.json({status : false, message : "Invalid old password"});
+            //  res.json({status : false, message : "Invalid old password"});
             // }
             }
             else {
@@ -146,23 +124,12 @@ exports.signIn = function(req,res,next){
             })
         } catch (e) {
             console.error(e.stack);
-            // res.send({
-            //     code: Code.errors.unknown,
-            //     message: e.stack
-            // });
         }
     }
-//  exports.logout=function(req, res) {
-//         req.session.destroy((err) => {
-//             "use strict";
-//             console.error(err);
-//         });
-//         res.json({success : true});
-//     }
 
 exports.userprofiledetails = function(req, res, next) {
     try {
-    console.log(req.body,'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiidata')
+
     let userprofiledetails = new UserProfile({
       custID:req.body.customerid,
       name:req.body.name,
@@ -171,8 +138,12 @@ exports.userprofiledetails = function(req, res, next) {
       img:req.body.image,
       password:req.body.password,
       homelocation:req.body.homelocation,
-      worklocation:req.body.worklocation
-
+      worklocation:req.body.worklocation,
+      favourites:req.body.favourites,
+      preferenceslocation:req.body.preferenceslocation,
+      merchant:req.body.merchant,
+      food:req.body.food,
+      broadcastmerchant:req.body.broadcastmerchant
     })
      userprofiledetails
         .save(function(err) {

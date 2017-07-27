@@ -3,7 +3,9 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const UserAuthenticationController = require('./../controllers/UserAuthenticationController');
+let UserAuthenticationController = require('./../controllers/UserAuthenticationController');
+let UserProfileController = require('./../controllers/UserProfileController');
+let MerchantController = require('./../controllers/MerchantController');
 
 /* Get Tweets */
 // router.get('/', [
@@ -14,6 +16,11 @@ const UserAuthenticationController = require('./../controllers/UserAuthenticatio
  router.post('/changepassword', UserAuthenticationController.changePassword);
 //  router.get('/signout', UserAuthenticationController.logout);
  router.post('/api/userprofile', UserAuthenticationController.userprofiledetails);
+ router.get('/api/userprofiledata',UserProfileController.getUserProfile);
+ router.post('/api/userdealdetails', UserProfileController.userdealdetails);
+ router.post('/api/dealhistorydata',UserProfileController.getDealHistory);
+ router.post('/api/registermerchant',MerchantController.registermerchant);
+
 
 // /* Update Tweet */
 // router.put('/:id', [

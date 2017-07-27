@@ -27,7 +27,7 @@ angular
             .state('userprofile', {
                 url: '/userprofile',
                 templateUrl: 'app/userprofilemanagement/views/usermanagement.html',
-                controller: 'usersController'
+                controller: 'userprofileController'
             })
             .state('userprofiledetails', {
                 url: '/userprofiledetails',
@@ -36,7 +36,17 @@ angular
             .state('userdealhistory', {
                 url: '/userdealhistory',
                 templateUrl: 'app/userprofilemanagement/views/userdealhistory.html',
-                controller: 'usersController'
+                controller: 'userprofileController'
+            })
+            .state('userdealhistorydetails', {
+                url: '/userdealhistorydetails',
+                templateUrl: 'app/userprofilemanagement/views/userdeal.html',
+                controller: 'userprofileController'
+            })
+            .state('registermerchant', {
+                url: '/registermerchant',
+                templateUrl: 'app/setting/views/registernewmerchant.html',
+                controller: 'registermerchantController'
             });
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
