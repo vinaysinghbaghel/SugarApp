@@ -16,7 +16,7 @@
 
 </head>
 <body>	
-<div class="page-container" ng-init="getUserProfile()" ng-controller="userprofileController">	
+<div class="page-container">	
    <div class="left-content">
 	   <div class="mother-grid-inner">
             <!--header start here-->
@@ -31,7 +31,7 @@
 									</form>
 								</div><!--//end-search-box-->
 								<div class="logo-name">
-									 <a href="index.html"> <h1>User Management</h1>
+									 <a href="#"> <h1>Vendor Management</h1>
 									<!--<img id="logo" src="" alt="Logo"/>--> 
 								  </a> 								
 							</div>
@@ -243,16 +243,12 @@ input[type=text]:focus {
     width: 100%;
 }
 </style>
-<div class="container">
-  <typeahead items="items" prompt="Start typing a US state" title="name"  model="name" on-select="onItemSelected()" />
-</div>
-<input type="text" ng-model="model.name" placeholder="{{prompt}}" ng-keydown="selected=false">
- <br/>
-<div class="items" ng-hide="!model.name || selected">
-  <div class="item" ng-repeat="item in items | filter:model.name  track by $index" ng-click="handleSelection(item)" style="cursor:pointer" ng-class="{actives:isCurrent($index)}" ng-mouseenter="setCurrent($index)">
-    <p class="title">{{item.name}}</p>
-  </div>
-</div>
+<form>
+  <input type="text" name="search" placeholder="">
+</form>
+ <!-- search box -->
+
+ <div class="userdetails">
  <div class="row">
     <div class="col-lg-5">
         <div class="media">
@@ -260,9 +256,9 @@ input[type=text]:focus {
                 <img class="media-object dp img-circle" src="images/photo1.png" style="width: 100px;height:100px;">
             </a>
             <div class="media-body">
-                <h4 class="media-heading">{{model.name}}</h4>
-                <h5>{{model.phonenumber}}</h5>
-                <hr style="margin:8px auto">
+                <h4 class="media-heading" style="margin-top: 15px;">Starbucks,<small> Mumbai</small></h4>
+                <h5>123456789</h5>
+                <!-- <hr style="margin:8px auto"> -->
 
                 <span class="label label-default">20/12/2016</span>
                 <span class="label label-default">00:00:00</span>
@@ -273,26 +269,34 @@ input[type=text]:focus {
 	</div>
 	<div class="col-lg-7">
 		<!-- <div class="price-tables"> -->
-	    		<div class="col-md-4 price-grid">
+	    		<div class="col-md-3 price-grid">
 	    		   <div class="price-block">
 		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
-							<h5 style="text-align: center">Users Registered Today</h5>
+							<h5 style="text-align: center">Available Deals</h5>
 		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
 		    			</div>
 		    		</div>
 				</div>
-				<div class="col-md-4 price-grid">
+				<div class="col-md-3 price-grid">
 	    		   <div class="price-block">
 		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
-							<h5 style="text-align: center">Users Registered<br>Till Date</h5>
+							<h5 style="text-align: center">Posted Deals</h5>
 		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
 		    			</div>
 		    		</div>
 				</div>
-				<div class="col-md-4 price-grid">
+				<div class="col-md-3 price-grid">
 	    		   <div class="price-block">
 		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
-							<h5 style="text-align: center">Active<br>Users</h5>
+							<h5 style="text-align: center">Jfy Deals</h5>
+		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
+		    			</div>
+		    		</div>
+                </div>
+                <div class="col-md-3 price-grid">
+	    		   <div class="price-block">
+		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
+							<h5 style="text-align: center">Special Deals</h5>
 		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
 		    			</div>
 		    		</div>
@@ -304,20 +308,17 @@ input[type=text]:focus {
  
    <div class="stripe" style="height: 50px;width: 100%;background-color: #292c33;margin-left: -25px;margin-bottom: 30px;">
 	<div class="row">
-
-		<div class="col-md-10">
-	<div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">Personal Profile</div> 
-	<button class="text" ng-click="getDealHistory(model.custID)">User Deal History</button>  
-		<!-- <div class="col-md-2">
-	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">User Profile</div></a> 
+		<div class="col-md-2">
+	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">Vendor Profile</div></a> 
 		</div>
-		<div class="col-md-4">
-	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">User Deal History</div></a> 
-		</div> -->
-<!-- <li><a >User Deal History</a></li>	 -->
+<div class="col-md-3">
+	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">Vendor Customer List</div></a>
+		</div>
+<div class="col-md-5">
+	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">Deal Management Lifecycle</div></a>
+		</div>
 	<div class="col-md-2">
 	<div class="dropdown">
-		
   <button class="dropbtn">Login Data</button>
   <div class="dropdown-content">
     <a href="#">Data 1</a>
@@ -327,168 +328,80 @@ input[type=text]:focus {
 </div>
 	</div>	
 </div> 
-   </div>   
- <div class="portlet-grid panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">GENERAL INFORMATION</h3>
-              </div> 
+	 </div>
+ <div class="clearfix"></div>
+<span>SORT BY</span>
+	 <button onclick="myFunction()">Try it</button>
+
+<div id="myDIV">
+<!-- This is my DIV element. -->
+</div>
+<script>
+function myFunction() {
+    var x = document.getElementById('myDIV');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+</script>
+
+ <div class="portlet-grid panel-primary" style="width: 100%"> 
+    		  
                   <div class="row">
                       <div class="col-md-4" style="margin-left: 20px;margin-top: 13px">
-                        <h4 style="margin-top: 10px">First Name<h4>
-                        <!-- <h4 style="margin-top: 10px">Last Name<h4> -->
-                        <h4 style="margin-top: 10px">Email<h4>
-                        <!-- <h4 style="margin-top: 10px">Password<h4> -->
-                        <h4 style="margin-top: 10px;margin-bottom: 20px">Member Since<h4>
+												<div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
+    		      <h3 class="panel-title" style="font-weight: bold">CUSTOMER ID</h3>
+              </div>
+                        <h4 style="margin-top: 10px;margin-left: 30px">12345<h4>
+                        <h4 style="margin-top: 10px;margin-left: 30px">12345<h4>
+                        <h4 style="margin-top: 10px;margin-left: 30px">12345<h4>
+                        <h4 style="margin-top: 10px;margin-left: 30px">12345<h4>
+                        <h4 style="margin-top: 10px;margin-left: 30px">12345<h4>
+                        <h4 style="margin-top: 10px;margin-left: 30px">12345<h4>
+                        <h4 style="margin-top: 10px;margin-left: 30px">12345<h4>
+                        <h4 style="margin-top: 10px;margin-bottom: 20px;margin-left: 30px">12345<h4>
 
 					  </div>
-						<div class="col-md-6" style="color: #f44195;margin-left: 70px;margin-top: 13px">
-                        <h4 style="margin-top: 10px">{{model.name}}<h4>
-                        <!-- <h4 style="margin-top: 10px">Palkar<h4> -->
-                        <h4 style="margin-top: 10px">{{model.email}}<h4>
-                        <!-- <h4 style="margin-top: 10px">**********<h4> -->
-                        <h4 style="margin-top: 10px;margin-bottom: 20px">{{model.membersince}}<h4>
+						<div class="col-md-4" style="margin-left: 0px;margin-top: 13px">
+							<div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
+    		      <h3 class="panel-title" style="font-weight: bold">FIRST DEAL</h3>
+              </div>
+                        <h4 style="margin-top: 10px;margin-left: 10px">26/12/2017<h4>
+                        <h4 style="margin-top: 10px;margin-left: 10px">26/12/2017<h4>
+                        <h4 style="margin-top: 10px;margin-left: 10px">26/12/2017<h4>
+                        <h4 style="margin-top: 10px;margin-left: 10px">26/12/2017<h4>
+                        <h4 style="margin-top: 10px;margin-left: 10px">26/12/2017<h4>
+                        <h4 style="margin-top: 10px;margin-left: 10px">26/12/2017<h4>
+                        <h4 style="margin-top: 10px;margin-left: 10px">26/12/2017<h4>
+                        <h4 style="margin-top: 10px;margin-left: 10px">26/12/2017<h4>
+
+											</div>
+												<div class="col-md-3" style="margin-left: 20px;margin-top: 13px">
+							<div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
+    		      <h3 class="panel-title" style="font-weight: bold">BROADCAST LIST</h3>
+              </div>
+                        <h4 style="margin-top: 10px;margin-left: 40px">ACTIVE<h4>
+                        <h4 style="margin-top: 10px;margin-left: 40px">ACTIVE<h4>
+                        <h4 style="margin-top: 10px;margin-left: 40px">ACTIVE<h4>
+                        <h4 style="margin-top: 10px;margin-left: 40px">ACTIVE<h4>
+                        <h4 style="margin-top: 10px;margin-left: 40px">ACTIVE<h4>
+                        <h4 style="margin-top: 10px;margin-left: 40px">ACTIVE<h4>
+                        <h4 style="margin-top: 10px;margin-left: 40px">ACTIVE<h4>
+                        <h4 style="margin-top: 10px;margin-left: 40px">ACTIVE<h4>
 
                       </div>
                   </div>
 		</div>  
 			
-		<div class="portlet-grid panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">SAVED LOCATION</h3>
-              </div> 
-                  <div class="row">
-                      <div class="col-md-4" style="margin-left: 10px;">
-                        <h4 style="margin-top: 10px;">Home Location<i class="fa fa-home" aria-hidden="true" style="color: #f44195;margin-left: 5px;"></i><h4>
-                        <h4 style="margin-top: 10px;margin-bottom: 20px">Work Location<i class="fa fa-briefcase" aria-hidden="true" style="color: #f44195;margin-left: 5px;"></i><h4>
-					  </div>
-						<div class="col-md-6" style="color: #f44195;margin-left: 70px">
-                        <h4 style="margin-top: 10px">{{model.homelocation[0]}}<h4>
-                        <h4 style="margin-top: 10px;margin-bottom: 20px">{{model.worklocation[0]}}<h4>
-
-                      </div>
-                  </div>
-		</div>
+		
 			
-		<div class="portlet-grid panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">LOGIN DATA</h3>
-              </div> 
-                  <!-- <div class="row">
-                      <div class="col-md-4" style="margin-left: 10px">
-                        <h4 style="margin-top: 10px">Home Location<i class="fa fa-home" aria-hidden="true" style="color: #f44195;margin-left: 5px;"></i><h4>
-                        <h4 style="margin-top: 10px">Saved Location<i class="fa fa-briefcase" aria-hidden="true" style="color: #f44195;margin-left: 5px;"></i><h4>
-					  </div>
-						<div class="col-md-6" style="color: #f44195">
-                        <h4 style="margin-top: 10px">Vasai (West)<h4>
-                        <h4 style="margin-top: 10px">Juhu<h4>
-
-                      </div>
-                  </div> -->
-    		  <div class="panel-body">
-    		  	  {{model.logindata}}
-    		  </div> 
-		</div>
+		
 		<div class="clearfix"> </div>	
-		<div class="portlet-grid-fav panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">FOVOURITES</h3>
-			  </div> 
-				<!-- <a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a> -->
-				<a href="#" class="fav-button">{{model.favourites}}</a>
+		
 
-		</div>
-
-		<div class="portlet-grid-fav panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">PREFERENCES</h3>
-			  </div> 
-				  <div class="portlet-grid-pref panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">Location</h3>
-			  </div> 
-				<a href="#" class="fav-button">{{model.preferenceslocation}}</a>
-				<!-- <a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a> -->
-
-		</div>
-
-		<div class="portlet-grid-pref panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">Merchant</h3>
-			  </div> 
-				<!-- <a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a> -->
-				<a href="#" class="fav-button">{{model.merchant}}</a>
-
-		</div>
-
-		<div class="portlet-grid-pref panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">Food</h3>
-			  </div> 
-				<!-- <a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a> -->
-				<a href="#" class="fav-button">{{model.food}}</a>
-
-		</div>
-
-		<div class="portlet-grid-pref panel-primary"> 
-    		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
-    		      <h3 class="panel-title" style="font-weight: bold">Broadcast Merchant</h3>
-			  </div> 
-				<!-- <a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a>
-				<a href="#" class="fav-button">MUMBAI</a> -->
-				<a href="#" class="fav-button">{{model.broadcastmerchant}}</a>
-
-		</div>
-
-		</div>
+		
 		
 		<div class="clearfix"> </div>
   </div>
@@ -579,7 +492,3 @@ $(".sidebar-icon").click(function() {
 <!-- mother grid end here-->
 </body>
 </html>
-
-
-                      
-						

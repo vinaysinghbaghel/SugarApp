@@ -47,6 +47,42 @@ angular
                 url: '/registermerchant',
                 templateUrl: 'app/setting/views/registernewmerchant.html',
                 controller: 'registermerchantController'
+                // controller: 'usersController'
+            })
+            .state('vendorprofile', {
+                url: '/vendorprofile',
+                templateUrl: 'app/vendormanagement/views/vendorprofile.html',
+                controller: 'usersController'
+            })
+            .state('vendorcustomerlist', {
+                url: '/vendorcustomerlist',
+                templateUrl: 'app/vendormanagement/views/vendorcustomerlist.html',
+                controller: 'usersController'
+            })
+            .state('dealmanagementlifecycle', {
+                url: '/dealmanagementlifecycle',
+                templateUrl: 'app/vendormanagement/views/dealmanagementlifecycle.html',
+                controller: 'usersController'
+            })
+            .state('dealverification', {
+                url: '/dealverification',
+                templateUrl: 'app/dealmanagement/views/dealverification.html',
+                controller: 'usersController'
+            })
+            .state('deallevelallocation', {
+                url: '/deallevelallocation',
+                templateUrl: 'app/dealmanagement/views/deallevelallocation.html',
+                controller: 'usersController'
+            })
+            .state('levelcreation', {
+                url: '/levelcreation',
+                templateUrl: 'app/dealmanagement/views/levelcreation.html',
+                controller: 'usersController'
+            })
+            .state('livedata', {
+                url: '/livedata',
+                templateUrl: 'app/livedata/views/livedata.html',
+                controller: 'usersController'
             });
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');

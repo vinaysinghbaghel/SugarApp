@@ -10,7 +10,11 @@
 <!-- Custom Theme files -->
 <link href="css/style_main.css" rel="stylesheet" type="text/css" media="all"/>
 <!--js-->
-<script src="js/jquery-2.1.1.min.js"></script> 
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="http://www.w3schools.com/lib/w3data.js"></script>
+<script>
+    w3IncludeHTML();
+ </script>
 <!--icons-css-->
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!--Google Fonts-->
@@ -228,65 +232,55 @@
 				</div>
 <!--heder end here-->
 <!-- script-for sticky-nav -->
-		<script>
-		$(document).ready(function() {
-			 var navoffeset=$(".header-main").offset().top;
-			 $(window).scroll(function(){
-				var scrollpos=$(window).scrollTop(); 
-				if(scrollpos >=navoffeset){
-					$(".header-main").addClass("fixed");
-				}else{
-					$(".header-main").removeClass("fixed");
-				}
-			 });
-			 
-		});
-		</script>
 		<!-- /script-for sticky-nav -->
 <!--inner block start here-->
 <div class="inner-block">
 <!--market updates updates-->
 	 <div class="market-updates">
 		 <h2>City Panel</h2>
-		 <div class="col-md-4 price-grid">
-	    		   <div class="price-block">
-		    			<div class="price-gd-top pric-clr1">
-		    				<h4>MUMBAI</h4>
-		    				<span><img src="images/mumbai.jpg"></span>
-		    				<!-- <h5>Free for 15days</h5> -->
-		    			</div>
-		    			<div class="price-gd-bottom">
-		    				<div class="price-list">
-								<div class="row">
-									<div class="col-md-6">
-			    				<ul>
-			    					<p style="margin: 15px 0px 0px 40px;">Users</p>
-			    					<p style="margin: 15px 0px 0px 40px;">Vendors</p>
-			    					<p style="margin: 15px 0px 0px 40px;">Deals</p>
-								</ul>
-								</div>
-							<div class="col-md-6">
-			    				<ul>
-			    					<p style="margin: 15px 0px 0px 40px;">1234</p>
-			    					<p style="margin: 15px 0px 0px 40px;">1234</p>
-			    					<p style="margin: 15px 0px 0px 40px;">1234</p>
-								</ul>
-								</div>
-								</div>
-		    				</div>
-		    			</div>
-		    		    <div class="price-selet pric-clr1">		    			   
+		  <div class="col-md-4 market-update-gd popup-with-zoom-anim" href="#small-dialog">
+				<div class="market-update-block clr-block-1">
+					<div class="col-md-8 market-update-left">
+						<h3 style="margin-top: 20px;">MUMBAI</h3>
+						</div>
+					<div class="col-md-4 market-update-right">
+						<img src="images/mumbai.png" class="img" alt="Mumbai" style="margin-top: 11px;"> 			
+					</div>
+						<div class="row">
+						<div class="col-md-6" style="margin-top: 20px;">
+						<h4>User</h4>
+						<h4>Vendors</h4>
+						<h4>Merchants</h4>
+					</div>
+					<div class="col-md-6" style="margin-top: 20px;padding-left:60px; ">
+						<h4>12345</h4>
+						<h4>12345</h4>
+						<h4>12345</h4>
+					</div>
+					</div>
+				<div class="dropdown">
+  <button class="dropbtn" style="width: 240px;">MORE</button>
+  <div class="dropdown-content">
+    <a href="#">Deal Management</a>
+    <a href="#">User Management</a>
+    <a href="#">Vendor Management</a>
+  </div>
+</div> 
+					<!-- <div class="price-selet pric-clr1">		    			   
 		    			   	  <a class="popup-with-zoom-anim" href="#small-dialog">MORE</a>
-		    			</div>
-		    		</div>
+						</div> -->
+					<div class="clearfix"> </div>
 				</div>
+				
+				
+			</div>
+		 
 							
-				<div class="col-md-4 price-grid">
+				<!-- <div class="col-md-4 price-grid">
 	    		   <div class="price-block">
 		    			<div class="price-gd-top pric-clr1">
 		    				<h4>DELHI</h4>
 		    				<span><img src="images/delhi.jpeg"></span>
-		    				<!-- <h5>Free for 15days</h5> -->
 		    			</div>
 		    			<div class="price-gd-bottom">
 		    				<div class="price-list">
@@ -312,75 +306,8 @@
 		    			   	  <a class="popup-with-zoom-anim" href="#small-dialog">MORE</a>
 		    			</div>
 		    		</div>
-				</div>
-							
-				<div class="col-md-4 price-grid">
-	    		   <div class="price-block">
-		    			<div class="price-gd-top pric-clr1">
-		    				<h4>BANGALORE</h4>
-		    				<span><img src="images/Bangalore.jpg"></span>
-		    				<!-- <h5>Free for 15days</h5> -->
-		    			</div>
-		    			<div class="price-gd-bottom">
-		    				<div class="price-list">
-								<div class="row">
-									<div class="col-md-6">
-			    				<ul>
-			    					<p style="margin: 15px 0px 0px 40px;">Users</p>
-			    					<p style="margin: 15px 0px 0px 40px;">Vendors</p>
-			    					<p style="margin: 15px 0px 0px 40px;">Deals</p>
-								</ul>
-								</div>
-							<div class="col-md-6">
-			    				<ul>
-			    					<p style="margin: 15px 0px 0px 40px;">1234</p>
-			    					<p style="margin: 15px 0px 0px 40px;">1234</p>
-			    					<p style="margin: 15px 0px 0px 40px;">1234</p>
-								</ul>
-								</div>
-								</div>
-		    				</div>
-		    			</div>
-		    		    <div class="price-selet pric-clr1">		    			   
-		    			   	  <a class="popup-with-zoom-anim" href="#small-dialog">MORE</a>
-		    			</div>
-		    		</div>
-				</div>
-							
-				<div class="col-md-4 price-grid">
-	    		   <div class="price-block">
-		    			<div class="price-gd-top pric-clr1">
-		    				<h4>HYDERABAD</h4>
-		    				<span><img src="images/mumbai.jpg"></span>
-		    				<!-- <h5>Free for 15days</h5> -->
-		    			</div>
-		    			<div class="price-gd-bottom">
-		    				<div class="price-list">
-								<div class="row">
-									<div class="col-md-6">
-			    				<ul>
-			    					<p style="margin: 15px 0px 0px 40px;">Users</p>
-			    					<p style="margin: 15px 0px 0px 40px;">Vendors</p>
-			    					<p style="margin: 15px 0px 0px 40px;">Deals</p>
-								</ul>
-								</div>
-							<div class="col-md-6">
-			    				<ul>
-			    					<p style="margin: 15px 0px 0px 40px;">1234</p>
-			    					<p style="margin: 15px 0px 0px 40px;">1234</p>
-			    					<p style="margin: 15px 0px 0px 40px;">1234</p>
-								</ul>
-								</div>
-								</div>
-		    				</div>
-		    			</div>
-		    		    <div class="price-selet pric-clr1">		    			   
-		    			   	  <a class="popup-with-zoom-anim" href="#small-dialog">MORE</a>
-		    			</div>
-		    		</div>
-	    		</div>
-			
-		   <div class="clearfix"> </div>
+				</div> -->
+	   <div class="clearfix"> </div>
 		</div>
 			</div>
 <!--inner block end here-->
@@ -461,27 +388,6 @@
 		    </div>
 	 </div>
 	<div class="clearfix"> </div>
-
-<!--slide bar menu end here-->
-<script>
-var toggle = true;
-            
-$(".sidebar-icon").click(function() {                
-  if (toggle)
-  {
-    $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
-    $("#menu span").css({"position":"absolute"});
-  }
-  else
-  {
-    $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
-    setTimeout(function() {
-      $("#menu span").css({"position":"relative"});
-    }, 400);
-  }               
-                toggle = !toggle;
-            });
-</script>
 <!--scrolling js-->
 		<script src="js/jquery.nicescroll.js"></script>
 		<script src="js/scripts.js"></script>
