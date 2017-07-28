@@ -38,7 +38,7 @@
 <!--pop up end here-->
 </head>
 <body>	
-<div class="page-container">	
+<div class="page-container" ng-controller="vendorprofileController">	
    <div class="left-content">
 	   <div class="mother-grid-inner">
             <!--header start here-->
@@ -264,9 +264,9 @@ input[type=text]:focus {
     width: 100%;
 }
 </style>
-<form>
+<!-- <form>
   <input type="text" name="search" placeholder="">
-</form>
+</form> -->
  <!-- search box -->
 
 <div class="stripe" style="height: 50px;width: 100%;background-color: #292c33;margin-left: -25px;margin-bottom: 30px;">
@@ -277,30 +277,42 @@ input[type=text]:focus {
 			
 </div> 
    </div>
-    	<form action="#">
+    	<form ng-submit="regularlevelcreation(userprofile_form)">
+			<div class="form-group">
+			                 	 <p class="err-messg">{{errorMessage}}</p>		 
+			                </div> 
             <div class="row">
                 <div class="col-md-5">
-            <h3 style="font-weight: bolder;color: #f44195">Regular Deals</h3><br><br>
+			<h3 style="font-weight: bolder;color: #f44195">Regular Deals</h3><br><br>
+   Name
+  <input type="text" style="width: 150px;margin-left: 20px;background-image: none" name="firstname" ng-model="levelcreation.name" value="">
+  <br>
   Set Number Of Deals
-  <input type="text" style="width: 150px;margin-left: 20px;background-image: none" name="firstname" value="">
+  <input type="text" style="width: 150px;margin-left: 20px;background-image: none" name="firstname" ng-model="levelcreation.setnumberofdeals" value="">
   <br>
   Set Time Duration
-  <input type="text" style="width: 150px;margin-left: 40px;background-image: none" name="lastname" value="">
+  <input type="text" style="width: 150px;margin-left: 40px;background-image: none" name="lastname" ng-model="levelcreation.settimeduration" value="">
                 </div>
 <div class="col-md-6">
   <input type="submit" style="text-align: center;width: 70%;margin-top: 115px;border-radius: 50px" value="CONFIRM" class="order">
 </div>
             </div>
 </form> <br>
-        <form action="#">
+        <form ng-submit="jyflevelcreationdata(userprofile_form)">
+			<div class="form-group">
+			                 	 <p class="err-messg">{{errorsMessage}}</p>		 
+			                </div> 
             <div class="row">
                 <div class="col-md-5">
-            <h3 style="font-weight: bolder;color: #f44195">JFY Deals</h3><br><br>
+			<h3 style="font-weight: bolder;color: #f44195">JFY Deals</h3><br><br>
+   Name
+  <input type="text" style="width: 150px;margin-left: 20px;background-image: none" name="firstname" ng-model="jyflevelcreation.jyfname" value="">
+  <br>
   Set Number Of Deals
-  <input type="text" style="width: 150px;margin-left: 20px;background-image: none" name="firstname" value="">
+  <input type="text" style="width: 150px;margin-left: 20px;background-image: none" name="firstname" ng-model="jyflevelcreation.jyfsetnumberdeals" value="">
   <br>
   Set Time Duration
-  <input type="text" style="width: 150px;margin-left: 40px;background-image: none" name="lastname" value="">
+  <input type="text" style="width: 150px;margin-left: 40px;background-image: none" name="lastname" ng-model="jyflevelcreation.jyfsettimeduration" value="">
                 </div>
 <div class="col-md-6">
   <input type="submit" style="text-align: center;width: 70%;margin-top: 115px;border-radius: 50px" value="CONFIRM" class="order">

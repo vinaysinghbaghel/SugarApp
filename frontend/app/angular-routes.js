@@ -46,13 +46,13 @@ angular
             .state('registermerchant', {
                 url: '/registermerchant',
                 templateUrl: 'app/setting/views/registernewmerchant.html',
-                controller: 'registermerchantController'
+                controller: 'settingController'
                 // controller: 'usersController'
             })
             .state('vendorprofile', {
                 url: '/vendorprofile',
                 templateUrl: 'app/vendormanagement/views/vendorprofile.html',
-                controller: 'usersController'
+                controller: 'vendorprofileController'
             })
             .state('vendorcustomerlist', {
                 url: '/vendorcustomerlist',
@@ -76,8 +76,8 @@ angular
             })
             .state('levelcreation', {
                 url: '/levelcreation',
-                templateUrl: 'app/dealmanagement/views/levelcreation.html',
-                controller: 'usersController'
+                templateUrl: 'app/setting/views/levelcreation.html',
+                controller: 'vendorprofileController'
             })
             .state('livedata', {
                 url: '/livedata',
