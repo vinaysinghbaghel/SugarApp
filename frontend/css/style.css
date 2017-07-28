@@ -674,7 +674,7 @@ a:hover {
 }
 /*--nav strip start here--*/
 .header-main {
-    background:#f44195;
+	background: linear-gradient(to right, #f44195 0%, #ee82fa 100%);
     padding: 1em 2em;
     box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
@@ -3061,7 +3061,6 @@ a.popup-with-zoom-anim {
 	margin: 40px auto;
 	position: relative;
 	text-align: center;
-	border: 8px solid #f44195;
     height:100%;
     border-radius: 5px;
 }
@@ -3595,7 +3594,7 @@ p.bottom {
 /*--meadia quiries start here--*/
 @media (min-width: 992px){
     .col-md-12 {
-        margin-left: 40px;
+        /* margin-left: 40px; */
     }
 }
 
@@ -5361,3 +5360,4 @@ a {
 #names {
   cursor: pointer;
 }
+

@@ -12,12 +12,7 @@
 <!--js-->
 <script src="js/jquery-2.1.1.min.js"></script> 
 <!--icons-css-->
-<link href="css/font-awesome.css" rel="stylesheet">
-<script src="js/Chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-
+<link href="css/font-awesome.css" rel="stylesheet"> 
 <!--Google Fonts-->
 <!-- <link href='//fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'> -->
@@ -56,9 +51,9 @@
 										<input type="text" placeholder="Search..." required="">	
 										<input type="submit" value="">					
 									</form>
-								</div><!--//end-search-box-->
+								</div><!//end-search-box-->
 								<div class="logo-name">
-									 <a href="index.html"> <h1>Live Data</h1>
+									 <a href="index.html"> <h1>Deal Management</h1>
 									<!--<img id="logo" src="" alt="Logo"/>--> 
 								  </a> 								
 							</div>
@@ -228,7 +223,22 @@
 				     <div class="clearfix"> </div>	
 				</div>
 <!--heder end here-->
-
+<!-- script-for sticky-nav -->
+		<!-- <script>
+		$(document).ready(function() {
+			 var navoffeset=$(".header-main").offset().top;
+			 $(window).scroll(function(){
+				var scrollpos=$(window).scrollTop(); 
+				if(scrollpos >=navoffeset){
+					$(".header-main").addClass("fixed");
+				}else{
+					$(".header-main").removeClass("fixed");
+				}
+			 });
+			 
+		});
+		</script> -->
+<!-- /script-for sticky-nav -->
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
@@ -257,120 +267,195 @@ input[type=text]:focus {
 <form>
   <input type="text" name="search" placeholder="">
 </form>
- <!-- search box -->
-
+ 
 <div class="stripe" style="height: 50px;width: 100%;background-color: #292c33;margin-left: -25px;margin-bottom: 30px;">
 	<div class="row">
 		<div class="col-md-3">
-	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">Live Data</div></a> 
+	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">Deal Database</div></a> 
 		</div>
+	
 </div> 
    </div>
-   <h3 style="font-weight: bold">REGISTERED TODAY</h3>
-   <div class="col-md-3 price-grid">
-	    		   <div class="price-block">
-		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;box-shadow: 2px 2px 2px 2px #666">
-							<h5 style="text-align: center">Users</h5>
-		    				<h4 style="border-radius: 5px 5px 20px 20px;text-align: center">12345</h4>
-		    			</div>
-		    		</div>
-                </div>
-                
-    <div class="col-md-3 price-grid">
-	    		   <div class="price-block">
-		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;box-shadow: 2px 2px 2px 2px #666">
-							<h5 style="text-align: center">Merchants</h5>
-		    				<h4 style="border-radius: 5px 5px 20px 20px;text-align: center">12345</h4>
-		    			</div>
-		    		</div>
-                </div>
-                <div class="col-md-3 price-grid">
-	    		   <div class="price-block">
-		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;box-shadow: 2px 2px 2px 2px #666">
-							<h5 style="text-align: center">Deals</h5>
-		    				<h4 style="border-radius: 5px 5px 20px 20px;text-align: center">12345</h4>
-		    			</div>
-		    		</div>
-				</div>
-				<div class="col-md-3 price-grid">
-	    		   <div class="price-block">
-		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;box-shadow: 2px 2px 2px 2px #666">
-							<h5 style="text-align: center">Deals Completed Today</h5>
-		    				<h4 style="border-radius: 5px 5px 20px 20px;text-align: center">12345</h4>
-		    			</div>
-		    		</div>
-				</div>
-   
-
-   </div>
-</div>
-<!--inner block end here-->
-
-<div class="chart-main-block">
-       <div class="chart-first-line">
-    	<div class="col-md-6 chart-blo-1">
-    	   <div class="dygno">
-    		     <h2>Deals Alive</h2>
-				
-				    <canvas id="doughnut" height="300" width="470" style="width: 100%; height: 300px;"></canvas>
-								<script>
-									var doughnutData = [
-									{
-										value: 30,
-										color:"#f44195"
-									},
-									{
-										value : 50,
-										color : "#a083ea"
-									},
-									{
-										value : 100,
-										color : "#ee82fa"
-									},
-									{
-										value : 40,
-										color : "#88c4ff"
-									},
-									];
-									new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(doughnutData);
-								</script>
-			</div>	
-		 </div>
-		 
-    	<div class="col-md-6 chart-blo-1">
-    	    <div class="line-chart">
-    		<h3>Users and Merchants Online</h3>
-    		 <canvas id="line" height="300" width="400" style="width: 100%; height: 300px;"> </canvas>
-                    <script>
-                        var lineChartData = {
-						labels : ["","","","","","",""],
-						datasets : [
-							{
-								fillColor : "rgba(252, 130, 19, 0.74)",
-								strokeColor : "#a083ea",
-								pointColor : "#a083ea",
-								pointStrokeColor : "#fff",
-								data : [65,59,90,81,56,55,40]
-							},
-							{
-								fillColor : "rgba(51, 122, 183, 0.71)",
-								strokeColor : "#f44195",
-								pointColor : "#f44195",
-								pointStrokeColor : "#fff",
-								data : [28,48,40,19,96,27,100]
-							}
-						]
-						
-					};
-                       new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
-
-                    </script>
-    	    </div>
-    	  </div>
-    	  <div class="clearfix"> </div>
-    	</div>
     	
-    </div>
+    	<div class="price-tables">
+	    		<div class="col-md-12 price-grid" href="#small-dialog" style="width: 100%;cursor: pointer;margin-top: 30px;">
+		    			<div class="price-gd-top pric-clr1" style="background-color: #fff;box-shadow: 0px 0px 3px 3px rgba(0.15,0.15,0.15,0.15);">
+                            <img src="images/starbucks.png" class="img-circle" alt="logo" style="margin-left: 460px;margin-top: -40px" width="80" height="80"></img>
+                             <!-- <div class="row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                    <h5 style="color: #292c33;margin-left: 20px;">Coupons</h5>
+                                    <h5 style="color: #292c33;margin-left: 20px;">Level</h5>    
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 style="color: #292c33;margin-left: 20px;color: #f44195">1234</h5>
+                                    <h5 style="color: #292c33;margin-left: 20px;color: #f44195">Regular</h5>    
+                                </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                    <h5 style="color: #292c33;margin-left: 150px;">Likes</h5>
+                                    <h5 style="color: #292c33;margin-left: 150px;">Category</h5>    
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 style="color: #292c33;margin-left: 150px;color: #f44195">1234</h5>
+                                    <h5 style="color: #292c33;margin-left: 150px;color: #f44195">Cafe</h5>    
+                                </div>
+                                    </div>
+                                </div>  
+                            </div> -->
+                            <br><br>
+
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <img style="margin-left: 20px;" src="images/food-08.jpg"></img>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h5 style="text-align: left;font-weight: bold;color: #292c33;margin-left: 20px;margin-top: -20px;margin-bottom: -10px;background-color: #fff">Deal Info</h5>
+                                                    <i class="fa fa-bar-chart" aria-hidden="true" style="margin-left: 20px;color: #f44195"> Regular</i>
+                                                    <i class="fa fa-thumbs-up" aria-hidden="true" style="margin-left: 20px;color: #f44195"> 1234</i>
+                                                    <i class="fa fa-ticket" aria-hidden="true" style="margin-left: 20px;color: #f44195"> 1234</i>
+                                                    <h5 style="text-align: left;margin-top: -20px;color: #292c33;margin-left: 20px;margin-top: 10px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
+                                                </div>
+                                            </div>
+                                            <div style="overflow: auto; width:95%; height:200px;margin-left: 20px;
+                                            text-align: left;border: 1px solid #ccc;margin-top: 20px">
+											<ul>
+                                                <li>Lorem Ipsum is simply dummy text of the printing and 
+                                                typesetting industry. <li>Lorem Ipsum has been the industry's 
+                                                standard dummy text ever since the 1500s, <li>when an unknown 
+                                                printer took a galley of type and scrambled it to make a 
+                                                type specimen book. <li>It has survived not only five centuries, 
+                                                but also the leap into electronic typesetting, remaining 
+                                                essentially unchanged. <li>It was popularised in the 1960s with 
+                                                the release of Letraset sheets <li>containing Lorem Ipsum passages, 
+                                                and more recently with desktop publishing <li>software like Aldus 
+												PageMaker including versions of Lorem Ipsum.
+												</ul>
+                                            </div>
+<div class="row">
+     <div class="col-md-5" style="margin-left: 80px;margin-top: 20px;">
+            <!-- <h3 style="font-weight: bolder;color: #f44195">Regular Deals</h3><br><br> -->
+  Set Date
+  <input type="text" style="width: 150px;margin-left: 20px;background-image: none" name="firstname" value="">
+				</div>
+<div class="col-md-6" style="margin-left: 0px;margin-top: 20px;">
+  Set Time Duration
+  <input type="text" style="width: 150px;margin-left: 20px;background-image: none" name="lastname" value="">
+</div>
+ </div>
+<!-- <div class="col-md-6">
+  <input type="submit" style="text-align: center;width: 70%;margin-top: 115px;border-radius: 50px" value="CONFIRM" class="order">
+</div> -->
+            </div>
+				</div>
+	    		</div>
+          <div class="clearfix"> </div>
+            <div class="portlet-grid panel-primary" style="width: 100%"> 
+    		  
+                  <div class="row">
+                      <div class="col-md-4" style="margin-left: 00px;margin-top: 13px">
+					<div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
+    		      <h3 class="panel-title" style="font-weight: bold;text-align: center">CUSTOMER ID</h3>
+              </div>
+					</div>
+						<div class="col-md-3" style="margin-left: 0px;margin-top: 13px">
+							<div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
+    		      <h3 class="panel-title" style="font-weight: bold;text-align: center">SAVED AT</h3>
+                        </div>
+                        </div>
+					    <div class="col-md-4" style="margin-left: 20px;margin-top: 13px">
+						<div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
+    		                <h3 class="panel-title" style="font-weight: bold;text-align: center">REDEEMED AT</h3>
+                        </div>
+                        </div>
+
+                      
+                  </div>
+                    <hr class="style1">
+
+                    <div class="row">
+                        <div class="col-md-4" style="margin-left: 00px;margin-top: 13px">
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
+                        <h4 style="margin-top: 10px;margin-bottom: 20px;margin-left: 0px;text-align: center">12345<h4>
+                        </div>
+
+                        <div class="col-md-3" style="margin-left: 00px;margin-top: 13px">
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-bottom: 20px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        </div>
+
+                        <div class="col-md-4" style="margin-left: 00px;margin-top: 13px">
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        <h4 style="margin-top: 10px;margin-bottom: 20px;margin-left: 0px;text-align: center">00:00:00<h4>
+                        </div>
+
+                        
+                    </div>
+		</div>
+    	  </div>
+   </div>
+<!--inner block end here-->
+<!--pop-up-grid-->
+				                 <div id="popup">
+								 <div id="small-dialog" class="mfp-hide"  style="max-width: 100%;">
+									<div class="pop_up">
+									 	<div class="payment-online-form-left">
+
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <img style="margin-left: 30px;" src="images/food-08.jpg"></img>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h3 style="text-align: left;font-weight: bold;margin-left: 30px;">Deal Info</h3>
+                                                    <h4 style="text-align: left;margin-left: 30px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+                                                </div>
+                                            </div>
+                                            <div style="overflow: auto; width:95%; height:200px;margin-left: 30px;
+											text-align: left;border: 1px solid #ccc;margin-top: 20px">
+											<ul>
+                                                <li>Lorem Ipsum is simply dummy text of the printing and 
+                                                typesetting industry. <li>Lorem Ipsum has been the industry's 
+                                                standard dummy text ever since the 1500s, <li>when an unknown 
+                                                printer took a galley of type and scrambled it to make a 
+                                                type specimen book. <li>It has survived not only five centuries, 
+                                                but also the leap into electronic typesetting, remaining 
+                                                essentially unchanged. <li>It was popularised in the 1960s with 
+                                                the release of Letraset sheets <li>containing Lorem Ipsum passages, 
+                                                and more recently with desktop publishing <li>software like Aldus 
+												PageMaker including versions of Lorem Ipsum.
+												</ul>
+                                            </div>
+                                            <a href="#" class="order">Confirm</a>
+                                                
+										</div>
+						  			</div>
+								</div>
+								</div>
+								
+<!--pop-up-grid-->
+
 </div>
 </div>
 <!--slider menu-->
