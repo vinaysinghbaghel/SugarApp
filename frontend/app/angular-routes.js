@@ -83,6 +83,21 @@ angular
                 url: '/livedata',
                 templateUrl: 'app/livedata/views/livedata.html',
                 controller: 'usersController'
+            })
+            .state('dealdata', {
+                url: '/dealdata',
+                templateUrl: 'app/dealdatabase/views/dealdata.html',
+                controller: 'usersController'
+            })
+            .state('dealdataid', {
+                url: '/dealdataid',
+                templateUrl: 'app/dealdatabase/views/dealdataid.html',
+                controller: 'usersController'
+            })
+            .state('dealiddetails', {
+                url: '/dealiddetails',
+                templateUrl: 'app/userprofilemanagement/views/dealiddetails.html',
+                controller: 'usersController'
             });
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
