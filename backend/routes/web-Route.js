@@ -20,6 +20,9 @@ let MerchantController = require('./../controllers/MerchantController');
  router.post('/api/userdealdetails', UserProfileController.userdealdetails);
  router.post('/api/dealhistorydata',UserProfileController.getDealHistory);
  router.post('/api/registermerchant',MerchantController.registermerchant);
+ router.get('/api/vendorprofiledata',MerchantController.getVendorProfile);
+ router.post('/api/regularlevelcreation',MerchantController.createRegularLevel);
+ router.post('/api/jyflevelcreation',MerchantController.createJyfLevel);
 
 
 // /* Update Tweet */

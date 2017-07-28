@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var venderprofileSchema = new mongoose.Schema({
     venderID: {
         type: String,
-        unique:true
+        // unique:true
     },
     address: {
         type: String,

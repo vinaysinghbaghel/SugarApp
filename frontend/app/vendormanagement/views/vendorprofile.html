@@ -16,7 +16,7 @@
 
 </head>
 <body>	
-<div class="page-container">	
+<div class="page-container" ng-init="getVendorProfile()" ng-controller="vendorprofileController">	
    <div class="left-content">
 	   <div class="mother-grid-inner">
             <!--header start here-->
@@ -243,22 +243,29 @@ input[type=text]:focus {
     width: 100%;
 }
 </style>
-<form>
-  <input type="text" name="search" placeholder="">
-</form>
+<div class="container">
+  <typeahead items="items" prompt="Start typing a US state" title="name"  model="name" on-select="onItemSelected()" />
+</div>
+<input type="text" ng-model="model" placeholder="{{prompt}}" ng-keydown="selected=false">
+ <br/>
+<div class="items" ng-hide="!model || selected">
+  <div class="item" ng-repeat="item in items | filter:model  track by $index" ng-click="handleSelection(item)" style="cursor: pointer" ng-class="{activess:isCurrent($index)}" ng-mouseenter="setCurrent($index)">
+    <p class="title">{{item.name}}</p>
+  </div>
+</div>
+
  <!-- search box -->
 
- <div class="userdetails">
  <div class="row">
     <div class="col-lg-5">
         <div class="media">
             <a class="pull-left" href="#">
-                <img class="media-object dp img-circle" src="images/photo1.png" style="width: 100px;height:100px;">
+                  <img src="{{model.logo?model.logo:uploadme}}" width="80" height="80" alt="Image preview..."> 
             </a>
             <div class="media-body">
                 <h4 class="media-heading" style="margin-top: 15px;">Starbucks,<small> Mumbai</small></h4>
-                <h5>123456789</h5>
-                <!-- <hr style="margin:8px auto"> -->
+                <h5>{{model.contactnumber}}</h5>
+                
 
                 <span class="label label-default">20/12/2016</span>
                 <span class="label label-default">00:00:00</span>
@@ -304,7 +311,7 @@ input[type=text]:focus {
 			
 		</div>
 </div>
-</div>
+
  
    <div class="stripe" style="height: 50px;width: 100%;background-color: #292c33;margin-left: -25px;margin-bottom: 30px;">
 	<div class="row">
@@ -342,18 +349,18 @@ input[type=text]:focus {
                         <h4 style="margin-top: 10px">Member Since<h4>
                         <h4 style="margin-top: 10px">Merchant Category<h4>
                         <h4 style="margin-top: 10px">Merchant Level<h4>
-                        <h4 style="margin-top: 10px;margin-bottom: 20px">Password<h4>
+                        <!-- <h4 style="margin-top: 10px;margin-bottom: 20px">Password<h4> -->
 
 					  </div>
 						<div class="col-md-6" style="color: #f44195;margin-left: 70px;margin-top: 13px">
-                        <h4 style="margin-top: 10px">123456789<h4>
-                        <h4 style="margin-top: 10px">0123456789<h4>
-                        <h4 style="margin-top: 10px">mymail@mail.com<h4>
-                        <h4 style="margin-top: 10px">Akshay Palkar<h4>
-                        <h4 style="margin-top: 10px">20/12/2016<h4>
-                        <h4 style="margin-top: 10px;margin-top: 20px;">Cafe<h4>
-                        <h4 style="margin-top: 10px;margin-top: 20px;">JFY<h4>
-                        <h4 style="margin-top: 10px;margin-bottom: 20px">********<h4>
+                        <h4 style="margin-top: 10px">{{model._id}}<h4>
+                        <h4 style="margin-top: 10px">{{model.contactnumber}}<h4>
+                        <h4 style="margin-top: 10px">{{model.email}}<h4>
+                        <h4 style="margin-top: 10px">{{model.contactperson}}<h4>
+                        <h4 style="margin-top: 10px">{{model.logindata}}<h4>
+                        <h4 style="margin-top: 10px;margin-top: 20px;">{{model.merchantcategory}}<h4>
+                        <h4 style="margin-top: 10px;margin-top: 20px;">{{model.merchantlevel}}<h4>
+                        <!-- <h4 style="margin-top: 10px;margin-bottom: 20px">********<h4> -->
 
                       </div>
                   </div>
@@ -363,15 +370,13 @@ input[type=text]:focus {
     		 <div class="panel-heading" style="color: #292c33;background-color: #fff;border-color: #fff">
     		      <h3 class="panel-title" style="font-weight: bold">ADDRESS</h3>
               </div>
-                <h5 style="margin-left: 15px;">d like to know how to include my header.html and footer.html in 
-                    the rest of my html files, so if I had to change something in my header or footer, I would 
-                    have to do it once and not by editing every single page.</h5><br>
+                <h5 style="margin-left: 15px;">{{model.address}}</h5><br>
                   <div class="row">
                       <div class="col-md-4" style="margin-left: 50px;text-align: center;margin-bottom: 10px;">
-                        <h5 style="margin-top: 10px;font-weight: bold;">Latitude<h5><br><h3 style="font-weight: bold;color: #f44195;">19.078495</h3>
+                        <h5 style="margin-top: 10px;font-weight: bold;">Latitude<h5><br><h3 style="font-weight: bold;color: #f44195;">{{model.loc}}</h3>
                       </div>
                           <div class="col-md-4" style="margin-left: 70px;text-align: center;margin-bottom: 10px;">
-                        <h5 style="margin-top: 10px;font-weight: bold;">Longitude<h5><br><h3 style="font-weight: bold;color: #f44195;">19.078495</h3>
+                        <h5 style="margin-top: 10px;font-weight: bold;">Longitude<h5><br><h3 style="font-weight: bold;color: #f44195;">{{model.loc}}</h3>
 					  </div>
 						
                   </div>

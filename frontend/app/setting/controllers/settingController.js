@@ -1,7 +1,7 @@
 
 angular.module('settingCtrl', [])
 
-.controller('registermerchantController',
+.controller('settingController',
 
 
   function($scope,$http) {
@@ -28,14 +28,19 @@ angular.module('settingCtrl', [])
     $scope.addMarker = function(lat, lng, title) {
     
      var fd = new FormData();
-    //  console.log($("#profileimage")[0].files[0],'hiiii fd is cantain')
-      //  fd.append('file', $("#profileimage")[0].files[0]);
+  
        fd.append("file",$("#profileimage")[0].files[0]);
         var url = "/api/registermerchant?name="+$scope.merchantregister.name+"&email="+$scope.merchantregister.email+"&contactnumber="+$scope.merchantregister.phone+"&contactperson="+$scope.merchantregister.contactperson+"&merchantcategory="+$scope.merchantregister.merchantcategory+"&merchantlevel="+$scope.merchantregister.merchantlevel+"&address="+$scope.merchantregister.address+"&markerLat="+$scope.merchantregister.markerLat+"&markerLng="+$scope.merchantregister.markerLng;
         $http.post(url, fd, {
            transformRequest: angular.identity,
            headers: {'Content-Type': undefined}
-        })    
+        }).success(function(data) {
+        if (!data.success) {
+        $rootScope.errorMessage = data.message;
+        } else {
+        $rootScope.showLoading = false;      
+        }
+        });
       var latLang = new google.maps.LatLng(lat, lng);
 
       var marker = new google.maps.Marker({
@@ -60,6 +65,5 @@ angular.module('settingCtrl', [])
       e.preventDefault();
       google.maps.event.trigger(selectedMarker, 'click');
     }
-  }
+  });
 
-);

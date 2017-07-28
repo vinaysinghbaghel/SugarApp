@@ -24,30 +24,14 @@ angular.module('userprofileCtrl', [])
     });
  }; 
  $scope.getDealHistory = function(custID) {   
-   console.log(custID,'hiihhihihiihihihhiihihihih')
     dataFactory.getdealhistory({
               id: custID},function(response) {
         if (response && response.data && response.data.data) {
-          console.log(response.data.data.dealtype,'hiiiiiiiiiiiiiiiiiiiiii biiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
            $rootScope.user = angular.copy(response.data.data);
            $location.path('/userdealhistory');
         } else {
         //   showToaster('error', 'Error', response.data.message);
         }
       });
-  //   dataFactory.getdealhistory({custID}).then(function(res) {
-  //   $scope.items = res;
-  // });    
-//    $http
-//                 .post('/api/dealhistorydata',{custID})
-//                 .then(function(res) {
-//                     if (res.status === 200) {
-//                         $scope.tweetList = res.data.data;
-//                     } else {
-//                         /* Handle error */
-//                     }
-//                 }, function(res) {
-//                     /* Handle error */
-//                 });
  };
 });
