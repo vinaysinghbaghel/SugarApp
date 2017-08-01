@@ -6,22 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <script src="js/jquery-2.1.1.min.js"></script> 
- <script>
-						$(document).ready(function() {
-						$('.popup-with-zoom-anim').magnificPopup({
-							type: 'inline',
-							fixedContentPos: false,
-							fixedBgPos: true,
-							overflowY: 'auto',
-							closeBtnInside: true,
-							preloader: false,
-							midClick: true,
-							removalDelay: 300,
-							mainClass: 'my-mfp-zoom-in'
-						});
-																						
-						});
-				</script>
+ <!-- z -->
 <!--pop up end here-->
 <style>
 img {height: 140px;}
@@ -332,9 +317,9 @@ input[type=text]:focus {
    <img id="image2" style="position: absolute; top: 0px; left: 0px;" src="images/dealhistcou.png" alt="...">sad</img>
 		</div>
 			</div>
-	<div class="row">
+	<div class="row"  ng-repeat="user in user">
 						<div class="col-md-6" style="margin-top: -120px;margin-left: 150px;">
-							<h5 style="color: #fff;margin-right: 30px;font-size: 14px;line-height: 2.0;">123456789</h5>
+							<h5 style="color: #fff;margin-right: 30px;font-size: 14px;line-height: 2.0;" ng-click="dealid(user.dealID)">{{user.dealID}}</h5>
 							<h6 style="color: #fff;margin-right: 30px;font-size: 14px;line-height: 2.0;">Saved:</h6>
 							<h6 style="color: #fff;margin-right: 30px;font-size: 14px;line-height: 2.0;">Redeemed:</h6>
 							<h6 style="color: #fff;margin-right: 30px;font-size: 14px;line-height: 2.0;">Category:</h6>
@@ -344,8 +329,8 @@ input[type=text]:focus {
 						<div class="col-md-6" style="margin-top: -120px;margin-left: 250px;">
 							<h6 style="color: #fff;margin-right: 30px;font-weight: bold;font-size: 14px;line-height: 2.0;">00:00:00</h6>
 							<h6 style="color: #fff;margin-right: 30px;font-weight: bold;font-size: 14px;line-height: 2.0;">00:00:00</h6>
-							<h6 style="color: #fff;margin-right: 30px;font-weight: bold;font-size: 14px;line-height: 2.0;">Cafe</h6>
-							<h6 style="color: #fff;margin-right: 30px;font-weight: bold;font-size: 14px;line-height: 2.0;">Regular</h6>
+							<h6 style="color: #fff;margin-right: 30px;font-weight: bold;font-size: 14px;line-height: 2.0;">{{user.dealcategory}}</h6>
+							<h6 style="color: #fff;margin-right: 30px;font-weight: bold;font-size: 14px;line-height: 2.0;">{{user.dealtype}}</h6>
 
 					</div>
 							</div>

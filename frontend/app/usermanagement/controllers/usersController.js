@@ -80,8 +80,28 @@
           }
         });
         };
+      $scope.forgotpassword = function(forgotemail){  
+  
+  console.log($scope.forgotdata ,'ggigigigigigiigigi')
+    $http.post('/forgotpassword',{email:$scope.forgotdata.email}) 
+    .success(function(data){
+      if(data.status){
+        $scope.forgotpassword = data.forgotpassword;
+        $rootScope.message ="Password changed Successfully"
+        // $location.path('/SendEmailToYou');     
+      }
+      else
+      {
+        $rootScope.errorMessage = data.messages; 
+      }      
+    })
+    .error(function(error){
+      console.log(error);
+    });
+  }
 
 });
+
 
 
 

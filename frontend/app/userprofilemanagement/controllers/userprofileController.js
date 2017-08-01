@@ -30,8 +30,20 @@ angular.module('userprofileCtrl', [])
            $rootScope.user = angular.copy(response.data.data);
            $location.path('/userdealhistory');
         } else {
-        //   showToaster('error', 'Error', response.data.message);
+        
         }
+      });
+ };
+    $scope.dealid = function(custID) {   
+    dataFactory.dealid({
+              id: custID},function(response) {
+        if (response && response.data && response.data.data) {
+           $rootScope.user = angular.copy(response.data.data);
+           
+           $location.path('/dealiddetails');
+        } else {
+
+       }
       });
  };
 });

@@ -7,14 +7,10 @@ let UserAuthenticationController = require('./../controllers/UserAuthenticationC
 let UserProfileController = require('./../controllers/UserProfileController');
 let MerchantController = require('./../controllers/MerchantController');
 
-/* Get Tweets */
-// router.get('/', [
-//     TweetController.getTweets
-// ]);
  router.post('/userdata',UserAuthenticationController.signUp)
  router.post('/signin', UserAuthenticationController.signIn);
+ router.post('/forgotpassword', UserAuthenticationController.forgotPassword);
  router.post('/changepassword', UserAuthenticationController.changePassword);
-//  router.get('/signout', UserAuthenticationController.logout);
  router.post('/api/userprofile', UserAuthenticationController.userprofiledetails);
  router.get('/api/userprofiledata',UserProfileController.getUserProfile);
  router.post('/api/userdealdetails', UserProfileController.userdealdetails);
@@ -23,15 +19,6 @@ let MerchantController = require('./../controllers/MerchantController');
  router.get('/api/vendorprofiledata',MerchantController.getVendorProfile);
  router.post('/api/regularlevelcreation',MerchantController.createRegularLevel);
  router.post('/api/jyflevelcreation',MerchantController.createJyfLevel);
+ router.post('/api/dealid',UserProfileController.getDealHistory);
 
-
-// /* Update Tweet */
-// router.put('/:id', [
-//     TweetController.updateTweet
-// ]);
-
-// /* Delete Tweet */
-// router.delete('/:id', [
-//     TweetController.deleteTweet
-// ]);
 module.exports = router;

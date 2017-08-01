@@ -5,6 +5,9 @@ var mongoose = require('mongoose');
 /* Define the schema for our DealDataId model */
 
 var dealdataidSchema = new mongoose.Schema({
+    dealID: {
+        type: String
+    },
     merchant: {
         type: String
     },

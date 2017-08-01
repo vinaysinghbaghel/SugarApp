@@ -1,7 +1,7 @@
 'use strict';
-
+var GeoJSON = require('mongoose-geojson-schema');
 var mongoose = require('mongoose');
-
+var moment = require('moment');
 /* Define the schema for our VenderProfile model */
 
 var venderprofileSchema = new mongoose.Schema({
@@ -12,9 +12,13 @@ var venderprofileSchema = new mongoose.Schema({
     address: {
         type: String,
     },
+    // loc: {
+    //     type: [lat,lag],
+    // index: '2d'
+    // },
     loc: {
-        type: [Number],
-    index: '2d'
+        type: { type: String },
+        coordinates: [Number],
     },
     name: {
         type: String,
@@ -44,8 +48,8 @@ var venderprofileSchema = new mongoose.Schema({
         type: String,
     },
     logindata: {
-        type: Date,
-        'default': Date.now
+         type: Date,
+        'default': moment.utc().format("YYYY-MM-DD HH:mm:ss"),
     },
     registeredimel: {
         type: String,
@@ -62,13 +66,17 @@ var venderprofileSchema = new mongoose.Schema({
     specialdealsused: {
         type: String,
     },
+    nextdate:{
+     type: Date,
+        'default': moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+    },
     created_at: {
         type: Date,
-        'default': Date.now
+        'default': moment.utc().format("YYYY-MM-DD HH:mm:ss"),
     },
     updated_at: {
         type: Date,
-        'default': Date.now
+        'default':  moment.utc().format("YYYY-MM-DD HH:mm:ss"),
     }
 
 });

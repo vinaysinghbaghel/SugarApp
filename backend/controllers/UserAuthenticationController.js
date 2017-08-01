@@ -165,6 +165,42 @@ exports.userprofiledetails = function(req, res, next) {
 
     }
 };
+exports.forgotPassword = function(req,res,next){
+  var forgotemail = req.body.email; 
+  Users.findOne({email:forgotemail},function(err,adminusers){
+    if(err){
+      res.json({message :"Please try Again"});
+    }
+    else if(adminusers)
+    {
+    let userpassword = randomString({length: 10});
+    let uuids = uuid();
+    let userpass= CryptoJS.AES.encrypt(userpassword,uuids).toString();  
+    let mailOptions = {
+     from:'Sugar@wishto.co', // sender address
+        to: forgotemail, // list of receivers
+        subject: 'SugarApp Credentials', // Subject line
+        html: 'Welcome,<br/> Your password is  '+userpassword+'<br/>Please change your password after login.<br /><br />Thank You.'// html body    
+    };
+    // send mail with defined transport object
+    mail.sendEmail(mailOptions, (error, info) => {
+    if (error) {
+        return console.log(error);
+    }
+    console.log('Message %s sent: %s', info.messageId, info.response);
+    });      
+      Users.update({email:forgotemail},{password:userpass,passwordchanged: 0,useruuid: uuids,},function(err,newpassword){
+        if(err){
+          console.log(err);
+        }
+        res.json({status: true,message:"Your new password has been mailed, please check email."});
+      });
+    }
+    else{
+      res.json({messages:"Email ID is not found."});
+    }
+  });
+}
 // exports.getTweets = function(req, res, next) {
 //     Tweet
 //         .find({}, function(err, tweets) {

@@ -19,6 +19,11 @@ angular
                 templateUrl: 'app/usermanagement/views/changepassword.html',
                 controller: 'usersController'
             })
+            .state('forgotpassword', {
+                url: '/forgotpassword',
+                templateUrl: 'app/usermanagement/views/forgotpassword.html',
+                controller: 'usersController'
+            })
             .state('dashboard', {
                 url: '/dashboard',
                 templateUrl: 'app/dashboard/views/dashboard.html',
@@ -47,7 +52,6 @@ angular
                 url: '/registermerchant',
                 templateUrl: 'app/setting/views/registernewmerchant.html',
                 controller: 'settingController'
-                // controller: 'usersController'
             })
             .state('vendorprofile', {
                 url: '/vendorprofile',
