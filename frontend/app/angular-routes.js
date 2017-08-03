@@ -107,6 +107,12 @@ angular
                 url: '/vendorsupport',
                 templateUrl: 'app/vendorsupport/views/vendorsupport.html',
                 controller: 'usersController'
+            })
+            .state('header', {
+                templateUrl: 'app/dashboard/views/demo.html',
+            })
+            .state('sidebar', {
+                templateUrl: 'app/dashboard/views/sidebar.html',
             });
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
