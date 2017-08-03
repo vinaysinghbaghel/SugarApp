@@ -4,8 +4,9 @@ angular.module('settingCtrl', [])
 .controller('settingController',
 
 
-  function($scope,$http) {
+  function($scope,$http, $rootScope) {
     $scope.merchantregister = {};
+
     $scope.merchantregister.markerLat = 23.200000;
     $scope.merchantregister.markerLng = 79.225487;
     $scope.merchantregister.infoTitle = 'India';
@@ -65,5 +66,8 @@ angular.module('settingCtrl', [])
       e.preventDefault();
       google.maps.event.trigger(selectedMarker, 'click');
     }
+   $scope.getlevel=function(){
+     console.log('hihiihihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
+   } 
   });
 

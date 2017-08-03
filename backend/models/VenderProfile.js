@@ -68,7 +68,7 @@ var venderprofileSchema = new mongoose.Schema({
     },
     nextdate:{
      type: Date,
-        'default': moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+        'default': moment.utc().format("YYYY-MM-DD"),
     },
     created_at: {
         type: Date,

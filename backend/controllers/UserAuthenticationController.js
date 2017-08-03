@@ -82,6 +82,8 @@ exports.signIn = function(req,res,next){
              }
             let users=user[0];
             let userpassword = CryptoJS.AES.decrypt(users.password, users.useruuid).toString(CryptoJS.enc.Utf8);
+            console.log(userpassword,'dercreptrewrefcxc passs')
+             console.log(users.useruuid,'user uuid is here ')
             if(userpassword !== password) {
                 return res.json({"success" : false, message :  "Incorrect password entered."});
              }else{
@@ -174,8 +176,10 @@ exports.forgotPassword = function(req,res,next){
     else if(adminusers)
     {
     let userpassword = randomString({length: 10});
+    console.log(userpassword,'userpassword created ramdom')
     let uuids = uuid();
-    let userpass= CryptoJS.AES.encrypt(userpassword,uuids).toString();  
+    let userpass= CryptoJS.AES.encrypt(userpassword,uuids).toString();
+    console.log(userpass,'userpass userpass userpass')  
     let mailOptions = {
      from:'Sugar@wishto.co', // sender address
         to: forgotemail, // list of receivers
@@ -193,6 +197,7 @@ exports.forgotPassword = function(req,res,next){
         if(err){
           console.log(err);
         }
+        console.log("Your new password has been mailed, please check email.")
         res.json({status: true,message:"Your new password has been mailed, please check email."});
       });
     }
