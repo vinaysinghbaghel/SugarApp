@@ -250,7 +250,7 @@ input[type=text]:focus {
 
  <div class="userdetails">
  <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         <div class="media">
             <a class="pull-left" href="#">
                 <img class="media-object dp img-circle" src="images/photo1.png" style="width: 100px;height:100px;">
@@ -267,40 +267,46 @@ input[type=text]:focus {
         </div>
 
 	</div>
-	<div class="col-lg-7">
+	<div class="col-lg-8">
+		<!-- <div class="price-tables"> -->
+	    		<div class="row">
+	<div class="col-lg-12">
 		<!-- <div class="price-tables"> -->
 	    		<div class="col-md-3 price-grid">
 	    		   <div class="price-block">
 		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
-							<h5 style="text-align: center">Available Deals</h5>
-		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
+							<h5 style="text-align: center">Available<br>Deals</h5>
+		    				<h4 style="border-radius: 5px 5px 20px 20px;text-align: center">12345</h4>
 		    			</div>
 		    		</div>
 				</div>
 				<div class="col-md-3 price-grid">
 	    		   <div class="price-block">
 		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
-							<h5 style="text-align: center">Posted Deals</h5>
-		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
+							<h5 style="text-align: center">Posted<br>Deals</h5>
+		    				<h4 style="border-radius: 5px 5px 20px 20px;text-align: center">12345</h4>
 		    			</div>
 		    		</div>
 				</div>
 				<div class="col-md-3 price-grid">
 	    		   <div class="price-block">
 		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
-							<h5 style="text-align: center">Jfy Deals</h5>
-		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
-		    			</div>
-		    		</div>
-                </div>
-                <div class="col-md-3 price-grid">
-	    		   <div class="price-block">
-		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
-							<h5 style="text-align: center">Special Deals</h5>
-		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
+							<h5 style="text-align: center">JFY<br>Deals</h5>
+		    				<h4 style="border-radius: 5px 5px 20px 20px;text-align: center">12345</h4>
 		    			</div>
 		    		</div>
 				</div>
+				<div class="col-md-3 price-grid">
+	    		   <div class="price-block">
+		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
+							<h5 style="text-align: center">Special<br>Deals</h5>
+		    				<h4 style="border-radius: 5px 5px 20px 20px;text-align: center">12345</h4>
+		    			</div>
+		    		</div>
+				</div>
+			
+		</div>
+</div>
 			
 		</div>
 </div>
@@ -316,7 +322,7 @@ input[type=text]:focus {
 		</div>
 <div class="col-md-5">
 	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">Deal Management Lifecycle</div></a>
-		</div>
+		</div>	
 	<div class="col-md-2">
 	<div class="dropdown">
   <button class="dropbtn">Login Data</button>
@@ -330,22 +336,40 @@ input[type=text]:focus {
 </div> 
 	 </div>
  <div class="clearfix"></div>
-<span>SORT BY</span>
-	 <button onclick="myFunction()">Try it</button>
-
-<div id="myDIV">
-<!-- This is my DIV element. -->
+<span style="font-weight: bold">SORT BY</span>
+ <div class="dropdown">
+  <button class="dropbtn" style="width: 140px;margin-left: 50px;margin-bottom: 20px;">Date</button>
+  <div class="dropdown-content">
+    <a href="#">Today</a>
+    <a href="#">This Week</a>
+	<a href="#">This Month</a>
+	<a href="#">This Quater</a>
+	<a href="#">Six Months</a>
+	<a href="#">This Year</a>
+	<a href="#">All</a>
+  </div>
 </div>
-<script>
-function myFunction() {
-    var x = document.getElementById('myDIV');
-    if (x.style.display === 'none') {
-        x.style.display = 'block';
-    } else {
-        x.style.display = 'none';
-    }
-}
-</script>
+
+<div class="dropdown">
+  <button class="dropbtn" style="width: 140px;margin-left: 50px;margin-bottom: 20px;">Food</button>
+  <div class="dropdown-content">
+    <a href="#">Food</a>
+    <a href="#">Food</a>
+	<a href="#">Food</a>
+	<a href="#">Food</a>
+	<a href="#">Food</a>
+	<a href="#">Food</a>
+	<a href="#">Food</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn" style="width: 140px;margin-left: 50px;margin-bottom: 20px;">Alphabetically</button>
+  <div class="dropdown-content">
+    <a href="#">Accending</a>
+    <a href="#">Decending</a>
+  </div>
+</div>
 
  <div class="portlet-grid panel-primary" style="width: 100%"> 
     		  
