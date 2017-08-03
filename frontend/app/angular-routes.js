@@ -102,6 +102,11 @@ angular
                 url: '/dealiddetails',
                 templateUrl: 'app/userprofilemanagement/views/dealiddetails.html',
                 controller: 'usersController'
+            })
+            .state('vendorsupport', {
+                url: '/vendorsupport',
+                templateUrl: 'app/vendorsupport/views/vendorsupport.html',
+                controller: 'usersController'
             });
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');

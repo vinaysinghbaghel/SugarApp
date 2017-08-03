@@ -1298,7 +1298,7 @@ ul.dropdown-menu.drp-mnu li {
   -o-transition: 0.5s all;
 }
 .market-update-block.clr-block-1:hover {
-    background: #f44195;
+    background: #fff;
    transition: 0.5s all;
   -webkit-transition: 0.5s all;
   -moz-transition: 0.5s all;
@@ -1318,18 +1318,19 @@ ul.dropdown-menu.drp-mnu li {
   -moz-transition: 0.5s all;
   -o-transition: 0.5s all;
 }
-.market-update-right i.fa.fa-file-text-o {
+.cityicon {
     font-size: 3em;
     color:#fff;
     width: 80px;
     height: 80px;
-    background: #f44195;
+    background: #fff;
     text-align: center;
     border-radius: 49px;
     -webkit-border-radius: 49px;
     -moz-border-radius:49px;
     -o-border-radius:49px;
     line-height: 1.7em;
+    border: 3px solid #f44195;
 }
 .market-update-right i.fa.fa-eye {
      font-size: 3em;
@@ -3013,7 +3014,7 @@ span.per-month {
 .img-circle{
     width:80px;
     height: 80px;
-    background-color: #f44195;
+    border: 3px solid #f44195;
 }
 .price-grid {
     margin-bottom: 3em;
@@ -5258,7 +5259,8 @@ ul.dropdown-menu {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    border-radius: 5px;
+    border-radius: 10px;
+    margin-left: 20px;
 }
 
 .dropdown-content a {
@@ -5268,7 +5270,7 @@ ul.dropdown-menu {
     display: block;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {background-color: #f44195;color: #fff;border-radius: 10px;}
 
 .dropdown:hover .dropdown-content {
     display: block;
@@ -5359,5 +5361,18 @@ a {
 
 #names {
   cursor: pointer;
+}
+
+
+.chart-container {
+	width:  80%;
+	height: 480px;
+	margin: 0 auto;
+}
+
+.pie-chart-container {
+	width : 360px;
+	height : 360px;
+	float : left;
 }
 
