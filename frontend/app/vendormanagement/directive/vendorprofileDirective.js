@@ -13,7 +13,6 @@ typeAhead.directive('typeahead', function($timeout) {
     link: function($scope,$rootScope, elem, attrs) {
     $scope.handleSelection = function(selectedItem) {
     $scope.model = selectedItem;
-    console.log($scope.model,'hiiiiiiiiiiiiiiiiiiiiiii in directives')
     $scope.current = 0;
     $scope.selected = true;
     $timeout(function() {

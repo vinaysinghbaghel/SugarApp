@@ -2,8 +2,15 @@
 
 var express = require('express');
 var router = express.Router();
-// var TweetRoute = require('./web-Route');
 
+// module.exports = function(passport){
 
-// router.use('/tweets', TweetRoute);
+ let UserProfileController = require('./../controllers/UserProfileController');
+
+ router.post('/api/userprofileimage', UserProfileController.createUserProfile);
+//  router.post('/api/userprofileimage',UserProfileController.userprofileimage);
+ router.post('/api/userlogin', UserProfileController.usersignin);
+
+// return router;
+// }
 module.exports = router;

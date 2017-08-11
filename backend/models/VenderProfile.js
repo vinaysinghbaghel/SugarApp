@@ -12,13 +12,11 @@ var venderprofileSchema = new mongoose.Schema({
     address: {
         type: String,
     },
-    // loc: {
-    //     type: [lat,lag],
-    // index: '2d'
-    // },
-    loc: {
-        type: { type: String },
-        coordinates: [Number],
+    longitude: {
+        type: String,
+    },
+    latitude: {
+        type: String,
     },
     name: {
         type: String,
@@ -68,15 +66,12 @@ var venderprofileSchema = new mongoose.Schema({
     },
     nextdate:{
      type: Date,
-        'default': moment.utc().format("YYYY-MM-DD"),
     },
     created_at: {
         type: Date,
-        'default': moment.utc().format("YYYY-MM-DD HH:mm:ss"),
     },
     updated_at: {
         type: Date,
-        'default':  moment.utc().format("YYYY-MM-DD HH:mm:ss"),
     }
 
 });

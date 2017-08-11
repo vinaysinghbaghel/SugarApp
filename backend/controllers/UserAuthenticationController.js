@@ -59,8 +59,7 @@ mail.sendEmail(mailOptions, (error, info) => {
             }
             return res.json({
                 'message': 'User Registered successfully',
-                'success': true,
-                'data': []
+                'success': true
             });
         });
         });
@@ -73,22 +72,23 @@ exports.signIn = function(req,res,next){
      try {
             var email = req.body.email;
             var password = req.body.password;
-            Users.find({email:email}).exec(function(err, user){
+            Users.findOne({email:email}).exec(function(err, user){
              if (err) {
              return res.json({ success: false, "message": err}); 
              }   
-             if(user.length === 0){
+             if(!user){
                 return res.json({"success" : false, message :  "Email not registered."});
              }
-            let users=user[0];
-            let userpassword = CryptoJS.AES.decrypt(users.password, users.useruuid).toString(CryptoJS.enc.Utf8);
-            console.log(userpassword,'dercreptrewrefcxc passs')
-             console.log(users.useruuid,'user uuid is here ')
+            let userpassword = CryptoJS.AES.decrypt(user.password, user.useruuid).toString(CryptoJS.enc.Utf8);
             if(userpassword !== password) {
                 return res.json({"success" : false, message :  "Incorrect password entered."});
              }else{
-              req.session.userid = user[0]._id;
-              return res.json({"success" : true,user:user[0]});
+             req.session.cookie.expires = false;
+             req.session.name = user._id;
+             req.session.cookie.expires = new Date(Date.now() + (28 * 24 * 3600000));
+             req.session.cookie.maxAge = 28 * 24 * 3600000; 
+              req.session.userid = user._id;
+              return res.json({"success" : true,user:user});
            }            
            });
         } catch (e) {
@@ -97,15 +97,40 @@ exports.signIn = function(req,res,next){
         }
 
 }
-    exports.changePassword = function(req, res) {
+exports.isloggedin = function(req, res){
+  if(req.user){
+    Users.findOne({_id : req.user._id}).exec(function(err, user){
+      if(err || !user) return req.json({success : false, user : req.user});
+      res.json({success : true, user : user}); 
+    })    
+  }else{
+    res.json({success : false, "message" : "Not Authenticated"});
+  }
+};
+exports.logout = function(req, res){ 
+    console.log('logout sugar app')
+  var redirectUrl = "/login";
+  if(!req.user){
+    return res.json({message:"Log out successfull.", success:true, redirectUrl:redirectUrl});
+  }else{
+    req.session.name = null;
+    req.session.cookie.expires = new Date(Date.now() -100000);
+    req.session.cookie.maxAge = 0;
+    if(req.user){
+      req.logout();   
+    }
+    res.json({message:"Log out successfull.", success:true, redirectUrl:redirectUrl});
+  }
+};
+exports.changePassword = function(req, res) {
         try {
             let id=req.session.userid ;
             let email = req.body.email;
             let password = req.body.password;
             let uuids = uuid();
             Users.find({_id:id}).exec(function(err, user){
-             if (err) {
-             return res.json({success: false, "message": err });
+            if (err) {
+            return res.json({success: false, "message": err });
             }else if(user){
                 let userpass= CryptoJS.AES.encrypt(password,uuids).toString();
                 Users.update({email:email},{password:userpass,useruuid:uuids,passwordchanged:1},function(err,newpassword){
@@ -116,9 +141,6 @@ exports.signIn = function(req,res,next){
                     res.json({success : true, message:"Password successfully changed."});
                     }                 
                 })
-            // }else{
-            //  res.json({status : false, message : "Invalid old password"});
-            // }
             }
             else {
             res.json({message : "Invalid username or password", success : false});
@@ -129,141 +151,40 @@ exports.signIn = function(req,res,next){
         }
     }
 
-exports.userprofiledetails = function(req, res, next) {
-    try {
-
-    let userprofiledetails = new UserProfile({
-      custID:req.body.customerid,
-      name:req.body.name,
-      email:req.body.userid,
-      phonenumber:req.body.phone,
-      img:req.body.image,
-      password:req.body.password,
-      homelocation:req.body.homelocation,
-      worklocation:req.body.worklocation,
-      favourites:req.body.favourites,
-      preferenceslocation:req.body.preferenceslocation,
-      merchant:req.body.merchant,
-      food:req.body.food,
-      broadcastmerchant:req.body.broadcastmerchant
-    })
-     userprofiledetails
-        .save(function(err) {
-            if (err) {
-                return res.status(500).json({
-                    'message': 'Error in processing your request',
-                    'success': false,
-                    'data': null
-                });
-            }
-            return res.json({
-                'message': 'User profile created successfully',
-                'success': true,
-                'data': []
-            });
-        });
-    }catch (e) {
-    console.error(e.stack);
-
-    }
-};
 exports.forgotPassword = function(req,res,next){
-  var forgotemail = req.body.email; 
-  Users.findOne({email:forgotemail},function(err,adminusers){
-    if(err){
-      res.json({message :"Please try Again"});
-    }
-    else if(adminusers)
-    {
-    let userpassword = randomString({length: 10});
-    console.log(userpassword,'userpassword created ramdom')
-    let uuids = uuid();
-    let userpass= CryptoJS.AES.encrypt(userpassword,uuids).toString();
-    console.log(userpass,'userpass userpass userpass')  
-    let mailOptions = {
-     from:'Sugar@wishto.co', // sender address
-        to: forgotemail, // list of receivers
-        subject: 'SugarApp Credentials', // Subject line
-        html: 'Welcome,<br/> Your password is  '+userpassword+'<br/>Please change your password after login.<br /><br />Thank You.'// html body    
-    };
-    // send mail with defined transport object
-    mail.sendEmail(mailOptions, (error, info) => {
-    if (error) {
-        return console.log(error);
-    }
-    console.log('Message %s sent: %s', info.messageId, info.response);
-    });      
-      Users.update({email:forgotemail},{password:userpass,passwordchanged: 0,useruuid: uuids,},function(err,newpassword){
-        if(err){
-          console.log(err);
-        }
-        console.log("Your new password has been mailed, please check email.")
-        res.json({status: true,message:"Your new password has been mailed, please check email."});
+    try {
+        var forgotemail = req.body.email; 
+        Users.findOne({email:forgotemail},function(err,adminusers){
+          if(err){
+            res.json({message :"Please try Again"});
+          }
+          else if(adminusers){
+            let userpassword = randomString({length: 10});
+            let uuids = uuid();
+            let userpass= CryptoJS.AES.encrypt(userpassword,uuids).toString();
+            let mailOptions = {
+             from:'Sugar@wishto.co', // sender address
+             to: forgotemail, // list of receivers
+             subject: 'SugarApp Credentials', // Subject line
+             html: 'Welcome,<br/> Your password is  '+userpassword+'<br/>Please change your password after login.<br /><br />Thank You.'// html body    
+            };
+        // send mail with defined transport object
+        mail.sendEmail(mailOptions, (error, info) => {
+           if (error) {
+             return console.log(error);
+           }
+         console.log('Message %s sent: %s', info.messageId, info.response);
+        });      
+        Users.update({email:forgotemail},{password:userpass,passwordchanged: 0,useruuid: uuids,},function(err,newpassword){
+           if(err){
+            console.log(err);
+          }else{
+           res.json({status: true,message:"Your new password has been mailed, please check email."});
+          }
+        });
+        } else{ res.json({status: false,messages:"Email ID is not found."}); }  
       });
+    } catch (e) {
+     console.error(e.stack);
     }
-    else{
-      res.json({messages:"Email ID is not found."});
-    }
-  });
 }
-// exports.getTweets = function(req, res, next) {
-//     Tweet
-//         .find({}, function(err, tweets) {
-//             if (err) {
-//                 return res.status(500).json({
-//                     'message': 'Error in processing your request',
-//                     'success': false,
-//                     'data': []
-//                 });
-//             }
-//             return res.json({
-//                 'message': 'Here are your tweets. Enjoy!',
-//                 'success': true,
-//                 'data': tweets
-//             });
-//         });
-// };
-
-// exports.updateTweet = function(req, res, next) {
-//     var body = req.body;
-//     var tweetId = req.params.id;
-//     var tweetObj = {
-//         'tweet': body.tweet,
-//         'updated_at': Date.now()
-//     };
-//     Tweet
-//         .findOneAndUpdate({ '_id': tweetId }, { '$set': tweetObj }, { 'new': true }, function(err, tweet) {
-//             if (err) {
-//                 return res.status(500).json({
-//                     'message': 'Error in processing your request',
-//                     'success': false,
-//                     'data': null
-//                 });
-//             }
-//             return res.json({
-//                 'message': 'Tweet updated successfully',
-//                 'success': true,
-//                 'data': tweet
-//             })
-//         });
-// };
-
-// exports.deleteTweet = function(req, res, next) {
-//     var tweetId = req.params.id;
-
-//     Tweet
-//         .remove({ '_id': tweetId }, function(err) {
-//             if (err) {
-//                 return res.status(500).json({
-//                     'message': 'Error in processing your request',
-//                     'success': false,
-//                     'data': null
-//                 });
-//             }
-//             return res.json({
-//                 'message': 'Tweet deleted successfully',
-//                 'success': true,
-//                 'data': null
-//             })
-//         })
-// };

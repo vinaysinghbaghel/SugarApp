@@ -13,12 +13,10 @@ let webRoutes = require('./routes/web-Route');
 let mail = require('./utils/mail');
 const session = require('express-session');
 const busboy = require('connect-busboy');
-// const MemoryStore = require('connect').session.MemoryStore
-// let MemoryStore ;
-// app.use(session({secret:'XASDASDA'}));
-// create our app
-
-
+const passport = require('passport');
+var cookieParser = require('cookie-parser');
+// const busboyBodyParser = require('busboy-body-parser');
+// app.use(busboyBodyParser.js());
 /**
  * Connection to DB
  */
@@ -40,12 +38,30 @@ app.use(bodyParser.raw({
     limit: 10000000000
 }));
 
+// app.use(bodyParser.json({
+//     limit: 10000000
+// }));
+// app.use(bodyParser.urlencoded({
+//     extended: true
+// }));
+//////////////
+app.use(cookieParser());
+app.use(bodyParser.raw({
+  limit: 10000000000
+}));
+app.use(bodyParser.json());
 app.use(bodyParser.json({
-    limit: 10000000
+  type: 'application/vnd.api+json',
+  limit: 10000000
 }));
 app.use(bodyParser.urlencoded({
-    extended: true
+  extended: true
 }));
+
+
+
+//
+
 
 app.use(express.static(path.join(__dirname, './../frontend')));
 
@@ -68,23 +84,15 @@ app.use(session({
     secret: "secret",
     
 }));
-app.use(busboy());
-// app.use(function (req, res, next) {
-//     res.locals.session = req.session;
-//     try {
-//         let r = next();
-//         if (r && r.catch && typeof r.catch === 'function') {
-//             r.catch((err)=> {
-//                 "use strict";
-//                 console.error(err);
-//             });
-//         }
-//     }
-//     catch (err) {
-//         console.error(err);
-//     }
-// });
 
+app.use(busboy());
+
+
+// passport initialization
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
 /* Routes */
 
 app.use('/', apiRoutes);

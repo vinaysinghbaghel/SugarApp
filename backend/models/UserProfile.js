@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var userprofileSchema = new mongoose.Schema({
     custID: {
         type: String,
-        unique:true
+        
     },
     name: {
         type: String,
@@ -16,24 +16,26 @@ var userprofileSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    useruuid:{
+        type: String,
+    },
     phonenumber: {
         type: Number,
         trim: true
     },
     img: {
-        data: Buffer, 
-        contentType: String,
+        type:String
+        // data: Buffer, 
+        // contentType: String,
     },
     password: {
         type: String,
     },
     membersince: {
           type: Date,
-        'default': Date.now,
     },
     logindata: {
          type: Date,
-        'default': Date.now
     },
     favourites: {
          type:String,
@@ -60,11 +62,9 @@ var userprofileSchema = new mongoose.Schema({
     },
     created_at: {
         type: Date,
-        'default': Date.now
     },
     updated_at: {
         type: Date,
-        'default': Date.now
     }
 
 });

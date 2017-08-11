@@ -1,5 +1,5 @@
     angular.module('MainCtrl', [])
-     .controller('usersController', function($scope,$rootScope,UserService,toaster,$http,$location) {
+     .controller('usersController', function($scope,$window,$rootScope,UserService,toaster,$http,$location) {
 
         $scope.signupdata={}
         $scope.logindata={}
@@ -32,6 +32,21 @@
           }
         });
       };
+      $rootScope.logout = function(){
+       $http.get('/logout')
+      .success(function(data){
+       clearInterval($rootScope.refreshIntervalId);
+        if(data.success){
+         $window.location = data.redirectUrl;
+        } else {
+         console.log(data);
+         alert(data.message);
+        }
+      })
+      .error(function(error){
+       console.log(error);
+      });
+      }
       $scope.changePassword = function(form) {
         // $scope.showToaster('wait', "Easybill Says", "Login...");
          $rootScope.errorMessage = '';
@@ -65,34 +80,25 @@
           }
         });
       };
-    $scope.logout = function () {
-          $location.path('/login');
-    };
   $scope.userprofile = function() {
-         var res=   $http
-                .post('/api/userprofile', $scope.userprofiledata)
-                res.success(function(data) {
+    var res=$http
+    .post('/api/userprofile', $scope.userprofiledata)
+      res.success(function(data) {
           if (data.success) {
               $rootScope.errorMessage = data.message;
           } else {
-            $rootScope.showLoading = false;
+              $rootScope.showLoading = false;
           
           }
-        });
-        };
-      $scope.forgotpassword = function(forgotemail){  
-  
-  console.log($scope.forgotdata ,'ggigigigigigiigigi')
+      });
+  };
+  $scope.forgotpassword = function(forgotemail){  
     $http.post('/forgotpassword',{email:$scope.forgotdata.email}) 
     .success(function(data){
-      if(data.status){
-        $scope.forgotpassword = data.forgotpassword;
-        $rootScope.message ="Password changed Successfully"
-        // $location.path('/SendEmailToYou');     
-      }
-      else
-      {
-        $rootScope.errorMessage = data.messages; 
+      if(!data.status){
+        $scope.errorMessage = data.messages;
+      } else{
+        $scope.errorMessage = 'Your new password has been mailed, please check email.';
       }      
     })
     .error(function(error){

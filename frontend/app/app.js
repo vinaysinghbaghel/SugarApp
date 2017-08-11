@@ -1,1 +1,1 @@
-angular.module('sugarApp', ['ui.router','appRoutes', 'MainCtrl','dashboardCtrl','userprofileCtrl','UserService','UserProfileService','settingCtrl','venderprofileCtrl','vendorService','venderprofile',]);
+angular.module('sugarApp', ['ui.router','appRoutes', 'MainCtrl','dashboardCtrl','userprofileCtrl','UserService','UserProfileService','settingCtrl','venderprofileCtrl','vendorService','venderprofile','dealmanagementCtrl','dealmanagementService','settingService']);

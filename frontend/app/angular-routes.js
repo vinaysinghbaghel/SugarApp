@@ -71,12 +71,12 @@ angular
             .state('dealverification', {
                 url: '/dealverification',
                 templateUrl: 'app/dealmanagement/views/dealverification.html',
-                controller: 'usersController'
+                controller: 'dealmanagementController'
             })
             .state('deallevelallocation', {
                 url: '/deallevelallocation',
                 templateUrl: 'app/dealmanagement/views/deallevelallocation.html',
-                controller: 'usersController'
+                controller: 'dealmanagementController'
             })
             .state('levelcreation', {
                 url: '/levelcreation',
@@ -113,6 +113,16 @@ angular
             })
             .state('sidebar', {
                 templateUrl: 'app/dashboard/views/sidebar.html',
+            })
+            .state('dealmanagement', {
+                url: '/dealmanagement',
+                templateUrl: 'app/dealmanagement/views/dealmanagementprofile.html',
+                controller:'dealmanagementController'
+            })
+            .state('specialdealallocation', {
+                url: '/specialdealallocation',
+                templateUrl: 'app/dealmanagement/views/specialdealallocation.html',
+                controller:'dealmanagementController'
             });
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
