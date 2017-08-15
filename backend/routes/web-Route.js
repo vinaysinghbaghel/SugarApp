@@ -31,5 +31,8 @@ let DealManagementController = require('./../controllers/DealManagementControlle
  router.post('/api/merchantsid',DealManagementController.dealLevelAllocation);
  router.post('/api/merchantsid',DealManagementController.dealLevelAllocation);
  router.post('/api/specialdealallocation',DealManagementController.specialDealAllocation);
- 
+ router.get('/api/getavailabledeals',DealManagementController.getAvailableDeals);
+ router.get('/api/dealverification',DealManagementController.dealVerification);
+ router.get('/api/dealmanagementlifecircle',DealManagementController.dealManagementLifeCircle);
+ router.get('/api/dealdata',DealManagementController.dealDataID);
 module.exports = router;

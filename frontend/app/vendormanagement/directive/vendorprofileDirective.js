@@ -8,15 +8,20 @@ typeAhead.directive('typeahead', function($timeout) {
       title: '@',
       subtitle: '@',
       model: '=',
-      onSelect: '&amp;'
+      onSelect: '&amp;',
+      controller:'vendorprofileController'
     },
     link: function($scope,$rootScope, elem, attrs) {
     $scope.handleSelection = function(selectedItem) {
     $scope.model = selectedItem;
+    
+   scope:{
+         someArray:selectedItem
+         }
     $scope.current = 0;
     $scope.selected = true;
     $timeout(function() {
-    //   $scope.onSelect();
+      //  $scope.onItemSelected();
     }, 200);
     };
     $scope.current = 0;
@@ -27,7 +32,19 @@ typeAhead.directive('typeahead', function($timeout) {
     $scope.setCurrent = function(index) {
     $scope.current = index;
     };
-     }
+    },
+  // controller: ['$scope', '$element', '$attrs',
+  //           function ($scope, $element, $attrs) {
+  //               // observe changes in attribute - could also be scope.$watch
+  //               $attrs.$observe('yourDirective', function (selectedItem) {
+  //                   if (selectedItem) {
+  //                       console.log(selectedItem,'huuuuuuuuuuuuuuuuuuuuuuuuuuuu');
+  //                       // pass value to app controller
+  //                       $scope.variable = value;
+  //                   }
+  //               });
+  //           }
+  //       ]
 
   };
 

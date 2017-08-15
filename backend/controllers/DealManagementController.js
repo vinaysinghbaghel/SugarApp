@@ -1,7 +1,10 @@
 'use strict';
+const express = require('express');
+var app = express();
 let VenderProfile = require('./../models/VenderProfile');
 let DealDataId = require('./../models/DealDataId');
-//const moment = require('moment');
+const moment = require('moment');
+
 
 exports.dealLevelAllocation = function(req, res, next) {
     var merchantObj = {
@@ -39,37 +42,39 @@ exports.specialDealAllocation = function(req, res) {
                 'data': []
             });
         }
-        for (var i = 0; i < req.body.setnumberofdeals; i++) {
-            DealDataId.find(function(err, dataid) {
-                if (err) {
-                    return res.status(500).json({
-                        'message': 'Error in processing your request',
-                        'success': false,
-                        'data': []
-                    });
-                }
 
+        var dataArray = [];
+        var incre = 0;
+        DealDataId.find(function(err, dataid) {
+            if (err) {
+                return res.status(500).json({
+                    'message': 'Error in processing your request',
+                    'success': false,
+                    'data': []
+                });
+            }
+            for (var i = 1; i <= req.body.setnumberofdeals; i++) {
                 if (dataid.length > 0) {
                     var partneridlength = dataid[0].dealID.length;
-                    var increment = parseInt(Number(dataid[0].dealID.substring(partneridlength - 3)))
-                    increment += 1;
+                    var increment = parseInt(Number(dataid[0].dealID.substring(partneridlength - 3)));
+                    incre = increment + i;
                     if (increment < 9) {
-                        increment = "00" + increment;
+                        increment = "00" + incre;
                     } else if (increment < 99) {
-                        increment = "0" + increment;
+                        increment = "0" + incre;
                     }
-                    dealID = venderID + increment;
+                    dealID = "R" + venderID + increment;
                     console.log(dealID, 'inner deal id is here')
                 } else {
-                    dealID = venderID + "000";
+                    dealID = "R" + venderID + "000";
                 }
                 let dealidObj = new DealDataId({
                     dealID: dealID,
                     merchant: checkmerchatlevel.name,
                     merchantlogo: checkmerchatlevel.logo,
+                    ststus:'available',
                     created_at: moment.utc().format("YYYY-MM-DD HH:mm:ss")
                 })
-
                 dealidObj.save(function(err) {
                     if (err) {
                         return res.status(500).json({
@@ -88,7 +93,26 @@ exports.specialDealAllocation = function(req, res) {
                     }, {
                         'new': true
                     }, function(err, tweet) {
-                        if (err) {
+                        if (err) {exports.getDealHistory = function(req, res, next) {
+    UserDealHistory
+        .find({
+            dealID: req.body.id
+        }, function(err, userprofiledata) {
+            console.log(userprofiledata, 'user profile data')
+            if (err) {
+                return res.status(500).json({
+                    'message': 'Error in processing your request',
+                    'success': false,
+                    'data': []
+                });
+            }
+            return res.json({
+                'message': 'Here are your userprofile. Enjoy!',
+                'success': true,
+                'data': userprofiledata
+            });
+        });
+    };
                             return res.status(500).json({
                                 'message': 'Error in processing your request',
                                 'success': false,
@@ -100,11 +124,78 @@ exports.specialDealAllocation = function(req, res) {
 
                 });
 
+            }
 
-            }).sort([
-                ['created_at', -1]
-            ]);
-        }
+        }).sort([
+            ['dealID', -1]
+        ]);
 
     });
 }
+
+exports.getAvailableDeals = function(req, res) {
+    DealDataId.find({status:'available'},function(err, availabledeals) {
+            if (err) {
+                return res.status(500).json({
+                    'message': 'Error in processing your request',
+                    'success': false,
+                    'data': []
+                });
+            }
+            return res.json({
+                'message': 'Here are your available deals. Enjoy!',
+                'success': true,
+                'data': availabledeals
+            });
+        });
+};
+exports.dealManagementLifeCircle = function(req, res) {
+    DealDataId.find({},function(err, dealsid) {
+            if (err) {
+                return res.status(500).json({
+                    'message': 'Error in processing your request',
+                    'success': false,
+                    'data': []
+                });
+            }
+            return res.json({
+                'message': 'Here are your available deals. Enjoy!',
+                'success': true,
+                'data': dealsid
+            });
+        });
+};
+exports.dealDataID = function(req, res) {
+    DealDataId.find({},function(err, dealsid) {
+            if (err) {
+                return res.status(500).json({
+                    'message': 'Error in processing your request',
+                    'success': false,
+                    'data': []
+                });
+            }
+            return res.json({
+                'message': 'Here are your available deals. Enjoy!',
+                'success': true,
+                'data': dealsid
+            });
+        });
+};
+exports.dealVerification = function(req, res) {
+    
+    DealDataId.find({status:'create'},function(err, dealverication) {
+        console.log(dealverication,'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
+            if (err) {
+                return res.status(500).json({
+                    'message': 'Error in processing your request',
+                    'success': false,
+                    'data': []
+                });
+            }
+            return res.json({
+                'message': 'Here are your available deals. Enjoy!',
+                'success': true,
+                'data': dealverication
+            });
+        });
+};    

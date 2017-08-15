@@ -1,7 +1,7 @@
 'use strict';
 
 /* Modules */
-
+var http = require('http');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -15,6 +15,10 @@ const session = require('express-session');
 const busboy = require('connect-busboy');
 const passport = require('passport');
 var cookieParser = require('cookie-parser');
+var server = http.createServer(app);
+// server.listen(config.app.port);
+
+// var io = require('socket.io')(server);
 // const busboyBodyParser = require('busboy-body-parser');
 // app.use(busboyBodyParser.js());
 /**
@@ -96,7 +100,7 @@ require('./config/passport')(passport);
 /* Routes */
 
 app.use('/', apiRoutes);
-app.use('/', webRoutes);
+app.use('/', webRoutes).io;
 app.use('/', function(req, res) {
     return res.sendFile(path.join(__dirname, './../frontend/app.html'));
 });

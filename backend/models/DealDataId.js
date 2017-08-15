@@ -40,6 +40,9 @@ var dealdataidSchema = new mongoose.Schema({
     dealstype: {
         type: String,
     },
+    status:{
+     type: String,
+    },
     likes: {
         type: Array,
         default: []

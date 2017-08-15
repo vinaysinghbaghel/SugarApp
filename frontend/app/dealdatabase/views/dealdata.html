@@ -16,190 +16,11 @@
 
 </head>
 <body>	
-<div class="page-container">	
+<div class="page-container" ng-init="dealdata();getVendorProfile()" ng-controller="vendorprofileController"> 	
    <div class="left-content">
 	   <div class="mother-grid-inner">
             <!--header start here-->
-				<div class="header-main" style="height: 60px;">
-					<div class="header-left">
-							
-							<!--search-box
-								<div class="search-box">
-									<form>
-										<input type="text" placeholder="Search..." required="">	
-										<input type="submit" value="">					
-									</form>
-								</div><!--//end-search-box-->
-								<div class="logo-name">
-									 <a href="#"> <h1>Deal Database</h1>
-									<!--<img id="logo" src="" alt="Logo"/>--> 
-								  </a> 								
-							</div>
-							<div class="clearfix"> </div>
-						 </div>
-						 <div class="header-right">
-							<div class="profile_details_left" style="margin-top: -10px;"><!--notifications of menu start -->
-								<ul class="nofitications-dropdown">
-									<li class="dropdown head-dpdn">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge">3</span></a>
-										<ul class="dropdown-menu">
-											<li>
-												<div class="notification_header">
-													<h3>You have 3 new messages</h3>
-												</div>
-											</li>
-											<li><a href="#">
-											   <div class="user_img"><img src="images/photo1.png" alt=""></div>
-											   <div class="notification_desc">
-												<p>Lorem ipsum dolor</p>
-												<p><span>1 hour ago</span></p>
-												</div>
-											   <div class="clearfix"></div>	
-											</a></li>
-											<li class="odd"><a href="#">
-												<div class="user_img"><img src="images/photo1.png" alt=""></div>
-											   <div class="notification_desc">
-												<p>Lorem ipsum dolor </p>
-												<p><span>1 hour ago</span></p>
-												</div>
-											  <div class="clearfix"></div>	
-											</a></li>
-											<li><a href="#">
-											   <div class="user_img"><img src="images/photo1.png" alt=""></div>
-											   <div class="notification_desc">
-												<p>Lorem ipsum dolor</p>
-												<p><span>1 hour ago</span></p>
-												</div>
-											   <div class="clearfix"></div>	
-											</a></li>
-											<li>
-												<div class="notification_bottom">
-													<a href="#">See all messages</a>
-												</div> 
-											</li>
-										</ul>
-									</li>
-									<li class="dropdown head-dpdn">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">3</span></a>
-										<ul class="dropdown-menu">
-											<li>
-												<div class="notification_header">
-													<h3>You have 3 new notification</h3>
-												</div>
-											</li>
-											<li><a href="#">
-												<div class="user_img"><img src="images/photo1.png" alt=""></div>
-											   <div class="notification_desc">
-												<p>Lorem ipsum dolor</p>
-												<p><span>1 hour ago</span></p>
-												</div>
-											  <div class="clearfix"></div>	
-											 </a></li>
-											 <li class="odd"><a href="#">
-												<div class="user_img"><img src="images/photo1.png" alt=""></div>
-											   <div class="notification_desc">
-												<p>Lorem ipsum dolor</p>
-												<p><span>1 hour ago</span></p>
-												</div>
-											   <div class="clearfix"></div>	
-											 </a></li>
-											 <li><a href="#">
-												<div class="user_img"><img src="images/photo1.png" alt=""></div>
-											   <div class="notification_desc">
-												<p>Lorem ipsum dolor</p>
-												<p><span>1 hour ago</span></p>
-												</div>
-											   <div class="clearfix"></div>	
-											 </a></li>
-											 <li>
-												<div class="notification_bottom">
-													<a href="#">See all notifications</a>
-												</div> 
-											</li>
-										</ul>
-									</li>	
-									<li class="dropdown head-dpdn">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">9</span></a>
-										<ul class="dropdown-menu">
-											<li>
-												<div class="notification_header">
-													<h3>You have 8 pending task</h3>
-												</div>
-											</li>
-											<li><a href="#">
-												<div class="task-info">
-													<span class="task-desc">Lorem Ipsum</span><span class="percentage">40%</span>
-													<div class="clearfix"></div>	
-												</div>
-												<div class="progress progress-striped active">
-													<div class="bar yellow" style="width:40%;"></div>
-												</div>
-											</a></li>
-											<li><a href="#">
-												<div class="task-info">
-													<span class="task-desc">Lorem Ipsum</span><span class="percentage">90%</span>
-												   <div class="clearfix"></div>	
-												</div>
-												<div class="progress progress-striped active">
-													 <div class="bar green" style="width:90%;"></div>
-												</div>
-											</a></li>
-											<li><a href="#">
-												<div class="task-info">
-													<span class="task-desc">Lorem Ipsum</span><span class="percentage">33%</span>
-													<div class="clearfix"></div>	
-												</div>
-											   <div class="progress progress-striped active">
-													 <div class="bar red" style="width: 33%;"></div>
-												</div>
-											</a></li>
-											<li><a href="#">
-												<div class="task-info">
-													<span class="task-desc">Lorem Ipsum</span><span class="percentage">80%</span>
-												   <div class="clearfix"></div>	
-												</div>
-												<div class="progress progress-striped active">
-													 <div class="bar  blue" style="width: 80%;"></div>
-												</div>
-											</a></li>
-											<li>
-												<div class="notification_bottom">
-													<a href="#">See all pending tasks</a>
-												</div> 
-											</li>
-										</ul>
-									</li>	
-								</ul>
-								<div class="clearfix"> </div>
-							</div>
-							<!--notification menu end -->
-							<div class="profile_details">		
-								<ul>
-									<li class="dropdown profile_details_drop">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-											<div class="profile_img">	
-												<span class="prfil-img"><img src="images/photo1.png" alt=""> </span> 
-												<div class="user-name">
-													<p>Akshay</p>
-													<span>Administrator</span>
-												</div>
-												<i class="fa fa-angle-down lnr"></i>
-												<i class="fa fa-angle-up lnr"></i>
-												<div class="clearfix"></div>	
-											</div>	
-										</a>
-										<ul class="dropdown-menu drp-mnu">
-											<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
-											<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> 
-											<li> <a href="#"><i class="fa fa-sign-out"></i> Logout</a> </li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-							<div class="clearfix"> </div>				
-						</div>
-				     <div class="clearfix"> </div>	
-				</div>
+				<div ng-include="'app/dashboard/views/header.html'"></div>
 <!--heder end here-->
 <div class="clearfix"> </div>
 <!-- script-for sticky-nav -->
@@ -243,9 +64,17 @@ input[type=text]:focus {
     width: 100%;
 }
 </style>
-<form>
-  <input type="text" name="search" placeholder="">
-</form>
+  <div class="container">
+  <typeahead items="items" prompt="Start typing a US state" title="name"  model="name" on-select="onItemSelected()" />
+</div>
+<input type="text" ng-model="model" placeholder="{{prompt}}" ng-keydown="selected=false">
+ <br/>
+<div class="items" ng-hide="!model || selected">
+  <div class="item" ng-repeat="item in items | filter:model  track by $index" ng-click="handleSelection(item)" style="cursor: pointer" ng-class="{activess:isCurrent($index)}" ng-mouseenter="setCurrent($index)">
+    <p class="title">{{item.name}}</p>
+  </div>
+</div>
+
  <!-- search box -->
 
  
@@ -259,7 +88,10 @@ input[type=text]:focus {
 	 </div>
  <div class="clearfix"></div>
  <span style="font-weight: bold">SORT BY</span>
- <div class="dropdown">
+ <form>
+   <input type="text" ng-model="curPlace" placeholder="Sort by Location,MerchantName,Date"></input>
+ </form>
+ <!-- <div class="dropdown">
   <button class="dropbtn" style="width: 140px;margin-left: 50px;margin-bottom: 20px;">Location</button>
   <div class="dropdown-content">
     <a href="#">Mumbai</a>
@@ -267,8 +99,8 @@ input[type=text]:focus {
 	<a href="#">Bangalore</a>
 	<a href="#">Hyderabad</a>
   </div>
-</div>
-<div class="dropdown">
+</div> -->
+<!-- <div class="dropdown">
   <button class="dropbtn" style="width: 140px;margin-left: 50px;">Category</button>
   <div class="dropdown-content">
     <a href="#">Category 1</a>
@@ -276,9 +108,9 @@ input[type=text]:focus {
 	<a href="#">Category 3</a>
 	<a href="#">Category 4</a>
   </div>
-</div>
-  <button class="dropbtn" style="width: 140px;margin-left: 50px;">Today</button>
-	<button class="dropbtn" style="width: 140px;margin-left: 50px;">All</button>
+</div> -->
+  <!-- <button class="dropbtn" style="width: 140px;margin-left: 50px;">Today</button>
+	<button class="dropbtn" style="width: 140px;margin-left: 50px;">All</button> -->
 
 <!-- <span>SORT BY</span>
 	 <button onclick="myFunction()">Try it</button>
@@ -334,70 +166,70 @@ function myFunction() {
                   </div>
                     <hr class="style1">
 
-                    <div class="row">
+                    <div class="row" ng-repeat="dataid in dealdataids | filter:curPlace">
                         <div class="col-md-2" style="margin-left: 00px;margin-top: 13px">
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">{{dataid.dealID}}<h4>
+                        <!-- <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
-                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
-                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">12345<h4>
-                        <h4 style="margin-top: 10px;margin-bottom: 20px;margin-left: 0px;text-align: center">12345<h4>
+                        <h4 style="margin-top: 10px;margin-bottom: 20px;margin-left: 0px;text-align: center">12345<h4> -->
                         </div>
 
                         <div class="col-md-2" style="margin-left: 0px;margin-top: 13px">
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">{{dataid.merchant}}<h4>
+                        <!-- <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">Starbucks<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">Starbucks<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">Starbucks<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">Starbucks<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">Starbucks<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">Starbucks<h4>
-                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">Starbucks<h4>
-                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">Starbucks<h4>
-                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">Starbucks<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">Starbucks<h4> -->
                         </div>
 
                         <div class="col-md-2" style="margin-left: 20px;margin-top: 13px">
+                        <!-- <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00.00.00<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00.00.00<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00.00.00<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00.00.00<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00.00.00<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00.00.00<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00.00.00<h4>
-                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00.00.00<h4>
-                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00.00.00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">00.00.00<h4> -->
                         </div>
 
                         <div class="col-md-1" style="margin-left: 0px;margin-top: 13px">
+                        <!-- <h4 style="margin-top: 10px;margin-left: 20px;text-align: center">00.00.00<h4>
                         <h4 style="margin-top: 10px;margin-left: 20px;text-align: center">00.00.00<h4>
                         <h4 style="margin-top: 10px;margin-left: 20px;text-align: center">00.00.00<h4>
                         <h4 style="margin-top: 10px;margin-left: 20px;text-align: center">00.00.00<h4>
                         <h4 style="margin-top: 10px;margin-left: 20px;text-align: center">00.00.00<h4>
                         <h4 style="margin-top: 10px;margin-left: 20px;text-align: center">00.00.00<h4>
                         <h4 style="margin-top: 10px;margin-left: 20px;text-align: center">00.00.00<h4>
-                        <h4 style="margin-top: 10px;margin-left: 20px;text-align: center">00.00.00<h4>
-                        <h4 style="margin-top: 10px;margin-left: 20px;text-align: center">00.00.00<h4>
+                        <h4 style="margin-top: 10px;margin-left: 20px;text-align: center">00.00.00<h4> -->
                         </div>
 
                         <div class="col-md-2" style="margin-left: 50px;margin-top: 13px">
+                        <!-- <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
-                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
-                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4> -->
                         </div>
                         <div class="col-md-2" style="margin-left: 20px;margin-top: 13px">
-                            <h4 style="margin-top: 10px;margin-left: 40px">ACTIVE<h4>
+                            <!-- <h4 style="margin-top: 10px;margin-left: 40px">ACTIVE<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
                         <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
-                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4>
+                        <h4 style="margin-top: 10px;margin-left: 0px;text-align: center">ACTIVE<h4> -->
                         </div>
                     </div>
 		</div>
@@ -418,59 +250,7 @@ function myFunction() {
 </div>
 </div>
 <!--slider menu-->
-    <div class="sidebar-menu">
-		  	<div class="logo"> <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> <a href="#"> <span id="logo" ></span> 
-			      <!--<img id="logo" src="" alt="Logo"/>--> 
-			  </a> </div>		  
-		    <div class="menu">
-		      <ul id="menu" >
-		        <li id="menu-home" ><a href="index.html"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
-		        <li><a href="#"><i class="fa fa-users"></i><span>User<br>Management</span><span class="fa fa-angle-right" style="float: right"></span></a>
-		          <ul>
-		            <li><a href="#">User Profile</a></li>
-		            <li><a href="#">User Deal History</a></li>	            
-		          </ul>
-		        </li>
-		        <li id="menu-comunicacao" ><a href="#"><i class="fa fa-black-tie"></i><span>Vendor<br> Management</span><span class="fa fa-angle-right" style="float: right"></span></a>
-		          <ul id="menu-comunicacao-sub" >
-		            <li id="menu-mensagens"><a href="#">Vendor Profile</a>		              
-		            </li>
-		            <li id="menu-arquivos" ><a href="#">Vendor Customer List</a></li>
-		            <li id="menu-arquivos" ><a href="#">Deal Management Lifecycle</a></li>
-		          </ul>
-		        </li>
-		          <li><a href="#"><i class="fa fa-paper-plane"></i><span>Live</span></a></li>
-		        <!-- <li id="menu-academico" ><a href="#"><i class="fa fa-database"></i><span>Deal Database</span><span class="fa fa-angle-right" style="float: right"></span></a> -->
-		          <!-- <ul id="menu-academico-sub" >
-		          	 <li id="menu-academico-boletim" ><a href="login.html">Login</a></li>
-		            <li id="menu-academico-avaliacoes" ><a href="signup.html">Sign Up</a></li>		           
-		          </ul> -->
-		        </li>
-		        
-		        <li><a href="#"><i class="fa fa-database"></i><span>Deal Database</span></a></li>
-		        <li><a href="#"><i class="fa fa-ticket"></i><span>Deal<br>Management</span><span class="fa fa-angle-right" style="float: right"></span></a>
-		        	 <ul id="menu-academico-sub" >
-			            <li id="menu-academico-avaliacoes" ><a href="#">Deal Verification</a></li>
-			            <li id="menu-academico-boletim" ><a href="#">Others</a></li>
-		             </ul>
-		        </li>
-		         <li><a href="#"><i class="fa fa-cog"></i><span>Settings</span><span class="fa fa-angle-right" style="float: right"></span></a>
-		         	 <ul id="menu-academico-sub" >
-			            <li id="menu-academico-avaliacoes" ><a href="#">Level Creation</a></li>
-			            <li id="menu-academico-boletim" ><a href="#">Register New Merchant</a></li>
-		             </ul>
-		         </li>
-		         <li><a href="#"><i class="fa fa-comments"></i><span>Vendor Support</span></a>
-		         	<!-- <ul id="menu-academico-sub" >
-			            <li id="menu-academico-avaliacoes" ><a href="product.html">Product</a></li>
-			            <li id="menu-academico-boletim" ><a href="price.html">Price</a></li>
-		             </ul> -->
-		         </li>
-		      </ul>
-		    </div>
-	 </div>
-	<div class="clearfix"> </div>
-
+    <div ng-include="'app/dashboard/views/sidebar.html'"></div>
 <!--slide bar menu end here-->
 <script>
 var toggle = true;

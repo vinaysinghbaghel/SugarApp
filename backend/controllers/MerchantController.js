@@ -178,51 +178,43 @@ exports.createJyfLevel = function(req, res, next){
     var dealID;
     var venderID = req.session.merchantid;
 
-    VenderProfile.findOne({
-        venderID: venderID
-    }, function(err, checkmerchatlevel) {
+    VenderProfile.findOne({ venderID: venderID}, function(err, checkmerchatlevel) {
         if (err) {
             return res.status(500).json({
                 'message': 'Error in processing your request',
                 'success': false,
-                'data': []
+                'data': {}
             });
         }
-        if (checkmerchatlevel.merchantlevel == 'silver') {
-            LevelCreation.findOne({
-                levelname: 'silver'
-            }, function(err, checklevel) {
+        if (checkmerchatlevel.merchantlevel == checkmerchatlevel.merchantlevel) {
+            LevelCreation.findOne({levelname: checkmerchatlevel.merchantlevel }, function(err, checklevel) {
                 if (err) {
                     return res.status(500).json({
                         'message': 'Error in processing your request',
                         'success': false,
-                        'data': []
+                        'data': {}
                     });
                 }
-                var i;
-                for (i = 0; i < checklevel.setnumberofdeals; i++) {
-                    // if(checklevel.setnumberofdeals==checklevel.setnumberofdeals)  {  
-                    // if(i==checklevel.setnumberofdeals)  {
+                    var incre;
                     DealDataId.find(function(err, dataid) {
                         if (err) {
                             return res.status(500).json({
                                 'message': 'Error in processing your request',
                                 'success': false,
-                                'data': []
+                                'data': {}
                             });
                         }
-
+                        for (var i = 1; i <= checklevel.setnumberofdeals; i++) {
                         if (dataid.length > 0) {
                             var partneridlength = dataid[0].dealID.length;
                             var increment = parseInt(Number(dataid[0].dealID.substring(partneridlength - 3)))
-                            // var a = parseInt(increment);
-                            increment += 1;
+                            incre = increment + i;
                             if (increment < 9) {
-                                increment = "00" + increment;
+                                increment = "00" + incre;
                             } else if (increment < 99) {
-                                increment = "0" + increment;
+                                increment = "0" + incre;
                             }
-                            dealID = venderID + increment;
+                            dealID = "R" + venderID + increment;
                             console.log(dealID, 'inner deal id is here')
                         } else {
                             dealID = venderID + "000";
@@ -231,6 +223,7 @@ exports.createJyfLevel = function(req, res, next){
                             dealID: dealID,
                             merchant: req.session.data.name,
                             merchantlogo: req.session.data.logo,
+                            ststus:'available',
                             created_at: moment.utc().format("YYYY-MM-DD HH:mm:ss")
                         })
 
@@ -263,177 +256,18 @@ exports.createJyfLevel = function(req, res, next){
                             });
 
                         });
-
+                     }
 
                     }).sort([
-                        ['created_at', -1]
+                        ['dealID', -1]
                     ]);
-
-                }
-
             })
 
         }
 
-        if (checkmerchatlevel.merchantlevel == 'gold') {
-            LevelCreation.find({
-                levelname: 'gold'
-            }, function(err, checklevel) {
-                var count = 0;
-                while (count < checklevel[0].setnumberofdeals) {
-                    if (err) {
-                        return res.status(500).json({
-                            'message': 'Error in processing your request',
-                            'success': false,
-                            'data': []
-                        });
-                    }
-                    DealDataId.find(function(err, dataid) {
-                        if (err) {
-                            return res.status(500).json({
-                                'message': 'Error in processing your request',
-                                'success': false,
-                                'data': []
-                            });
-                        }
-                        if (dataid.length > 0) {
-                            var partneridlength = dataid[0].dealID.length;
-                            var increment = Number(dataid[0].dealID.substring(partneridlength - 3))
-                            var a = parseInt(increment);
-                            increment += 1;
-                            if (increment < 9) {
-                                increment = "00" + increment;
-                            } else if (increment < 99) {
-                                increment = "0" + increment;
-                            }
-                            dealID = venderID + increment;
-                            console.log(dealID, 'inner deal id is here')
-                        } else {
-                            dealID = venderID + "000" + increment;
-
-                        }
-
-                        let dealidObj = new DealDataId({
-                            dealID: dealID,
-                            merchant: req.session.data.name,
-                            merchantlogo: req.session.data.logo,
-                        })
-
-                        dealidObj.save(function(err) {
-                            if (err) {
-                                return res.status(500).json({
-                                    'message': 'Error in processigetDealHistoryng your request',
-                                    'success': false,
-                                    'data': null
-                                });
-                            }
-                            var tweetObj = {
-                                'nextdate': moment(checkmerchatlevel.nextdate).add('days', checklevel[0].settimeduration).toDate()
-                            };
-                            VenderProfile.findOneAndUpdate({
-                                'venderID': venderID
-                            }, {
-                                '$set': tweetObj
-                            }, {
-                                'new': true
-                            }, function(err, tweet) {
-                                if (err) {
-                                    return res.status(500).json({
-                                        'message': 'Error in processing your request',
-                                        'success': false,
-                                        'data': null
-                                    });
-                                }
-
-                            });
-                        });
-                    }).sort([
-                        ['created_at', -1]
-                    ]);
-                }
-            })
-
-        }
-        if (checkmerchatlevel.merchantlevel == 'dimond') {
-            LevelCreation.find({
-                levelname: 'dimond'
-            }, function(err, checklevel) {
-                var count = 0;
-                while (count < checklevel[0].setnumberofdeals) {
-                    if (err) {
-                        return res.status(500).json({
-                            'message': 'Error in processing your request',
-                            'success': false,
-                            'data': []
-                        });
-                    }
-                    DealDataId.find(function(err, dataid) {
-                        if (err) {
-                            return res.status(500).json({
-                                'message': 'Error in processing your request',
-                                'success': false,
-                                'data': []
-                            });
-                        }
-                        if (dataid.length > 0) {
-                            var partneridlength = dataid[0].dealID.length;
-                            var increment = Number(dataid[0].dealID.substring(partneridlength - 3))
-                            var a = parseInt(increment);
-                            increment += 1;
-                            if (increment < 9) {
-                                increment = "00" + increment;
-                            } else if (increment < 99) {
-                                increment = "0" + increment;
-                            }
-                            dealID = venderID + increment;
-                            console.log(dealID, 'inner deal id is here')
-                        } else {
-                            dealID = venderID + "000";
-                        }
-                        let dealidObj = new DealDataId({
-                            dealID: dealID,
-                            merchant: req.session.data.name,
-                            merchantlogo: req.session.data.logo,
-                        })
-
-                        dealidObj.save(function(err) {
-                            if (err) {
-                                return res.status(500).json({
-                                    'message': 'Error in processigetDealHistoryng your request',
-                                    'success': false,
-                                    'data': null
-                                });
-                            }
-                            var tweetObj = {
-                                'nextdate': moment(checkmerchatlevel.nextdate).add('days', checklevel[0].settimeduration).toDate()
-                            };
-                            VenderProfile.findOneAndUpdate({
-                                'venderID': venderID
-                            }, {
-                                '$set': tweetObj
-                            }, {
-                                'new': true
-                            }, function(err, tweet) {
-                                if (err) {
-                                    return res.status(500).json({
-                                        'message': 'Error in processing your request',
-                                        'success': false,
-                                        'data': null
-                                    });
-                                }
-
-                            });
-                        });
-                    }).sort([
-                        ['created_at', -1]
-                    ]);
-                }
-            })
-
-        }
     });
 }
-   // scheduler.scheduleJob('10 * * * * *',function(req,res,next){
+// scheduler.scheduleJob('10 * * * * *',function(req,res,next){
  var jobDate = moment().startOf('day');
  var checknexted = scheduler.scheduleJob(jobDate, function(req, res, next) {
      var dealID;
@@ -472,239 +306,86 @@ exports.createJyfLevel = function(req, res, next){
                              'data': []
                          });
                      }
-                     if (checkmerchatlevel.merchantlevel == 'silver') {
-                         LevelCreation.find({
-                             levelname: 'silver'
-                         }, function(err, checklevel) {
-                             var count = 0;
-                             while (count < checklevel[0].setnumberofdeals) {
-                                 if (err) {
-                                     return res.status(500).json({
-                                         'message': 'Error in processing your request',
-                                         'success': false,
-                                         'data': []
-                                     });
-                                 }
-                                 DealDataId.find(function(err, dataid) {
-                                     if (err) {
-                                         return res.status(500).json({
-                                             'message': 'Error in processing your request',
-                                             'success': false,
-                                             'data': []
-                                         });
-                                     }
-                                     if (dataid.length > 0) {
-                                         var partneridlength = dataid[0].dealID.length;
-                                         var increment = Number(dataid[0].dealID.substring(partneridlength - 3))
-                                         var a = parseInt(increment);
-                                         increment += 1;
-                                         if (increment < 9) {
-                                             increment = "00" + increment;
-                                         } else if (increment < 99) {
-                                             increment = "0" + increment;
-                                         }
-                                         dealID = venderID + increment;
-                                         console.log(dealID, 'inner deal id is here')
-                                     } else {
-                                         dealID = venderID + "000";
-                                     }
-                                     let dealidObj = new DealDataId({
-                                         dealID: dealID,
-                                         merchant: datedata.name,
-                                         merchantlogo: datedata.logo,
-                                     })
-                                     dealidObj.save(function(err) {
-                                         if (err) {
-                                             return res.status(500).json({
-                                                 'message': 'Error in processigetDealHistoryng your request',
-                                                 'success': false,
-                                                 'data': null
-                                             });
-                                         }
-                                         var tweetObj = {
-                                             'nextdate': moment(checkmerchatlevel.nextdate).add('days', checklevel[0].settimeduration).toDate()
-                                         };
-                                         VenderProfile.findOneAndUpdate({
-                                             'venderID': venderID
-                                         }, {
-                                             '$set': tweetObj
-                                         }, {
-                                             'new': true
-                                         }, function(err, tweet) {
-                                             if (err) {
-                                                 return res.status(500).json({
-                                                     'message': 'Error in processing your request',
-                                                     'success': false,
-                                                     'data': null
-                                                 });
-                                             }
+            if (checkmerchatlevel.merchantlevel == checkmerchatlevel.merchantlevel) {
+             LevelCreation.findOne({levelname: checkmerchatlevel.merchantlevel }, function(err, checklevel) {
+                if (err) {
+                    return res.status(500).json({
+                        'message': 'Error in processing your request',
+                        'success': false,
+                        'data': {}
+                    });
+                }
+                    var incre;
+                    DealDataId.find(function(err, dataid) {
+                        if (err) {
+                            return res.status(500).json({
+                                'message': 'Error in processing your request',
+                                'success': false,
+                                'data': []
+                            });
+                        }
+                        for (var i = 1; i <= checklevel.setnumberofdeals; i++) {
+                        if (dataid.length > 0) {
+                            var partneridlength = dataid[0].dealID.length;
+                            var increment = parseInt(Number(dataid[0].dealID.substring(partneridlength - 3)))
+                            incre = increment + i;
+                            if (increment < 9) {
+                                increment = "00" + incre;
+                            } else if (increment < 99) {
+                                increment = "0" + incre;
+                            }
+                            dealID = venderID + increment;
+                            console.log(dealID, 'inner deal id is here')
+                        } else {
+                            dealID = venderID + "000";
+                        }
+                        let dealidObj = new DealDataId({
+                            dealID: dealID,
+                            merchant: datedata.name,
+                            merchantlogo: datedata.logo,
+                            ststus:'available',
+                            created_at: moment.utc().format("YYYY-MM-DD HH:mm:ss")
+                        })
 
-                                         });
-                                     });
-                                 }).sort([
-                                     ['created_at', -1]
-                                 ]);
-                                 count++;
-                             }
-                         })
+                        dealidObj.save(function(err) {
+                            if (err) {
+                                return res.status(500).json({
+                                    'message': 'Error in processigetDealHistoryng your request',
+                                    'success': false,
+                                    'data': null
+                                });
+                            }
+                            var tweetObj = {
+                                'nextdate': moment(checkmerchatlevel.nextdate).add('days', checklevel.settimeduration).toDate()
+                            };
+                            VenderProfile.findOneAndUpdate({
+                                'venderID': venderID
+                            }, {
+                                '$set': tweetObj
+                            }, {
+                                'new': true
+                            }, function(err, tweet) {
+                                if (err) {
+                                    return res.status(500).json({
+                                        'message': 'Error in processing your request',
+                                        'success': false,
+                                        'data': null
+                                    });
+                                }
 
+                            });
+
+                        });
                      }
-                     if (checkmerchatlevel.merchantlevel == 'gold') {
-                         LevelCreation.find({
-                             levelname: 'gold'
-                         }, function(err, checklevel) {
-                             var count = 0;
-                             while (count < checklevel[0].setnumberofdeals) {
-                                 if (err) {
-                                     return res.status(500).json({
-                                         'message': 'Error in processing your request',
-                                         'success': false,
-                                         'data': []
-                                     });
-                                 }
-                                 DealDataId.find(function(err, dataid) {
-                                     if (err) {
-                                         return res.status(500).json({
-                                             'message': 'Error in processing your request',
-                                             'success': false,
-                                             'data': []
-                                         });
-                                     }
-                                     if (dataid.length > 0) {
-                                         var partneridlength = dataid[0].dealID.length;
-                                         var increment = Number(dataid[0].dealID.substring(partneridlength - 3))
-                                         var a = parseInt(increment);
-                                         increment += 1;
-                                         if (increment < 9) {
-                                             increment = "00" + increment;
-                                         } else if (increment < 99) {
-                                             increment = "0" + increment;
-                                         }
-                                         dealID = venderID + increment;
-                                         console.log(dealID, 'inner deal id is here')
-                                     } else {
-                                         dealID = venderID + "000";
-                                     }
 
-                                     let dealidObj = new DealDataId({
-                                         dealID: dealID,
-                                         merchant: req.datedata.name,
-                                         merchantlogo: req.datedata.logo,
-                                     })
+                    }).sort([
+                        ['dealID', -1]
+                    ]);
+                  })
 
-                                     dealidObj.save(function(err) {
-                                         if (err) {
-                                             return res.status(500).json({
-                                                 'message': 'Error in processigetDealHistoryng your request',
-                                                 'success': false,
-                                                 'data': null
-                                             });
-                                         }
-                                         var tweetObj = {
-                                             'nextdate': moment(checkmerchatlevel.nextdate).add('days', checklevel[0].settimeduration).toDate()
-                                         };
-                                         VenderProfile.findOneAndUpdate({
-                                             'venderID': venderID
-                                         }, {
-                                             '$set': tweetObj
-                                         }, {
-                                             'new': true
-                                         }, function(err, tweet) {
-                                             if (err) {
-                                                 return res.status(500).json({
-                                                     'message': 'Error in processing your request',
-                                                     'success': false,
-                                                     'data': null
-                                                 });
-                                             }
-
-                                         });
-                                     });
-                                 }).sort([
-                                     ['created_at', -1]
-                                 ]);
-                             }
-                         })
-
-                     }
-                     if (checkmerchatlevel.merchantlevel == 'dimond') {
-                         LevelCreation.find({
-                             levelname: 'dimond'
-                         }, function(err, checklevel) {
-                             var count = 0;
-                             while (count < checklevel[0].setnumberofdeals) {
-                                 if (err) {
-                                     return res.status(500).json({
-                                         'message': 'Error in processing your request',
-                                         'success': false,
-                                         'data': []
-                                     });
-                                 }
-                                 DealDataId.find(function(err, dataid) {
-                                     if (err) {
-                                         return res.status(500).json({
-                                             'message': 'Error in processing your request',
-                                             'success': false,
-                                             'data': []
-                                         });
-                                     }
-                                     if (dataid.length > 0) {
-                                         var partneridlength = dataid[0].dealID.length;
-                                         var increment = Number(dataid[0].dealID.substring(partneridlength - 3))
-                                         var a = parseInt(increment);
-                                         increment += 1;
-                                         if (increment < 9) {
-                                             increment = "00" + increment;
-                                         } else if (increment < 99) {
-                                             increment = "0" + increment;
-                                         }
-                                         dealID = venderID + increment;
-                                         console.log(dealID, 'inner deal id is here')
-                                     } else {
-                                         dealID = venderID + "000";
-                                     }
-                                     let dealidObj = new DealDataId({
-                                         dealID: dealID,
-                                         merchant: datedata.name,
-                                         merchantlogo: datedata.logo,
-                                     })
-
-                                     dealidObj.save(function(err) {
-                                         if (err) {
-                                             return res.status(500).json({
-                                                 'message': 'Error in processigetDealHistoryng your request',
-                                                 'success': false,
-                                                 'data': null
-                                             });
-                                         }
-                                         var tweetObj = {
-                                             'nextdate': moment(checkmerchatlevel.nextdate).add('days', checklevel[0].settimeduration).toDate()
-                                         };
-                                         VenderProfile.findOneAndUpdate({
-                                             'venderID': venderID
-                                         }, {
-                                             '$set': tweetObj
-                                         }, {
-                                             'new': true
-                                         }, function(err, tweet) {
-                                             if (err) {
-                                                 return res.status(500).json({
-                                                     'message': 'Error in processing your request',
-                                                     'success': false,
-                                                     'data': null
-                                                 });
-                                             }
-
-                                         });
-                                     });
-                                 }).sort([
-                                     ['created_at', -1]
-                                 ]);
-                             }
-                         })
-
-                     }
-                 });
+                }   
+                    
+                });
              }
          }
      });
