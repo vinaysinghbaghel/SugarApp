@@ -14,8 +14,8 @@ config.mongodb.url = 'mongodb://localhost:27017/sugarapp';
 
 config.gmail = {};
 config.gmail.smtp = {};
-config.gmail.smtp.username = "vinay.linkites@gmail.com";
-config.gmail.smtp.password = "linkites786";
+config.gmail.smtp.username = "";
+config.gmail.smtp.password = "";
 
 /* App config */
 config.google= {

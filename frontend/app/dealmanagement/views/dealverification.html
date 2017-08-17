@@ -77,12 +77,12 @@ input[type=text]:focus {
     	<div class="prices-head">
     	</div>
     	<div class="price-tables">
-	    		<div class="col-md-4 price-grid popup-with-zoom-anim" href="#small-dialog" style="width: 33.33%;cursor: pointer;margin-top: 30px;">
+	    		<div class="col-md-4 price-grid popup-with-zoom-anim" style="width: 33.33%;cursor: pointer;margin-top: 30px;">
 		    			<div class="price-gd-top pric-clr1" style="background-color: #fff;box-shadow: 0px 0px 3px 3px rgba(0.15,0.15,0.15,0.15);">
                             <img src="images/starbucks.png" class="img-circle" alt="logo" style="margin-left: 110px;margin-top: -40px" width="80" height="80"></img>
-                             <h5 ng-click="open()" style="text-align: center;color: #292c33">Create responsive images by adding an .img-responsive class to the  tag. 
-                                 The image will then scale nicely to the parent element.</h5>   
-							
+                              
+							<a ng-click="open()"> <h5 style="text-align: center;color: #292c33">Create responsive images by adding an .img-responsive class to the  tag. 
+                                 The image will then scale nicely to the parent element.</h5> </a>
 							
 					</div>
 		    		
@@ -91,7 +91,25 @@ input[type=text]:focus {
     	  </div>
    </div>
 </div>
- 
+ <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+      <h3 class="modal-title" style="text-align:center;">Deal Verification</h3>
+    </div>
+    <div class="modal-body">
+      <div classs="form-group">
+        <div class="modal-body" style="text-align:center;">
+			 <ul ng-repeat="dealverification in dealverification">
+				<li>dealverification.merchant</li>
+			 </ul> 
+          <!-- <img ng-src="{{modalQrImage}}" style="width:75%;height: auto;"> -->
+        </div>
+      </div>
+      <hr>
+      <div class="form-group text-right" style="padding-right : 20px">
+        <button class="btn btn-warning" type="button" ng-click="close()">Close</button>
+      </div>
+    </div>
+  </script>
 <!--inner block end here-->
 <!--pop-up-grid-->
 				            <!-- <div id="popup">
@@ -125,21 +143,21 @@ input[type=text]:focus {
 <script>
 var toggle = true;
             
-$(".sidebar-icon").click(function() {                
-  if (toggle)
-  {
-    $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
-    $("#menu span").css({"position":"absolute"});
-  }
-  else
-  {
-    $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
-    setTimeout(function() {
-      $("#menu span").css({"position":"relative"});
-    }, 400);
-  }               
-                toggle = !toggle;
-            });
+// $(".sidebar-icon").click(function() {                
+//   if (toggle)
+//   {
+//     $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+//     $("#menu span").css({"position":"absolute"});
+//   }
+//   else
+//   {
+//     $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+//     setTimeout(function() {
+//       $("#menu span").css({"position":"relative"});
+//     }, 400);
+//   }               
+//                 toggle = !toggle;
+//             });
 </script>
 <!--scrolling js-->
 		<script src="js/jquery.nicescroll.js"></script>
@@ -147,21 +165,5 @@ $(".sidebar-icon").click(function() {
 		<!--//scrolling js-->
 <script src="js/bootstrap.js"> </script>
 <!-- mother grid end here-->
-<script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-      <h3 class="modal-title" style="text-align:center;">View QrImage</h3>
-    </div>
-    <div class="modal-body">
-      <div classs="form-group">
-        <div class="modal-body" style="text-align:center;">
-          <img ng-src="{{modalQrImage}}" style="width:75%;height: auto;">
-        </div>
-      </div>
-      <hr>
-      <div class="form-group text-right" style="padding-right : 20px">
-        <button class="btn btn-warning" type="button" ng-click="close()">Close</button>
-      </div>
-    </div>
-  </script>
 </body>
 </html>

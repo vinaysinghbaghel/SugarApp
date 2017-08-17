@@ -72,6 +72,7 @@ exports.specialDealAllocation = function(req, res) {
                     dealID: dealID,
                     merchant: checkmerchatlevel.name,
                     merchantlogo: checkmerchatlevel.logo,
+                    address:checkmerchatlevel.address,
                     ststus:'available',
                     created_at: moment.utc().format("YYYY-MM-DD HH:mm:ss")
                 })
@@ -184,7 +185,6 @@ exports.dealDataID = function(req, res) {
 exports.dealVerification = function(req, res) {
     
     DealDataId.find({status:'create'},function(err, dealverication) {
-        console.log(dealverication,'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
             if (err) {
                 return res.status(500).json({
                     'message': 'Error in processing your request',

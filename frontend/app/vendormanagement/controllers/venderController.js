@@ -65,24 +65,20 @@ angular.module('venderprofileCtrl', [])
           })    
         //   }, 2000);
         };
-        $scope.dealdata = function(){
-        // setInterval(function(){
-          var res = $http
-              .get('/api/dealdata')
-          res.success(function(data){
-            if(data.success)
-              {
-             $scope.dealdataids=data.data; 
-                //  $scope.dealdata = data.data;
-            //   $location.path('/dealmanagementlifecycle');
-              }else{
-            $scope.errorMessage(data.message)
-              }
-          })    
-        //   }, 2000);
+        // $scope.dealdata = function(){
+        //   var res = $http
+        //       .get('/api/dealdata')
+        //   res.success(function(data){
+        //     if(data.success)
+        //       {
+        //      $scope.dealdataids=data.data; 
+    
+        //       }else{
+        //     $scope.errorMessage(data.message)
+        //       }
+        //   })   
 
-
-        };
+        // };
      $scope.getVendorProfilefordeallifecircle = function() {
           console.log($scope.someArray,'NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN') 
             vendorprofileService.getVendorProfile({}).then(function(res) {

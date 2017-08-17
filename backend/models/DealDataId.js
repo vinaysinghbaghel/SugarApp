@@ -18,6 +18,9 @@ var dealdataidSchema = new mongoose.Schema({
     dealinfo: {
         type: String,
     },
+    address:{
+        type: String,
+    },
     dealterms: {
         type: String,
     },

@@ -1,4 +1,4 @@
- var typeAhead = angular.module('UserProfileDirective', []);
+var typeAhead = angular.module('UserProfileDirective', []);
 typeAhead.directive('typeahead', function($timeout) {
   return {
     restrict: 'AEC',
@@ -8,7 +8,6 @@ typeAhead.directive('typeahead', function($timeout) {
       title: '@',
       subtitle: '@',
       model: '=',
-      ngModel: '=',
       onSelect: '&amp;'
     },
     link: function($scope,$rootScope, elem, attrs) {

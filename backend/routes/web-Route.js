@@ -7,6 +7,7 @@ let UserAuthenticationController = require('./../controllers/UserAuthenticationC
 let UserProfileController = require('./../controllers/UserProfileController');
 let MerchantController = require('./../controllers/MerchantController');
 let DealManagementController = require('./../controllers/DealManagementController');
+let LiveDataController = require('./../controllers/LiveDataController')
 
  router.post('/userdata',UserAuthenticationController.signUp)
  router.post('/signin', UserAuthenticationController.signIn);
@@ -35,4 +36,9 @@ let DealManagementController = require('./../controllers/DealManagementControlle
  router.get('/api/dealverification',DealManagementController.dealVerification);
  router.get('/api/dealmanagementlifecircle',DealManagementController.dealManagementLifeCircle);
  router.get('/api/dealdata',DealManagementController.dealDataID);
+ router.get('/api/getnewregisterusertoday',LiveDataController.getNewRegisteredUserToday);
+ router.get('/api/getnewregistermerchanttoday',LiveDataController.getNewRegisteredMerchantToday);
+ router.get('/api/getdealsfortoday',LiveDataController.getDealsForToday);
+ router.get('/api/getdealsalive',LiveDataController.getDealsAlive);
+ router.get('/api/getdealscompletedtoday',LiveDataController.getDealsCompletedToday);
 module.exports = router;

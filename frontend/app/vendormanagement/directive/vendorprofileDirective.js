@@ -8,8 +8,7 @@ typeAhead.directive('typeahead', function($timeout) {
       title: '@',
       subtitle: '@',
       model: '=',
-      onSelect: '&amp;',
-      controller:'vendorprofileController'
+      onSelect: '&amp;'
     },
     link: function($scope,$rootScope, elem, attrs) {
     $scope.handleSelection = function(selectedItem) {

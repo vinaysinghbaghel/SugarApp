@@ -86,12 +86,12 @@ angular
             .state('livedata', {
                 url: '/livedata',
                 templateUrl: 'app/livedata/views/livedata.html',
-                controller: 'usersController'
+                controller: 'livedataController'
             })
             .state('dealdata', {
                 url: '/dealdata',
                 templateUrl: 'app/dealdatabase/views/dealdata.html',
-                controller: 'usersController'
+                controller: 'dealdatabaseController'
             })
             .state('dealdataid', {
                 url: '/dealdataid',

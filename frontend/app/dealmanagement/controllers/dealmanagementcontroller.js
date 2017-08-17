@@ -1,31 +1,8 @@
 angular.module('dealmanagementCtrl', [])
-  .controller('dealmanagementController', function($scope,$rootScope,dealmanagementService,$http,$location,$window,$modal) {
+  .controller('dealmanagementController', function($scope,$rootScope,dealmanagementService,$http,$location,$window) {
      $scope.levelcreation = {};
      $scope.specialdealdata = {};
-// $scope.open = function () {
-//     var modalInstance = $modal.open({
-//     controller: 'dealmanagementController',
-//     templateUrl: 'myModalContent.html',
-//     });
-
-//     };
-$scope.modalEmailbilling = {};
-    $scope.animationsEnabled = true;
-    $scope.open = function(url) {
-      $scope.modalQrImage = url;
-      $scope.modalEmailbilling = url;
-      $scope.modalInstance = $uibModal.open({
-        animation: $scope.animationsEnabled,
-        templateUrl: 'myModalContent.html',
-        controller: 'dealmanagementController',
-        scope: $scope
-      });
-    };
-
-    $scope.close = function() {
-      $scope.modalInstance.close();
-    };
-
+     
 $scope.getmerchantProfile = function() {
 dealmanagementService.getmerchantProfile({}).then(function(res) {
         $scope.items = res;
@@ -129,7 +106,23 @@ $scope.dealverification = function (){
         }
     });
 
-}
+};
+// $scope.open = function (_dealverification) {
+//     var modalInstance = $modal.open({
+//     controller: 'dealmanagementController',
+//     templateUrl: 'myModalContent.html',
+//     resolve: {
+//                 dealverification: function()
+//                 {
+//                     return _dealverification;
+//                 }
+//             }
+//     });
+
+//     };
+$scope.close = function() {
+    // var modalInstance = $modal.close();
+    };
 });
 
   
