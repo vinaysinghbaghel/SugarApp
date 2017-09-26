@@ -1,0 +1,117 @@
+<!-- <div class=""></div>
+
+<div class="form_login" ng-controller="dealmanagementController">
+	<div class="main_form">
+		<div class="container-fluid">
+			<div class="col-md-6 main_form_right">
+				<div class="row" ng-repeat="dealid in getdealiddata">
+                     <ul>
+					<li>{{dealid.dealID}}</li>
+					</ul>
+					  </div>
+				<div class="right_form_main">
+					<form name="signup_form" ng-submit="createdealid(createdealid_form);">
+                        <div class="form-group">
+			                 	<p class="err-messg">{{errorMessage}}</p>		
+			                </div> 
+                        <div class="form-group">
+							<label for="customerid">Search Location</label>							
+							<input type="text" class="form-control" id="customerid" name="customerid" ng-model="getdealdata.location" required="true"/>
+						</div>
+						
+					<button ng-click="getDealId(getdealdata)" class="hvr-bob" style="background-color: #f44195;color: #fff;width: 100%">Submit</button>
+					</form>					
+				</div>
+				 
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div> -->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Sugar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link rel="stylesheet" href="css/animate.css">
+<style>
+img {max-width: 55px;
+height: auto;
+margin-bottom: 24px;
+}
+</style>
+</head>
+<body>
+<div class="page-container" ng-controller="usersController">	
+   <div class="left-content">
+	   <div class="mother-grid-inner">
+            <div ng-include="'app/dashboard/views/header.html'"></div>
+
+<!--inner block start here-->
+
+<div class="inner-block">
+	<div class="right_form_main">
+					<form name="signup_form" ng-submit="createdealid(createdealid_form);">
+                        <div class="form-group">
+			                 	<p class="err-messg">{{errorMessage}}</p>		
+			                </div> 
+                        <div class="form-group">
+							<label for="customerid">Search Location</label>							
+							<input type="text" class="form-control" id="customerid" name="customerid" ng-model="getdealdata.location" required="true"/>
+						</div>
+						
+					<button ng-click="getDealId(getdealdata)" class="hvr-bob" style="background-color: #f44195;color: #fff;width: 100%">Submit</button>
+					</form>					
+				</div>
+<!--market updates updates-->
+</br>
+</br>
+</br>
+	<div class="market-updates">
+		 <!-- <h2>City Panel</h2> -->
+		  	<div class="col-md-4 market-update-gd popup-with-zoom-anim" href="#small-dialog">
+				<div class="market-update-block clr-block-1">
+				    <div class="col-md-8 market-update-left" ng-repeat="dealid in getdealiddata">
+						<h3 style="margin-top: 20px;">{{dealid.dealID}}</h3>
+					</div>
+					<div class="col-md-4 market-update-right">
+						<!-- <div class="cityicon"><img src="images/mumbai.png"></div> -->
+					</div>
+					<div class="row">
+					</div>
+					<div class="clearfix"> </div>
+				</div>	
+			</div>
+	<div class="clearfix"> </div>
+		</div>
+			</div>
+<!--inner block end here-->
+
+</div>
+</div>
+<div ng-include="'app/dashboard/views/sidebar.html'"></div>
+
+<script>
+var toggle = true;
+            
+$(".sidebar-icon").click(function() {                
+  if (toggle)
+  {
+    $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+    $("#menu span").css({"position":"absolute"});
+  }
+  else
+  {
+    $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+    setTimeout(function() {
+      $("#menu span").css({"position":"relative"});
+    }, 400);
+  }               
+                toggle = !toggle;
+            });
+</script>
+
+</body>
+</html>                     

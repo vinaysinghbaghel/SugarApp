@@ -23,6 +23,16 @@ angular.module('userprofileCtrl', [])
     }
     });
  }; 
+ $scope.createuserprofile = function(){
+     var res=$http.post('api/createuserprofile',$scope.userprofiledata)
+     res.success(function(data){
+         if(data.success){
+             $scope.errorMessage = data.message;
+         }else{
+             $scope.showLoading=false;
+         }
+     })
+ }
  $scope.getDealHistory = function(custID) {   
     dataFactory.getdealhistory({
               id: custID},function(response) {
@@ -46,5 +56,34 @@ angular.module('userprofileCtrl', [])
        }
       });
  };
-    
+  $scope.getTodayRegisterUser = function (){
+     var res = $http
+        .get('/api/gettodayregisteruser', {
+            
+        })
+    res.success(function(data) {
+        if (data.success) {
+            $scope.getTodayRegisterUser=data.data;
+            $scope.errorMessage = data.message;
+        } else {
+            $scope.errorMessage = data.message; 
+        }
+    });
+
+};  
+  $scope.getRegisterUserTillDate = function (){
+     var res = $http
+        .get('/api/getRegisterUserTillDate', {
+            
+        })
+    res.success(function(data) {
+        if (data.success) {
+            $scope.getRegisterUserTillDate=data.data;
+            $scope.errorMessage = data.message;
+        } else {
+            $scope.errorMessage = data.message; 
+        }
+    });
+
+};  
 });

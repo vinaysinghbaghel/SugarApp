@@ -1,12 +1,12 @@
 angular.module('livedataCtrl', [])
     .controller('livedataController', function($scope, $rootScope, $http, $location) {
-       $scope.getNewRegisteredUserToday = function(){
+       $scope.getTodayRegisterUser = function(){
           var res = $http
-              .get('/api/getnewregisterusertoday')
+              .get('/api/gettodayregisteruser')
           res.success(function(data){
             if(data.success)
             {
-            $scope.registerusertoday=data.data; 
+            $scope.getTodayRegisterUser=data.data; 
             }else{
             // $scope.errorMessage(data.message)
             }

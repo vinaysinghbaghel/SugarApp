@@ -1,0 +1,82 @@
+<div class=""></div>
+
+<div class="form_login" ng-controller="dealmanagementController">
+	<div class="main_form">
+		<div class="container-fluid">
+			<!-- <div class="col-md-6 main_form_left">
+				<h1>Connect an account</h1>
+				<div class="social">
+					<ul>
+					<li><a href="javascript:void(0);" ng-click="socialLogin('/auth/facebook')"><img src="images/facebook.png"></a></li>
+					<li><a href="javascript:void(0);" ng-click="socialLogin('/auth/twitter')"><img src="images/twitter.png"></a></li>
+					<li><a href="javascript:void(0);" ng-click="socialLogin('/auth/linkedin')"><img src="images/linkdin.png"></a></li>
+					</ul>
+				</div>
+			</div> -->
+			<div class="col-md-6 main_form_right">
+				<!-- <h1>Sign Up</h1> -->
+				<div class="right_form_main">
+					<form name="signup_form" ng-submit="createdealid(createdealid_form);">
+                        <div class="form-group">
+			                 	<p class="err-messg">{{errorMessage}}</p>		
+			                </div> 
+                        <div class="form-group">
+							<label for="customerid">deal ID</label>							
+							<input type="text" class="form-control" id="customerid" name="customerid" ng-model="createdealdata.dealID" required="true"/>
+						</div>
+						<div class="form-group">
+							<label for="username">dealinfo</label>							
+							<input type="text" class="form-control" id="username" name="username" ng-model="createdealdata.dealinfo" required="true"/>
+						</div>
+						<div class="form-group">
+							<label for="email">dealterms</label>
+							<input type="text" class="form-control" id="email" name="email" ng-model="createdealdata.dealterms" required>
+						</div>
+						<div class="form-group">
+							<label for="phone">setdate</label>
+							<input type="text" class="form-control" id="phone" name="phone" ng-model="createdealdata.setdate" required>
+                        </div>
+                        <div class="form-group">
+							<label for="image">settime</label>
+							<input type="text" class="form-control" id="image" name="image" ng-model="createdealdata.settime" required>
+                        </div>
+                        <div class="form-group">
+							<label for="password">duration</label>
+							<input type="text" class="form-control" id="password" name="password" ng-model="createdealdata.duration" required>
+                        </div>
+                        <!-- <div class="form-group">
+							<label for="homelocation">Home Location</label>
+							<input type="text" class="form-control" id="password" name="password" ng-model="userprofiledata.homelocation" required>
+                        </div>
+                        <div class="form-group">
+							<label for="phone">Work Location</label>
+							<input type="text" class="form-control" id="password" name="password" ng-model="userprofiledata.worklocation" required>
+						</div>
+						<div class="form-group">
+							<label for="phone">Fovourites</label>
+							<input type="text" class="form-control" id="password" name="password" ng-model="userprofiledata.favourites" required>
+						</div>
+						<div class="form-group">
+							<label for="phone">Preferences Location</label>
+							<input type="text" class="form-control" id="password" name="password" ng-model="userprofiledata.preferenceslocation" required>
+						</div>
+						<div class="form-group">
+							<label for="phone">Merchant</label>
+							<input type="text" class="form-control" id="password" name="password" ng-model="userprofiledata.merchant" required>
+						</div>
+						<div class="form-group">
+							<label for="phone">Food</label>
+							<input type="text" class="form-control" id="password" name="password" ng-model="userprofiledata.food" required>
+                        </div>
+						<div class="form-group">
+							<label for="phone">Broadcastmerchant</label>
+							<input type="text" class="form-control" id="password" name="password" ng-model="userprofiledata.broadcastmerchant" required>
+                        </div> -->
+								<button type="submit" class="hvr-bob" style="background-color: #f44195;color: #fff;width: 100%">Submit</button>
+					</form>					
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div><!--end of the main_form-->
+</div>

@@ -14,7 +14,6 @@ var userprofileSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        trim: true
     },
     useruuid:{
         type: String,
@@ -41,7 +40,7 @@ var userprofileSchema = new mongoose.Schema({
          type:String,
     },
     preferenceslocation: {
-         type:String,
+         type:Array,
     },
     merchant: {
          type:String,

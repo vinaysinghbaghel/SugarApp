@@ -106,7 +106,7 @@ angular
             .state('vendorsupport', {
                 url: '/vendorsupport',
                 templateUrl: 'app/vendorsupport/views/vendorsupport.html',
-                controller: 'usersController'
+                controller: 'vendorController'
             })
             .state('header', {
                 templateUrl: 'app/dashboard/views/demo.html',
@@ -123,7 +123,22 @@ angular
                 url: '/specialdealallocation',
                 templateUrl: 'app/dealmanagement/views/specialdealallocation.html',
                 controller:'dealmanagementController'
-            });
+            })
+            .state('createdealid', {
+                url: '/createdealid',
+                templateUrl: 'app/dealmanagement/views/createdealid.html',
+                controller:'dealmanagementController'
+            })
+             .state('getdealid', {
+                url: '/getdealid',
+                templateUrl: 'app/dealmanagement/views/getdealid.html',
+                controller:'dealmanagementController'
+            })
+            .state('createuserprofile',{
+                url:'/createuserprofile',
+                templateUrl:'app/userprofilemanagement/views/createuserprofile.html',
+                controller:'userprofileController'
+            })
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
     });

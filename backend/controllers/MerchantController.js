@@ -22,6 +22,10 @@ const moment = require('moment');
 const scheduler = require('node-schedule');
 const NodeGeocoder = require('node-geocoder');
 const config = require('../config/config');
+const venderCustomerList = require('./../models/VenderCustomerList');
+const userDealHistory = require('./../models/UserDealHistory');
+const async = require('async');
+
 
 exports.registermerchant = function(req, res, next) {
 
@@ -71,6 +75,7 @@ exports.registermerchant = function(req, res, next) {
             req.session.data = {
                 name: req.query.name,
                 logo: imageurl,
+                address:req.query.address
             }
             merchantObj
                 .save(function(err) {
@@ -223,7 +228,8 @@ exports.createJyfLevel = function(req, res, next){
                             dealID: dealID,
                             merchant: req.session.data.name,
                             merchantlogo: req.session.data.logo,
-                            ststus:'available',
+                            status:'available',
+                            address:req.session.data.address,
                             created_at: moment.utc().format("YYYY-MM-DD HH:mm:ss")
                         })
 
@@ -283,6 +289,7 @@ exports.createJyfLevel = function(req, res, next){
          var newdate;
          for (var i = 0; i < checknextdate.length; i++) {
              var datedata = checknextdate[i];
+             console
              var month = datedata.nextdate.getUTCMonth() + 1; //months from 1-12
              var day = datedata.nextdate.getUTCDate();
              var year = datedata.nextdate.getUTCFullYear();
@@ -344,6 +351,7 @@ exports.createJyfLevel = function(req, res, next){
                             merchant: datedata.name,
                             merchantlogo: datedata.logo,
                             ststus:'available',
+                            address:datedata.address,
                             created_at: moment.utc().format("YYYY-MM-DD HH:mm:ss")
                         })
 
@@ -409,3 +417,225 @@ exports.createJyfLevel = function(req, res, next){
             });
         });
 };
+
+exports.venderCustomerList = function(req, res) {
+    try {
+        var custID = req.body.custID;
+        var dealID = req.body.dealID;
+        async.parallel([
+            function(callback) {
+                //     callback(null, 'abc\n');
+                // },
+                venderCustomerList.findOne({
+                    'custID': req.body.custID
+                }, function(err, vcustomerlist) {
+                    if (err) {
+                        return res.status(500).json({
+                            'message': 'Error in processing your request',
+                            'success': false
+                        })
+                    } else if (vcustomerlist || vcustomerlist != null) {
+                        var dealobj = {
+                            'custID': custID
+                        }
+                        venderCustomerList.update({
+                            custID: custID
+                        }, dealobj, function(err, tweet) {
+                            if (err) {
+                                return res.status(500).json({
+                                    'message': 'Error in processing your request',
+                                    'success': false,
+                                });
+                            }
+
+                        });
+                    } else {
+                        let merchantObj = new venderCustomerList({
+                            custID: req.body.custID,
+                        });
+                        merchantObj.save(function(err) {
+                            if (err) {
+                                console.log(err, 'error is there ')
+                                return res.status(500).json({
+                                    'message': 'Error in processing your request',
+                                    'success': false,
+                                })
+                            }
+                        })
+                    }
+                });
+            },
+            function(callback) {
+                //     callback(null, 'xyz\n');
+                userDealHistory.findOne({
+                    'dealID': req.body.dealID
+                }, function(err, vcustomerlist) {
+                    if (err) {
+                        return res.status(500).json({
+                            'message': 'Error in processing your request',
+                            'success': false
+                        })
+                    } else if (vcustomerlist || vcustomerlist != null) {
+                        var dealobj = {
+                            'dealID': dealID
+                        }
+                        userDealHistory.update({
+                            dealID: dealID
+                        }, dealobj, function(err, tweet) {
+                            if (err) {
+                                return res.status(500).json({
+                                    'message': 'Error in processing your request',
+                                    'success': false,
+                                });
+                            }
+
+                        });
+                    } else {
+                        let merchantObj = new userDealHistory({
+                            dealID: req.body.dealID,
+                            status:'suscribe'
+                        });
+                        merchantObj.save(function(err) {
+                            if (err) {
+                                console.log(err, 'error is there ')
+                                return res.status(500).json({
+                                    'message': 'Error in processing your request',
+                                    'success': false,
+                                })
+                            }
+                        })
+                    }
+                });
+
+            },
+            function(callback) {
+                //   var venderArray= new DealDataId ({subscriptionlist:req.body.custID})
+                //       var dealobj = {
+                //   'custID':custID
+                //    }
+
+
+                DealDataId.find({
+                    subscriptionlist: {
+                        "$in": [custID]
+                    }
+                }, function(err, respond) {
+                    if (err) {
+                        return res.json({
+                            'message': 'Error in processing your request',
+                            'success': 'false'
+                        })
+                        console.log(respond, 'respond to alll dagtaaaa')
+                    }  else {
+
+                        DealDataId.update({
+                            dealID: dealID
+                        }, {
+                            $push: {
+                                subscriptionlist: req.body.custID
+                            }
+                        }, function(err) {
+                            if (err) {
+                                console.log(err, 'error is there ')
+                                return res.status(500).json({
+                                    'message': 'Error in processing your request',
+                                    'success': false,
+                                })
+                            }
+                        })
+                    }
+
+                })
+
+            }
+        ], function(err, results) {
+            // results now equals to: [one: 'abc\n', two: 'xyz\n']
+        });
+
+    } catch (e) {
+        console.log(e)
+    }
+};
+exports.VenderRedemptionList = function(req, res) {
+    try {
+
+        var custID = req.body.custID;
+        var dealID = req.body.dealID;
+        //  async.parallel([
+
+        // function(callback){
+        DealDataId.find({
+            subscriptionlist: {
+                "$in": [custID]
+            }
+        }, function(err, respond) {
+            if (err) {
+                return res.json({
+                    'message': 'Error in processing your request',
+                    'success': 'false'
+                })
+                console.log(respond, 'respond to alll dagtaaaa')
+            } else if (respond || respond != null) {
+                console.log(respond, 'hiiiiiiiiiiiiiiiiiiiii')
+
+                DealDataId.update({
+                    dealID: dealID
+                }, {
+                    $push: {
+                        redemptionlist: req.body.custID
+                    }
+                }, function(err, tweet) {
+                    if (err) {
+                        return res.status(500).json({
+                            'message': 'Error in processing your request',
+                            'success': false,
+                        });
+                    }
+
+                });
+                var dealobj = {
+                    'status': 'redemption',
+                    
+                }
+                userDealHistory.update({
+                    dealID: dealID
+                }, {
+                    $push: {
+                        redeemedat: req.body.custID
+                    },
+                }, dealobj,function(err, tweet) {
+                    if (err) {
+                        return res.status(500).json({
+                            'message': 'Error in processing your request',
+                            'success': false,
+                        });
+                    }
+
+                });
+            } else {
+                return res.json({
+                    'message': 'user Id is not subscription list',
+                    'success': true,
+                })
+
+                //       DealDataId.update({dealID:dealID},{ $push: { subscriptionlist: req.body.custID } },function(err){
+                //          if(err){
+                //              console.log(err,'error is there ')
+                //              return res.status(500).json({
+                //                  'message':'Error in processing your request',
+                //                  'success':false,
+                //              })
+                //          }
+                //      })
+            }
+
+        })
+
+
+
+
+    } catch (e) {
+        console.log(e)
+    }
+};
+// module.exports = exports;

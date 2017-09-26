@@ -24,10 +24,16 @@ var dealdataidSchema = new mongoose.Schema({
     dealterms: {
         type: String,
     },
-    duration: {
+    setdate: {
         type: String,
     },
-    coupons: {
+    settime: {
+        type: String,
+    },
+    endtime: {
+        type: String,
+    },
+    numbersofcoupons: {
         type: String,
     },
     image: {

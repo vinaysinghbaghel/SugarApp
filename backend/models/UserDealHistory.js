@@ -29,6 +29,9 @@ var userdealhistorySchema = new mongoose.Schema({
     dealtype: {
         type: String,
     },
+    status: {
+        type: String,
+    },
     savedat: {
         type: Date,
         'default': Date.now

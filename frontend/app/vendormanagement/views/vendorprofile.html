@@ -16,7 +16,7 @@
 
 </head>
 <body>	
-<div class="page-container" ng-init="getVendorProfile();getAvailabledeals()" ng-controller="vendorprofileController">	
+<div class="page-container" ng-init="getVendorProfile();getAvailabledeals();getDealsForToday()" ng-controller="vendorprofileController">	
    <div class="left-content">
 	   <div class="mother-grid-inner">
             <!--header start here-->
@@ -109,7 +109,7 @@ input[type=text]:focus {
 	    		   <div class="price-block">
 		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
 							<h5 style="text-align: center">Posted Deals</h5>
-		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
+		    				<h4 style="border-radius: 5px 5px 20px 20px;">{{getdealsfortoday.length}}</h4>
 		    			</div>
 		    		</div>
 				</div>

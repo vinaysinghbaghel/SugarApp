@@ -227,3 +227,87 @@ exports.getDealHistory = function(req, res, next) {
             });
         });
 };
+exports.getTodayRegisterUser = function(req,res){
+    Users.aggregate({
+  "$project": {
+    "year": {
+      "$year": "$created_at"
+    },
+    "month": {
+      "$month": "$created_at"
+    },
+    "day": {
+      "$dayOfMonth": "$created_at"
+    }
+  }
+}, {
+  "$match": {
+    "year": new Date().getFullYear(),
+    "month": new Date().getMonth() + 1, //because January starts with 0
+    "day": new Date().getDate()
+  }
+}).exec(function ( err, data ) {
+    if(err){
+        return res.status(500).json({
+            'message':'Error in processing your requet',
+            'success':false,
+            'data':[]
+        });
+    }
+    return res.json({
+        'message':'success',
+        'success':true,
+        'data':data
+    })
+            
+});
+    
+};    
+exports.getRegisterUserTillDate = function(req,res){
+    Users.find(function(err,getTodayUser){
+        if(err){
+            return res.status(500).json({
+                'message':'Error in processing your request',
+                'success':false,
+                'data':[]
+            });
+        }
+       return res.json({
+           'message':'Success',
+           'success': true,
+            'data': getTodayUser
+       })
+    })
+};   
+exports.updateUserProfile=function(req,res){
+    console.log('jiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
+    var custID = req.body.userID;
+    console.log(custID,'hiiiiiiiiii')
+   var tweetObj = {
+                 'merchant':req.body.merchant,
+                 'food':req.body.food,
+                 'preferenceslocation':req.body.preferenceslocation,
+                 'phonenumber':req.body.phonenumber
+                 };
+                 UserProfile.findOneAndUpdate({
+                '_id': custID
+                }, {
+                '$set': tweetObj
+                }, {
+                'new': true
+                }, function(err, tweet) {
+                if (err) {
+                return res.status(500).json({
+                'message': 'Error in processing your request',
+                'success': false,
+                'data': null
+                });
+                }
+                return res.json({
+                    'message':'Success',
+                    'success':true,
+                    'data':tweet
+                })
+
+             }); 
+} 

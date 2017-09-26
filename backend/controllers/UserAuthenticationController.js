@@ -268,3 +268,5 @@ exports.forgotPassword = function(req, res, next) {
         console.error(e.stack);
     }
 }
+
+// exports.models=exports

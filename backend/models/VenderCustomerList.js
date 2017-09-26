@@ -7,7 +7,16 @@ var mongoose = require('mongoose');
 var vendercustomerSchema = new mongoose.Schema({
     custID: {
         type: String,
-        unique:true
+        unique:false
+    },
+    merchant:{
+     type:String,
+    },
+    food:{
+     type:String,
+    },
+    address:{
+     type:String,
     },
     firstdeal: {
         type: String,
@@ -15,9 +24,9 @@ var vendercustomerSchema = new mongoose.Schema({
     dealdata: {
         type: String,
     },
-    dealdata: {
-        type: String,
-    },
+    // dealdata: {
+    //     type: String,
+    // },
     broadcastlist: {
         type: String,
     },

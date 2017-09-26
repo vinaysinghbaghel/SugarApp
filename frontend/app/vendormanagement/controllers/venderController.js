@@ -87,9 +87,18 @@ angular.module('venderprofileCtrl', [])
              $scope.name = ''; // This will hold the selected item
              
         };
-            //  $scope.handleSelection = function(data) { // this gets executed when an item is selected
-            //      console.log(data,'NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN')    
-            // };
+        $scope.getDealsForToday = function(){
+          var res = $http
+              .get('/api/getdealsfortoday')
+          res.success(function(data){
+            if(data.success)
+            {
+            $scope.getdealsfortoday=data.data; 
+            }else{
+            // $scope.errorMessage(data.message)
+            }
+          })    
+        };
 
 });
     

@@ -9,14 +9,19 @@
          <link href="fonts/css/font-awesome.min.css" rel="stylesheet"> 
 		<link rel="stylesheet" href="css/style.css" />	
 		<title>SugarApp</title>
-		 <link href="stylesheets/bootstrap/bootstrap.min.css" rel="stylesheet" /> 
+		<link href="stylesheets/bootstrap/bootstrap.min.css" rel="stylesheet" /> 
+		<link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
 		<script src="libs/jquery/jquery.min.js"></script>
 		<script src="libs/bootstrap/bootstrap.min.js"></script>
 		<script src="libs/angular/angular.min.js"></script>
 		<script src="libs/angular-ui-router/angular-ui-router.min.js"></script>
-		 <!-- <script src="https://maps.googleapis.com/maps/api/js"></script>  -->
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>   -->
+		<!-- Firebase -->
+		<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+        <!-- Firechat -->
+        <script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAd1xMYT1bt99qtFWQEzXiRBvORDWHgPtk&libraries=places"></script>
-		<script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+		<!-- <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script> -->
 		<script src="app/app.js"></script>
 		<script src="app/angular-routes.js"></script>
 		<script src="app/usermanagement/controllers/usersController.js"></script>
@@ -40,6 +45,9 @@
 		<script src="app/dealdatabase/directives/dealdatabasedirective.js"></script>
 		<script src="js/ui-bootstrap-tpls.js"></script>
 		<script src="app/livedata/controller/livedatacontroller.js"></script> 
+		<!-- <script src="app/vendorsupport/controller/userCtrl.js"></script> -->
+		<script src="app/vendorsupport/controller/vendorSupportCtrl.js"></script>
+		
 	</head>
 	<body ng-app="sugarApp">
 		<div ui-view></div>

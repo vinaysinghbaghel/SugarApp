@@ -16,7 +16,7 @@
 
 </head>
 <body>	
-<div class="page-container" ng-init="getUserProfile()" ng-controller="userprofileController">	
+<div class="page-container" ng-init="getUserProfile();getTodayRegisterUser();getRegisterUserTillDate()" ng-controller="userprofileController">	
    <div class="left-content">
 	   <div class="mother-grid-inner">
              <div ng-include="'app/dashboard/views/header.html'"></div>
@@ -97,15 +97,15 @@ input[type=text]:focus {
 	    		   <div class="price-block">
 		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
 							<h5 style="text-align: center">Users Registered Today</h5>
-		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
+		    				<h4 style="border-radius: 5px 5px 20px 20px;">{{getTodayRegisterUser.length}}</h4>
 		    			</div>
 		    		</div>
 				</div>
 				<div class="col-md-4 price-grid">
 	    		   <div class="price-block">
 		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;">
-							<h5 style="text-align: center">Users Registered<br>Till Date</h5>
-		    				<h4 style="border-radius: 5px 5px 20px 20px;">12345</h4>
+							<h5 style="text-align: center">Users Registered<br></h5>
+		    				<h4 style="border-radius: 5px 5px 20px 20px;">{{getRegisterUserTillDate.length}}</h4>
 		    			</div>
 		    		</div>
 				</div>

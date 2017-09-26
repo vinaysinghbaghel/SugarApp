@@ -12,8 +12,7 @@
 <!--js-->
 <!--icons-css-->
 <link href="css/font-awesome.css" rel="stylesheet">
-<<<<<<< HEAD
-=======
+
 <script src="js/Chart.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
 <script src="js/modernizr.min.js"></script>
@@ -22,24 +21,24 @@
 <link rel="stylesheet" href="css/font.css" type="text/css"/>
 <link href="css/font-awesome.css" rel="stylesheet">
 <script>
-		$(function () {
-			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
->>>>>>> c1f55f50090d809d6ce456417233ffc4668798d5
+		// $(function () {
+		// 	$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
 
-			if (!screenfull.enabled) {
-				return false;
-			}
+
+		// 	if (!screenfull.enabled) {
+		// 		return false;
+		// 	}
 
 			
 
-			$('#toggle').click(function () {
-				screenfull.toggle($('#container')[0]);
-			});	
-		});
+		// 	$('#toggle').click(function () {
+		// 		screenfull.toggle($('#container')[0]);
+		// 	});	
+		// });
 		</script>
 </head>
 <body>	
-<div class="page-container" ng-init="getNewRegisteredUserToday();getNewRegisteredMerchantToday();getDealsForToday()" ng-controller="livedataController">	
+<div class="page-container" ng-init="getTodayRegisterUser();getNewRegisteredMerchantToday();getDealsForToday();getDealsCompletedToday()" ng-controller="livedataController">	
    <div class="left-content">
 	   <div class="mother-grid-inner">
 <!--header start here-->
@@ -88,7 +87,8 @@ input[type=text]:focus {
 	    		   <div class="price-block">
 		    			<div class="price-gd-top pric-clr1" style="background-color: #f44195;border-radius:20px;margin-top: 30px;box-shadow: 2px 2px 2px 2px #666">
 							<h5 style="text-align: center">Users</h5>
-		    				<h4 style="border-radius: 5px 5px 20px 20px;text-align: center">{{registerusertoday.length}}</h4>
+		    				<h4 style="border-radius: 5px 5px 20px 20px;text-align: center">
+								  {{getTodayRegisterUser.length}}</h4>
 		    			</div>
 		    		</div>
                 </div>
@@ -150,17 +150,17 @@ input[type=text]:focus {
 						  }
 						  return ret;
 						}
-						var graph = Morris.Line({
-							element: 'graph1',
-							data: data(0),
-							xkey: 'x',
-							ykeys: ['y', 'z'],
-							labels: ['sin()', 'cos()'],
-							parseTime: false,
-							ymin: -1.0,
-							ymax: 1.0,
-							hideHover: true
-						});
+						// var graph = Morris.Line({
+						// 	element: 'graph1',
+						// 	data: data(0),
+						// 	xkey: 'x',
+						// 	ykeys: ['y', 'z'],
+						// 	labels: ['sin()', 'cos()'],
+						// 	parseTime: false,
+						// 	ymin: -1.0,
+						// 	ymax: 1.0,
+						// 	hideHover: true
+						// });
 						function update() {
 						  nReloads++;
 						  graph.setData(data(5 * nReloads));
@@ -208,16 +208,16 @@ input[type=text]:focus {
 							stroke-width="0.49484536082474223"><tspan dy="5">Sugar</tspan></text></svg>
 						</div>
 						<script>
-							Morris.Donut({
-							  element: 'graph4',
-							  data: [
-								{value: 70, label: 'foo', formatted: 'at least 70%' },
-								{value: 15, label: 'bar', formatted: 'approx. 15%' },
-								{value: 10, label: 'baz', formatted: 'approx. 10%' },
-								{value: 5, label: 'A really really long label', formatted: 'at most 5%' }
-							  ],
-							  formatter: function (x, data) { return data.formatted; }
-							});
+							// Morris.Donut({
+							//   element: 'graph4',
+							//   data: [
+							// 	{value: 70, label: 'foo', formatted: 'at least 70%' },
+							// 	{value: 15, label: 'bar', formatted: 'approx. 15%' },
+							// 	{value: 10, label: 'baz', formatted: 'approx. 10%' },
+							// 	{value: 5, label: 'A really really long label', formatted: 'at most 5%' }
+							//   ],
+							//   formatter: function (x, data) { return data.formatted; }
+							// });
 						</script>
 
 					</div>
@@ -259,16 +259,16 @@ input[type=text]:focus {
 							stroke-width="0.49484536082474223"><tspan dy="5">Sugar</tspan></text></svg>
 						</div>
 						<script>
-							Morris.Donut({
-							  element: 'graph4',
-							  data: [
-								{value: 70, label: 'foo', formatted: 'at least 70%' },
-								{value: 15, label: 'bar', formatted: 'approx. 15%' },
-								{value: 10, label: 'baz', formatted: 'approx. 10%' },
-								{value: 5, label: 'A really really long label', formatted: 'at most 5%' }
-							  ],
-							  formatter: function (x, data) { return data.formatted; }
-							});
+							// Morris.Donut({
+							//   element: 'graph4',
+							//   data: [
+							// 	{value: 70, label: 'foo', formatted: 'at least 70%' },
+							// 	{value: 15, label: 'bar', formatted: 'approx. 15%' },
+							// 	{value: 10, label: 'baz', formatted: 'approx. 10%' },
+							// 	{value: 5, label: 'A really really long label', formatted: 'at most 5%' }
+							//   ],
+							//   formatter: function (x, data) { return data.formatted; }
+							// });
 						</script>
 
 					</div>
@@ -379,16 +379,16 @@ input[type=text]:focus {
 							stroke-width="0.49484536082474223"><tspan dy="5">Sugar</tspan></text></svg>
 						</div>
 						<script>
-							Morris.Donut({
-							  element: 'graph4',
-							  data: [
-								{value: 70, label: 'foo', formatted: 'at least 70%' },
-								{value: 15, label: 'bar', formatted: 'approx. 15%' },
-								{value: 10, label: 'baz', formatted: 'approx. 10%' },
-								{value: 5, label: 'A really really long label', formatted: 'at most 5%' }
-							  ],
-							  formatter: function (x, data) { return data.formatted; }
-							});
+							// Morris.Donut({
+							//   element: 'graph4',
+							//   data: [
+							// 	{value: 70, label: 'foo', formatted: 'at least 70%' },
+							// 	{value: 15, label: 'bar', formatted: 'approx. 15%' },
+							// 	{value: 10, label: 'baz', formatted: 'approx. 10%' },
+							// 	{value: 5, label: 'A really really long label', formatted: 'at most 5%' }
+							//   ],
+							//   formatter: function (x, data) { return data.formatted; }
+							// });
 						</script>
 
 					</div>
@@ -430,16 +430,16 @@ input[type=text]:focus {
 							stroke-width="0.49484536082474223"><tspan dy="5">Sugar</tspan></text></svg>
 						</div>
 						<script>
-							Morris.Donut({
-							  element: 'graph4',
-							  data: [
-								{value: 70, label: 'foo', formatted: 'at least 70%' },
-								{value: 15, label: 'bar', formatted: 'approx. 15%' },
-								{value: 10, label: 'baz', formatted: 'approx. 10%' },
-								{value: 5, label: 'A really really long label', formatted: 'at most 5%' }
-							  ],
-							  formatter: function (x, data) { return data.formatted; }
-							});
+							// Morris.Donut({
+							//   element: 'graph4',
+							//   data: [
+							// 	{value: 70, label: 'foo', formatted: 'at least 70%' },
+							// 	{value: 15, label: 'bar', formatted: 'approx. 15%' },
+							// 	{value: 10, label: 'baz', formatted: 'approx. 10%' },
+							// 	{value: 5, label: 'A really really long label', formatted: 'at most 5%' }
+							//   ],
+							//   formatter: function (x, data) { return data.formatted; }
+							// });
 						</script>
 
 					</div>

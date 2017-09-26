@@ -2,7 +2,8 @@ angular.module('dealmanagementCtrl', [])
   .controller('dealmanagementController', function($scope,$rootScope,dealmanagementService,$http,$location,$window) {
      $scope.levelcreation = {};
      $scope.specialdealdata = {};
-     
+     $scope.createdealdata = {};
+     $scope.getdealdata = {};
 $scope.getmerchantProfile = function() {
 dealmanagementService.getmerchantProfile({}).then(function(res) {
         $scope.items = res;
@@ -107,22 +108,36 @@ $scope.dealverification = function (){
     });
 
 };
-// $scope.open = function (_dealverification) {
-//     var modalInstance = $modal.open({
-//     controller: 'dealmanagementController',
-//     templateUrl: 'myModalContent.html',
-//     resolve: {
-//                 dealverification: function()
-//                 {
-//                     return _dealverification;
-//                 }
-//             }
-//     });
+$scope.getDealId = function(location){  
+    
+   var res = $http.post('/api/getdealid', location)
+    res.success(function(data) {
+        if (data.success) {
+            $scope.getdealiddata=data.data;
+            console.log($scope.getdealdata,'hiiiiiiiiiiiiiiiiiiiiiiiiiii')
+            $scope.errorMessage = data.message;
+        } else {
+            $scope.errorMessage = data.message; 
+        }
+    });
 
-//     };
+}
 $scope.close = function() {
     // var modalInstance = $modal.close();
     };
+
+    $scope.createdealid = function() {
+    var res=$http
+    .post('/api/createdealid', $scope.createdealdata)
+      res.success(function(data) {
+          if (data.success) {
+              $rootScope.errorMessage = data.message;
+          } else {
+              $rootScope.showLoading = false;
+          
+          }
+      }); 
+ }
 });
 
-  
+ 

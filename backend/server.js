@@ -16,6 +16,8 @@ const busboy = require('connect-busboy');
 const passport = require('passport');
 var cookieParser = require('cookie-parser');
 var server = http.createServer(app);
+
+// var serviceAccount = require("path/to/serviceAccountKey.json");
 // server.listen(config.app.port);
 
 // var io = require('socket.io')(server);

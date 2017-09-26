@@ -4,7 +4,8 @@ var app = express();
 let VenderProfile = require('./../models/VenderProfile');
 let DealDataId = require('./../models/DealDataId');
 const moment = require('moment');
-
+const scheduler = require('node-schedule');
+const cron = require('node-cron');
 
 exports.dealLevelAllocation = function(req, res, next) {
     var merchantObj = {
@@ -133,7 +134,90 @@ exports.specialDealAllocation = function(req, res) {
 
     });
 }
-
+exports.createDealId = function (req,res){
+     var dealidObj = {
+        'dealinfo':req.body.dealinfo,
+        'dealterms':req.body.dealterms,
+        'setdate':req.body.setdate,
+        'settime':req.body.settime,
+        'endtime':req.body.duration,
+        'status':'create',
+        'numbersofcoupons':5
+    };
+    DealDataId.findOneAndUpdate({ 'dealID': req.body.dealID },{'$set': dealidObj},{'new': true    
+    }, function(err, createdealID) {
+        if (err) {
+            return res.status(500).json({
+                'message': 'Error in processing your request',
+                'success': false,
+                'data': null
+            });
+        }
+        return res.json({
+            'message': ' ID Created successfully',
+            'success': true,
+            'data': null
+        });
+    });
+}
+ var jobDate = moment().startOf('day');
+ var checkdealid = scheduler.scheduleJob('* * * * *', function() {
+ var date = moment.utc().format("YYYY-MM-DD hh:mm:ss");
+ var dates=  moment.utc().format("YYYY-MM-DD")
+ var stillUtc = moment.utc(date).toDate();
+ var local = moment(stillUtc).local().format("hh:mm");
+var timeArray =[];
+timeArray.push(local)
+DealDataId.find({"status" : { "$in": ["create"] },
+                 "settime" : { "$in":timeArray},
+                 "setdate":{"$in": [dates]} 
+    },function(err, data) { 
+    if (err) { return res.status(500).json({'message': 'Error in processing your request','success': false,'data': []});}  
+      for(var i=0;i<data.length;i++){
+     DealDataId.update({dealID:data[i].dealID},{'status': 'live'
+     }, function(err, tweet) {
+    if (err) { return res.status(500).json({'message': 'Error in processing your request', 'success': false, 'data': null });}
+    });
+}
+ });
+ });
+var checkdealid = scheduler.scheduleJob("* * * * *", function() {
+     var date = moment.utc().format("YYYY-MM-DD hh:mm:ss");
+     var dates=  moment.utc().format("YYYY-MM-DD")
+     var stillUtc = moment.utc(date).toDate();
+     var local = moment(stillUtc).local().format("hh:mm");
+     var timeArrays =[];
+     timeArrays.push(local)
+     DealDataId.find({"status" : { "$in": ["live"] },
+                 "endtime" : { "$in":timeArrays},
+                 "setdate":{"$in": [dates]} 
+    },function(err, data) { 
+    if (err) { return res.status(500).json({'message': 'Error in processing your request','success': false,'data': []});}   
+      for(var i=0;i<data.length;i++){
+     DealDataId.update({dealID:data[i].dealID},{'status': 'close'
+     }, function(err, tweet) {
+    if (err) { return res.status(500).json({'message': 'Error in processing your request', 'success': false, 'data': null });}
+    });
+}
+ });
+     });
+ exports.searchdealsID = function(req,res){
+  DealDataId.find({status:'live',address:req.body.location},function(err, dealsid) {
+            if (err) {
+                return res.status(500).json({
+                    'message': 'Error in processing your request',
+                    'success': false,
+                    'data': []
+                });
+            }
+            console.log(dealsid,'live data is heree')
+            return res.json({
+                'message': 'Here are your available deals ID. Enjoy!',
+                'success': true,
+                'data': dealsid
+            });
+        });
+};
 exports.getAvailableDeals = function(req, res) {
     DealDataId.find({status:'available'},function(err, availabledeals) {
             if (err) {
@@ -198,4 +282,7 @@ exports.dealVerification = function(req, res) {
                 'data': dealverication
             });
         });
-};    
+};  
+
+
+// module.exports=exports;
