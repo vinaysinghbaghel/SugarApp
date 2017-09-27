@@ -45,7 +45,7 @@ app.service('Map', function($q) {
     
 });
 
-app.controller('settingController', function($rootScope,$scope,$http, Map,settingService) {
+app.controller('settingController', function($rootScope,$scope,$https, Map,settingService) {
     
     $scope.merchantregister = {};
     
@@ -73,7 +73,7 @@ app.controller('settingController', function($rootScope,$scope,$http, Map,settin
      fd.append("file",$("#profileimage")[0].files[0]);
       console.log($scope.merchantregister.name,'jiiiiiiiiiiiiiiiiiiiiiiiiiii')
         var url = "/api/registermerchant?name="+$scope.merchantregister.name+"&email="+$scope.merchantregister.email+"&contactnumber="+$scope.merchantregister.phone+"&contactperson="+$scope.merchantregister.contactperson+"&merchantcategory="+$scope.merchantregister.merchantcategory+"&merchantlevel="+$scope.merchantregister.merchantlevel+"&address="+$scope.merchantregister.address+"&Lat="+$scope.merchantregister.lat+"&Lng="+$scope.merchantregister.lng;
-        $http.post(url, fd, {
+        $https.post(url, fd, {
            transformRequest: angular.identity,
            headers: {'Content-Type': undefined}
         }).success(function(data) {
