@@ -70,6 +70,7 @@ app.use(bodyParser.urlencoded({
 
 
 app.use(express.static(path.join(__dirname, './../frontend')));
+app.set('frontend', __dirname + './../frontend');
 
 app.use(function(req, res, next) {
 
