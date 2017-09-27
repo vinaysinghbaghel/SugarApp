@@ -95,7 +95,7 @@ exports.registermerchant = function(req, res, next) {
         })
         setTimeout(function() {
             exports.createDealId(req, res, next);
-        }, 1000, );
+        }, 1000);
 
     } catch (e) {
         console.log(e)
