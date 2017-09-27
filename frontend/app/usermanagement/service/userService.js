@@ -28,11 +28,11 @@
 //   }]);
 
 
-  angular.module('UserService', []).factory('UserService', ['$http', function($http) {
+  angular.module('UserService', []).factory('UserService', ['$https', function($https) {
 
     return {
     createUser: function(data, callback) {
-        $http({
+        $https({
           method: 'POST',
           url: 'userdata',
           data: data
@@ -46,7 +46,7 @@
         );
     },
     logout: function(callback){
-      $http({
+      $https({
           method: 'GET',
           url: '/logout',
         }).then(
