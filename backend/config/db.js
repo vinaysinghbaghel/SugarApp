@@ -15,9 +15,15 @@ mongoose.connection.on('error', function(err) {
     console.log('Could not connect to mongo server!');
     console.log(err);
 });
-
+if (process.env.NODE_ENV === 'production') {
+    config.mongodb.url = process.env.MONGOLAB_URI;
+}
 mongoose.connect(config.mongodb.url, function(error) {
     console.log('error', error);
 });
 
 module.exports = mongoose.connection;
+// var dbURI = "mongodb://localhost/loc8r";
+
+// }
+// mongoose.connect(dbURI);
