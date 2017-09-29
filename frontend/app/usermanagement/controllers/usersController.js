@@ -1,5 +1,5 @@
     angular.module('MainCtrl', [])
-     .controller('usersController', function($scope,$window,$rootScope,UserService,toaster,$http,$location) {
+     .controller('usersController', function($scope,$window,$rootScope,UserService,$http,$location) {
 
         $scope.signupdata={}
         $scope.logindata={}
@@ -13,7 +13,7 @@
             console.log('success', 'Success', response.data.message)
            $location.path("/login")
           } else {
-            showToaster('error', 'Error', response.data.message);
+            
           }
         });
       } 
