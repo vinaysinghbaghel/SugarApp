@@ -14,8 +14,8 @@ config.mongodb.url = 'mongodb://vinaysingh:wishto@23@ds011374.mlab.com:11374/sug
 
 config.gmail = {};
 config.gmail.smtp = {};
-config.gmail.smtp.username = "";
-config.gmail.smtp.password = "";
+config.gmail.smtp.username = "wishtodemo@gmail.com";
+config.gmail.smtp.password = "wishto@23";
 
 /* App config */
 config.google= {
