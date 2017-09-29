@@ -9,6 +9,7 @@ var config = {};
 
 config.mongodb = {};
 config.mongodb.url = 'mongodb://vinaysingh:wishto@23@ds011374.mlab.com:11374/sugarapp';
+// config.mongodb.url = 'mongodb://localhost:27017/sugarapp';
 
 
 

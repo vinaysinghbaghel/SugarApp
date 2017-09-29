@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('appRoutes', ['toaster'])
+    .module('appRoutes', [])
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
         $stateProvider
              .state('home', {
