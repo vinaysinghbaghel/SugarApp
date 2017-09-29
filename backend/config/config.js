@@ -8,8 +8,7 @@ var config = {};
 /* Database credentials */
 
 config.mongodb = {};
-config.mongodb.url = 'mongodb://wishtodemo@gmail.com:wishto@host:27017/sugarapp';
-
+config.mongodb.url = 'mongodb://localhost:27017/sugarapp';
 
 
 
