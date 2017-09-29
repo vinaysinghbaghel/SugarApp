@@ -8,7 +8,7 @@ var config = {};
 /* Database credentials */
 
 config.mongodb = {};
-config.mongodb.url = 'mongodb://localhost:27017/sugarapp';
+config.mongodb.url = 'mongodb://vinaysingh:wishto@23@ds011374.mlab.com:11374/sugarapp';
 
 
 
@@ -25,6 +25,6 @@ config.google= {
     };
 
 config.app = {};
-config.app.port = process.env.PORT || 3000;
+config.app.port = process.env.PORT || 8080;
 
 module.exports = config;
