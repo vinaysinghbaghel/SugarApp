@@ -5,7 +5,12 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon ./backend/server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "ng":"ng",
+    "build":"ng build",
+    "test":"ng test",
+    "lint":"ng lint",
+    "e2e":"ng e2e",
+    "postinstall":"ng build --aot --target=production"
   },
   "keywords": [
     "sugarapp",
@@ -47,4 +52,5 @@
     "random-string": "^0.2.0",
     "request": "^2.72.0"
   }
+  
 }
