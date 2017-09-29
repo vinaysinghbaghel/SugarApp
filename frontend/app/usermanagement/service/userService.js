@@ -28,7 +28,7 @@
 //   }]);
 
 
-  // angular.module('UserSer', []).factory('UserService', ['$http', function($http) {
+  angular.module('UserService', []).factory('UserService', ['$http', function($http) {
 
     return {
     createUser: function(data, callback) {
