@@ -107,6 +107,10 @@ app.use('/', webRoutes).io;
 app.use('/', function(req, res) {
     return res.sendFile(path.join(__dirname, './../frontend/app.html'));
 });
+
+app.listen(config.app.port, function() {
+    console.log("App listening on port " + config.app.port);
+})
 if (app.get('env') === 'development') {
     //noinspection JSUnusedLocalSymbols
     app.use(function (err, req, res, next) {
@@ -136,8 +140,4 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
-app.listen(config.app.port, function() {
-    console.log("App listening on port " + config.app.port);
-})
-
 module.exports = app;
