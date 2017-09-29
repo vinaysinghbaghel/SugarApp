@@ -5,7 +5,7 @@ angular
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
         $stateProvider
              .state('home', {
-                url: '/login',
+                url: '/',
                 templateUrl: 'app/usermanagement/views/signin.html',
                 controller: 'usersController'
             })
