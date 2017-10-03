@@ -6,7 +6,7 @@ var config = require('./config');
 /**
  * Configure Mongo Database
  */
-dbURI = 'mongodb://vinay singh:wishto@23@ds011374.mlab.com:11374/sugarapp';
+var dbURI = 'mongodb://vinay singh:wishto@23@ds011374.mlab.com:11374/sugarapp';
 
 mongoose.connection.on('open', function(ref) {
     console.log('Connected to mongo server.');
