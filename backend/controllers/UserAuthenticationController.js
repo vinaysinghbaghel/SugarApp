@@ -10,7 +10,7 @@ const uuid = require('node-uuid');
 const CryptoJS = require("crypto-js");
 
 exports.signUp = function(req, res, next) {
-
+console.log(req.body,'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
     try {
         let body = req.body.user;
         let search = {
