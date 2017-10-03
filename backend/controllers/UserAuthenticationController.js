@@ -57,7 +57,7 @@ console.log(req.body,'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
                 'useruuid': uuids,
 
             });
-
+console.log(userObj,'userObj userObj userObj');
             userObj
                 .save(function(err) {
                     if (err) {
