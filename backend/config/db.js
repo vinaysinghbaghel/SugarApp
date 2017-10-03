@@ -6,6 +6,7 @@ var config = require('./config');
 /**
  * Configure Mongo Database
  */
+dbURI = 'mongodb://vinay singh:wishto@23@ds011374.mlab.com:11374/sugarapp';
 
 mongoose.connection.on('open', function(ref) {
     console.log('Connected to mongo server.');
@@ -15,10 +16,10 @@ mongoose.connection.on('error', function(err) {
     console.log('Could not connect to mongo server!');
     console.log(err);
 });
-// if (process.env.NODE_ENV === 'production') {
-//     config.mongodb.url = process.env.MONGOLAB_URI;
-// }
-mongoose.connect(process.env.config.mongodb.url, function(error) {
+if (process.env.NODE_ENV === 'production') {
+    dbURI = process.env.MONGODB_URI;
+}
+mongoose.connect(dbURI, function(error) {
     console.log('error', error);
 });
 
@@ -27,3 +28,5 @@ module.exports = mongoose.connection;
 
 // }
 // mongoose.connect(dbURI);
+
+
