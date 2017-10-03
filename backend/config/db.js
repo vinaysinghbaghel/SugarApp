@@ -14,9 +14,9 @@ mongoose.connection.on('error', function(err) {
     console.log('Could not connect to mongo server!');
     console.log(err);
 });
-var dbURI = 'mongodb://localhost:27017/sugarapp';
+var dbpath = 'mongodb://localhost:27017/sugarapp';
 if (process.env.NODE_ENV === 'production') {
-    dbURI = process.env;
+   var dbURI = process.env.dbpath;
 }
 mongoose.connect(dbURI, function(error) {
     console.log('error', error);
