@@ -14,7 +14,7 @@ console.log(req.body,'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
     try {
         let body = req.body.user;
         let search = {
-            email: body.user.userid
+            email: body.userid
         };
         Users.findOne(search).exec(function(err, user) {
             console.log(err,'some erorrrorororo is have');
