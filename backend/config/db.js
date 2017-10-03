@@ -16,7 +16,7 @@ mongoose.connection.on('error', function(err) {
 });
 var dbURI = 'mongodb://vinay singh:wishto@23@ds011374.mlab.com:11374/sugarapp';
 if (process.env.NODE_ENV === 'production') {
-    dbURI = process.env.MONGODB_URI;
+    dbURI = process.env;
 }
 mongoose.connect(dbURI, function(error) {
     console.log('error', error);
