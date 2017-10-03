@@ -17,6 +17,7 @@ console.log(req.body,'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
             email: body.userid
         };
         Users.findOne(search).exec(function(err, user) {
+            console.log(err,'some erorrrorororo is have');
             if (err) return res.json({
                 "success": false,
                 message: "Oops! Error in processing the request, Please try again."
