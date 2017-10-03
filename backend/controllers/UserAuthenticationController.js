@@ -79,6 +79,7 @@ exports.signUp = function(req, res, next) {
     }
 };
 exports.signIn = function(req, res, next) {
+    console.log(hiiiiiiiiiiiiiiiiiiiiiiiii)
     try {
         var email = req.body.email;
         var password = req.body.password;
