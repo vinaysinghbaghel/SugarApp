@@ -18,7 +18,8 @@ mongoose.connection.on('error', function(err) {
 // if (process.env.NODE_ENV === 'production') {
 //     config.mongodb.url = process.env.MONGOLAB_URI;
 // }
-mongoose.connect(config.mongodb.url, function(error) {
+var url = process.env.config.mongodb.MONGOLAB_URI;
+mongoose.connect(url, function(error) {
     console.log('error', error);
 });
 
