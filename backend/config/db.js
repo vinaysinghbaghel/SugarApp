@@ -15,12 +15,11 @@ mongoose.connection.on('error', function(err) {
     console.log('Could not connect to mongo server!');
     console.log(err);
 });
-var MONGOLAB_URI = 'mongodb://vinay singh:wishto@23@ds011374.mlab.com:11374/sugarapp';
-// if (process.env.NODE_ENV === 'production') {
-//     config.mongodb.url = process.env.MONGOLAB_URI;
-// }
-var url = process.env.MONGOLAB_URI;
-mongoose.connect(url, function(error) {
+var dbURI = "mongodb://localhost/sugarapp";
+if (process.env.NODE_ENV === 'production') {
+    dbURI = process.env.MONGOLAB_URI;
+}
+mongoose.connect(dbURI, function(error) {
     console.log('error', error);
 });
 
