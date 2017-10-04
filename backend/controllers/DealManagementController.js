@@ -164,8 +164,10 @@ exports.createDealId = function (req,res){
  var checkdealid = scheduler.scheduleJob('* * * * *', function() {
  var date = moment.utc().format("YYYY-MM-DD hh:mm:ss");
  var dates=  moment.utc().format("YYYY-MM-DD")
+ console.log(dates,'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii dates')
  var stillUtc = moment.utc(date).toDate();
  var local = moment(stillUtc).local().format("hh:mm");
+ console.log(local,'locals times is hererrerrrsefser dates')
 var timeArray =[];
 timeArray.push(local)
 DealDataId.find({"status" : { "$in": ["create"] },

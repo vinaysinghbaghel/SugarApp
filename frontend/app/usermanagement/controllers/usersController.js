@@ -17,21 +17,41 @@
           }
         });
       } 
-      $scope.signIn = function() {
-        var res = $http.post("/signin", $scope.logindata);
-        res.success(function(data) {
-          if (!data.success) {
+      $scope.signIn = function(logindata) {
+        var logindata = $scope.logindata;
+        // var res = $http.post("/signin", $scope.logindata);
+        // console.log(logindata,'jiiiiiiiiiiiiiiii login data')
+        UserService.login(
+           logindata
+        ,function(data){
+
+        if (!data.data.success) {
             $rootScope.errorMessage = data.message;
           } else {
-            if(data.user.passwordchanged!=0)
+            if(data.data.user.passwordchanged!=0)
               {
                $location.path("/dashboard");
               }else{
              $location.path("/changepassword");  
            } 
           }
-        });
+        })
+        // .success(function(data) {
+        //   if (!data.success) {
+        //     $rootScope.errorMessage = data.message;
+        //   } else {
+        //     if(data.user.passwordchanged!=0)
+        //       {
+        //        $location.path("/dashboard");
+        //       }else{
+        //      $location.path("/changepassword");  
+        //    } 
+        //   }
+        // });
       };
+      // $scope.header = function(){
+        
+      // }
       $rootScope.logout = function(){
        $http.get('/logout')
       .success(function(data){
@@ -107,59 +127,3 @@
   }
 
 });
-
-
-
-
-        // $scope.editTweet = function(tweet, index) {
-        //     $scope.tweet.showSave = false;
-        //     $scope.tweet.text = tweet.tweet;
-        //     updateObj = tweet;
-        //     updateObj.index = index;
-        // };
-
-        // $scope.cancel = function() {
-        //     $scope.tweet.text = '';
-        //     $scope.tweet.showSave = true;
-        // };
-
-        // $scope.updateTweet = function() {
-
-        //     if ($scope.tweet.text === '') {
-        //         return false;
-        //     }
-
-        //     $http
-        //         .put('/api/tweets/' + updateObj._id, {
-        //             'tweet': $scope.tweet.text
-        //         })
-        //         .then(function(res) {
-        //             if (res.status === 200) {
-        //                 $scope.tweetList[updateObj.index] = res.data.data;
-        //                 $scope.tweet = {
-        //                     'text': '',
-        //                     'showSave': true
-        //                 };
-        //                 updateObj = {};
-        //             } else {
-        //                 /* Handle error */
-        //             }
-        //         }, function(res) {
-        //             /* Handle error */
-        //         });
-        // };
-
-        // $scope.deleteTweet = function(tweet, index) {
-        //     $http
-        //         .delete('/api/tweets/' + tweet._id)
-        //         .then(function(res) {
-        //             if (res.status === 200) {
-        //                 $scope.tweetList.splice(index, 1);
-        //             } else {
-        //                 /* Handle error */
-        //             }
-        //         }, function(res) {
-        //             /* Handle error */
-        //         });
-        // };
-    // }]);

@@ -18,6 +18,7 @@ const fs = require('fs');
 var moment = require('moment');
 
 exports.createUserProfile = function(req, res, next) {
+    console.log(req.query.email,'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj');
     try {
 
         UserProfile.findOne({

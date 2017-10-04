@@ -36,7 +36,7 @@ angular.module('venderprofileCtrl', [])
         };
         $scope.getAvailabledeals = function() {
       
-         setInterval(function(){
+        //  setInterval(function(){
           var res = $http
               .get('/api/getavailabledeals')
           res.success(function(data){
@@ -47,7 +47,7 @@ angular.module('venderprofileCtrl', [])
             $scope.errorMessage(data.message)
               }
           })    
-           }, 1000);
+        //    }, 1000);
         };
         $scope.dealmanagementlifecircle = function(){
         // setInterval(function(){

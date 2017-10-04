@@ -45,6 +45,20 @@
           }
         );
     },
+    login : function(data,callback){
+        $http({
+          method: 'POST',
+          url: '/signin',
+          data: data
+        }).then(
+          function(response) {
+            callback(response);
+          },
+          function(response) {
+            callback(response);
+          }
+        );
+    } , 
     logout: function(callback){
       $http({
           method: 'GET',

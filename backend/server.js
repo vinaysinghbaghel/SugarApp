@@ -111,21 +111,6 @@ app.use('/', function(req, res) {
 app.listen(config.app.port, function() {
     console.log("App listening on port " + config.app.port);
 })
-if (app.get('env') === 'development') {
-    //noinspection JSUnusedLocalSymbols
-    app.use(function (err, req, res, next) {
-        if (err.status !== 404) {
-            console.error(err.message);
-            console.error(err.stack);
-        }
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
-}
-
 // production error handler
 // no stacktraces leaked to user
 //noinspection JSUnusedLocalSymbols
