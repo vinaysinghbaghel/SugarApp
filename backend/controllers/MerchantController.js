@@ -74,7 +74,6 @@ exports.registermerchant = function(req, res, next) {
             });
             req.session.data = {
                 name: req.query.name,
-                logo: imageurl,
                 address:req.query.address
             }
             merchantObj
@@ -178,7 +177,6 @@ exports.createJyfLevel = function(req, res, next){
 }
 
  exports.createDealId = function(req, res, next) {
-
     var merchantleve = 0;
     var dealID;
     var venderID = req.session.merchantid;

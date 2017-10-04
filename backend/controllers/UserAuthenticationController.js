@@ -10,7 +10,6 @@ const uuid = require('node-uuid');
 const CryptoJS = require("crypto-js");
 
 exports.signUp = function(req, res, next) {
-console.log(req.body,'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
     try {
         let body = req.body.user;
         let search = {
@@ -58,7 +57,6 @@ console.log(req.body,'hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
                 'useruuid': uuids,
 
             });
-console.log(userObj,'userObj userObj userObj');
             userObj
                 .save(function(err) {
                     if (err) {
@@ -80,7 +78,6 @@ console.log(userObj,'userObj userObj userObj');
     }
 };
 exports.signIn = function(req, res, next) {
-    console.log('hiiiiiiiiiiiiiiiiiiiiiiiii',req.body);
     try {
         var email = req.body.email;
         var password = req.body.password;
