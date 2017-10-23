@@ -15,8 +15,8 @@ var config = {};
 
 config.gmail = {};
 config.gmail.smtp = {};
-config.gmail.smtp.username = "wishtodemo@gmail.com";
-config.gmail.smtp.password = "wishto@23";
+config.gmail.smtp.username = "vinay.linkites@gmail.com";
+config.gmail.smtp.password = "linkites786";
 
 /* App config */
 config.google= {

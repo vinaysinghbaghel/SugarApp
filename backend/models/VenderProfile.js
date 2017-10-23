@@ -42,8 +42,17 @@ var venderprofileSchema = new mongoose.Schema({
     merchantlevel: {
         type: String,
     },
+    merchantjyflevel:{
+    type: String,
+    },
     password: {
         type: String,
+    },
+     passwordchanged:{
+       type:String,
+     },
+    imei: {
+         type:Array,
     },
     logindata: {
          type: Date,

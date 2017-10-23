@@ -33,6 +33,12 @@ var dealdataidSchema = new mongoose.Schema({
     endtime: {
         type: String,
     },
+    enddate: {
+     type:String,
+    },
+    vendorcustomerlist: {
+        type:Array,
+    },
     numbersofcoupons: {
         type: String,
     },

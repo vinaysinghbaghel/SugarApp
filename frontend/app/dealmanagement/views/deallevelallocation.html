@@ -26,7 +26,7 @@
 <!--pop up end here-->
 </head>
 <body>	
-<div class="page-container" ng-controller="dealmanagementController">	
+<div class="page-container" ng-controller="dealmanagementController" ng-init = "getalllevel()">	
    <div class="left-content">
 	   <div class="mother-grid-inner">
             <!--header start here-->
@@ -196,8 +196,14 @@ input[type=text]:focus {
    </div>
     	<div class="price-tables">
 			<div class="form-group">
-			                 	 <p class="err-messg">{{errorMessage}}</p>		 
-			                </div> 
+			                 	 <!-- <p class="err-messg">{{errorMessage}}</p>		  -->
+							</div> 
+    	<div ng-repeat="data in alltypeslevel">
+			
+			 <!-- <a ng-click="getidforsilver(venderobj.venderID)" style="text-align: center;width: 100%" class="order">{{data.levelname}}</a>   -->
+								  <!-- <a ng-click="getidforgold(venderobj.venderID)" style="text-align: center;width: 100%" class="order">gold</a> -->
+								 <a ng-click="getidfordiamonds(venderobj.venderID,data.levelname);" style="text-align: center;width: 100%" class="order">{{data.levelname}}</a>  
+		</div>					
 	    		<!-- <div class="col-md-4 price-grid" style="width: 33.33%;cursor: pointer;margin-top: 30px;">{{venderobj.venderID}} -->
 		    			<!-- <div class="price-gd-top pric-clr1" style="background-color: #fff;box-shadow: 0px 0px 3px 3px rgba(0.15,0.15,0.15,0.15);"> -->
 							<!-- <div class="numberCircle">1</div> -->
@@ -205,9 +211,13 @@ input[type=text]:focus {
                                  The image will then scale nicely to the parent element.Create responsive images by adding an .img-responsive class to the  tag. 
                                  The image will then scale nicely to the parent element.Create responsive images by adding an .img-responsive class to the  tag. 
 								 The image will then scale nicely to the parent element.</h5> -->
-								 <a ng-click="getidforsilver(venderobj.venderID)" style="text-align: center;width: 100%" class="order">Silver</a>  
+
+
+								 <!-- <a ng-click="getidforsilver(venderobj.venderID)" style="text-align: center;width: 100%" class="order">Silver</a>  
 								 <a ng-click="getidforgold(venderobj.venderID)" style="text-align: center;width: 100%" class="order">gold</a>
-								 <a ng-click="getidfordiamonds(venderobj.venderID)" style="text-align: center;width: 100%" class="order">diamonds</a>
+								 <a ng-click="getidfordiamonds(venderobj.venderID)" style="text-align: center;width: 100%" class="order">diamonds</a> -->
+
+
 								<!-- <input type="text" id="rootFolder" ng-model="rootFolders" disabled="disabled" value="Bob" size="40" /> -->
 							<!-- <form ng-submit="getmerchantid(venderdata)">
                              <input type="button" value="Silver"> 

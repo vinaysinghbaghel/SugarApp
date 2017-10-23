@@ -27,6 +27,8 @@
 
         if (!data.data.success) {
             $rootScope.errorMessage = data.message;
+            console.log($rootScope.errorMessage,'login erroorr')
+              toaster.pop('success', "title", "text");
           } else {
             if(data.data.user.passwordchanged!=0)
               {

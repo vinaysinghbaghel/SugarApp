@@ -72,7 +72,7 @@ app.controller('settingController', function($rootScope,$scope,$http, Map,settin
     // var location= [$scope.merchantregister.lng, $scope.merchantregister.lat];
      fd.append("file",$("#profileimage")[0].files[0]);
       console.log($scope.merchantregister.name,'jiiiiiiiiiiiiiiiiiiiiiiiiiii')
-        var url = "/api/registermerchant?name="+$scope.merchantregister.name+"&email="+$scope.merchantregister.email+"&contactnumber="+$scope.merchantregister.phone+"&contactperson="+$scope.merchantregister.contactperson+"&merchantcategory="+$scope.merchantregister.merchantcategory+"&merchantlevel="+$scope.merchantregister.merchantlevel+"&address="+$scope.merchantregister.address+"&Lat="+$scope.merchantregister.lat+"&Lng="+$scope.merchantregister.lng;
+        var url = "/api/registermerchant?name="+$scope.merchantregister.name+"&email="+$scope.merchantregister.email+"&contactnumber="+$scope.merchantregister.phone+"&contactperson="+$scope.merchantregister.contactperson+"&merchantcategory="+$scope.merchantregister.merchantcategory+"&merchantlevel="+$scope.merchantregister.merchantlevel+"&merchantjyflevel="+$scope.merchantregister.merchantjyflevel+"&address="+$scope.merchantregister.address+"&Lat="+$scope.merchantregister.lat+"&Lng="+$scope.merchantregister.lng;
         $http.post(url, fd, {
            transformRequest: angular.identity,
            headers: {'Content-Type': undefined}
@@ -87,6 +87,12 @@ app.controller('settingController', function($rootScope,$scope,$http, Map,settin
     Map.init();
   $scope.getmerchantlevel =function(){
     settingService.getmerchantlevel({}).then(function(res) {
+     $scope.item = res;
+      console.log($scope.items,'call in controllers')
+   });
+    }
+$scope.getjyfmerchantlevel =function(){
+    settingService.getjyfmerchantlevel({}).then(function(res) {
      $scope.items = res;
       console.log($scope.items,'call in controllers')
    });

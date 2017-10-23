@@ -8,6 +8,16 @@ const nodemailer = require('nodemailer');
 let mail = require('../utils/mail');
 const uuid = require('node-uuid');
 const CryptoJS = require("crypto-js");
+const serviceAccount = require('../config/SugarApp');
+
+/* @api {post} /userdata Create New User for Admin user
+ * @apiName signUp
+ * @apiVersion 1.0.0
+ * @apiSuccess {Boolean} success true
+ * @apiSuccess {String} message User saved successfully
+ * @apiError {Boolean} success false
+ * @apiError {String} message Error in processing your request
+ */
 
 exports.signUp = function(req, res, next) {
     try {
@@ -77,6 +87,14 @@ exports.signUp = function(req, res, next) {
         console.log(e)
     }
 };
+/* @api {post} /signin Login web User for Admin.
+ * @apiName signIn.
+ * @apiVersion 1.0.0.
+ * @apiSuccess {Boolean} success true.
+ * @apiSuccess {String} message User login successfully.
+ * @apiError {Boolean} success false.
+ * @apiError {String} message Error in processing your request.
+ */
 exports.signIn = function(req, res, next) {
     try {
         var email = req.body.email;
@@ -103,14 +121,19 @@ exports.signIn = function(req, res, next) {
                     message: "Incorrect password entered."
                 });
             } else {
+                // admin.initializeApp({
+                // credential: admin.credential.cert(serviceAccount),
+                // databaseURL: "https://sugarapp-7e23e.firebaseio.com"
+                // });
                 req.session.cookie.expires = false;
                 req.session.name = user._id;
                 req.session.cookie.expires = new Date(Date.now() + (28 * 24 * 3600000));
                 req.session.cookie.maxAge = 28 * 24 * 3600000;
-                req.session.userid = user._id;
+                req.session.user = user;
+                // req.session.serviceAccount = serviceAccount;
                 return res.json({
                     "success": true,
-                    user: user
+                    user: user,
                 });
             }
         });
@@ -141,6 +164,14 @@ exports.isloggedin = function(req, res) {
         });
     }
 };
+/* @api {post} /logout logout web User for Admin.
+ * @apiName logout.
+ * @apiVersion 1.0.0.
+ * @apiSuccess {Boolean} success true.
+ * @apiSuccess {String} message User logout successfully.
+ * @apiError {Boolean} success false.
+ * @apiError {String} message Error in processing your request.
+ */
 exports.logout = function(req, res) {
     console.log('logout sugar app')
     var redirectUrl = "/login";
@@ -164,6 +195,14 @@ exports.logout = function(req, res) {
         });
     }
 };
+/* @api {post} /changepassword changePassword  User.
+ * @apiName changePassword.
+ * @apiVersion 1.0.0.
+ * @apiSuccess {Boolean} success true.
+ * @apiSuccess {String} message User changepassword successfully.
+ * @apiError {Boolean} success false.
+ * @apiError {String} message Error in processing your request.
+ */
 exports.changePassword = function(req, res) {
     try {
         let id = req.session.userid;
@@ -210,7 +249,14 @@ exports.changePassword = function(req, res) {
         console.error(e.stack);
     }
 }
-
+/* @api {post} /forgotPassword forgotPassword User.
+ * @apiName forgotPassword.
+ * @apiVersion 1.0.0.
+ * @apiSuccess {Boolean} success true.
+ * @apiSuccess {String} message Send your password in ur email successfully.
+ * @apiError {Boolean} success false.
+ * @apiError {String} message Error in processing your request.
+ */
 exports.forgotPassword = function(req, res, next) {
     try {
         var forgotemail = req.body.email;

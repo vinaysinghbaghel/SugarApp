@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
+<script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script> -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <!-- Custom Theme files -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -16,7 +18,7 @@
 <!--//skycons-icons-->
 </head>
 <body>	
-<div class="page-container">	
+<div class="page-container" ng-controller="vendorController">	
    <div class="left-content">
 	   <div class="mother-grid-inner">
 <!--header start here-->
@@ -25,28 +27,17 @@
 
 <!--inner block start here-->
 <div class="stripe" style="height: 50px;width: 100%;background-color: #292c33;margin-top: 30px;">
-	<!-- <div class="row">
-		<div class="col-md-2">
-	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">User Profile</div></a> 
-		</div>
-		<div class="col-md-4">
-	<a href="#"><div class="stripetxt" style="color: #fff;padding: 13px 0px 0px 26px;">User Deal History</div></a> 
-		</div> -->
-	<!-- <div class="col-md-2">
-	<div class="dropdown">
-  <button class="dropbtn">Login Data</button>
-  <div class="dropdown-content">
-    <a href="#">Data 1</a>
-    <a href="#">Data 2</a>
-    <a href="#">Data 3</a>
-  </div>
-</div>
-	</div>	 -->
-<!-- </div>  -->
-   </div>
+ </div>
 <div class="inner-block" style="background-image: url(images/vendor_support_bg.jpg);height: 100%; background-position: center;
     background-repeat: no-repeat;background-size: cover;">
     <div class="portlet-grid-page">
+
+
+ <div id="firechat-container" class="clearfix firechat-container"></div>
+   <div id="user-info">
+              Logged in as <span id="user-name">.</span>
+              <a ng-click="logout();">Logout</a>
+            </div>
         <!-- search box -->
         <!-- <style> 
 input[type=text] {
@@ -80,7 +71,7 @@ input[type=text]:focus {
   </div>
 </div> -->
  <!-- search box --> 
-         <h3 style="color: #fff;font-weight: bold">Recent Contacts</h3>
+         <!-- <h3 style="color: #fff;font-weight: bold">Recent Contacts</h3>
          <div class="row">
          <div class="col-md-8">
     	 <div class="portlet-grid panel-primary" style="width: 100%;border-radius: 15px"> 
@@ -162,7 +153,7 @@ input[type=text]:focus {
                     <i class="fa fa-star" style="color: #f44195" aria-hidden="true"></i>
                     <i class="fa fa-star" style="color: #f44195" aria-hidden="true"></i>
                     <i class="fa fa-star" style="color: #f44195" aria-hidden="true"></i><br>
-                     <!-- <h6>5 average based on 39481 Ratings</h6> -->
+                    
                         <i class="fa fa-map-marker" style="color: #f44195" aria-hidden="true"></i> Mumbai, IND
                     <h6 style="margin-top: 15px;">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam.</h6>
                 </div>
@@ -175,9 +166,9 @@ input[type=text]:focus {
 
 
         
-         </div>
+         </div> -->
 
-         <div class="col-md-4">
+         <!-- <div class="col-md-4">
     	<div class="portlet-grid panel-primary" style="width: 100%;border-radius: 15px"> 
     		  <div class="panel-body">
                   <div class="row">
@@ -191,9 +182,9 @@ input[type=text]:focus {
               </div>
               </div> 
         </div>
-         </div>
+         </div> -->
 
-         <div class="col-md-4">
+         <!-- <div class="col-md-4">
     	<div class="portlet-grid panel-primary" style="width: 100%;border-radius: 15px"> 
     		  <div class="panel-body">
                   <div class="row">
@@ -207,9 +198,9 @@ input[type=text]:focus {
               </div>
               </div> 
         </div>
-         </div>
+         </div> -->
 
-         <div class="col-md-4">
+         <!-- <div class="col-md-4">
     	<div class="portlet-grid panel-primary" style="width: 100%;border-radius: 15px"> 
     		  <div class="panel-body">
                   <div class="row">
@@ -223,9 +214,9 @@ input[type=text]:focus {
               </div>
               </div> 
         </div>
-         </div>
+         </div> -->
 
-         <div class="col-md-4">
+         <!-- <div class="col-md-4">
     	<div class="portlet-grid panel-primary" style="width: 100%;border-radius: 15px"> 
     		  <div class="panel-body">
                   <div class="row">
@@ -239,11 +230,11 @@ input[type=text]:focus {
               </div>
               </div> 
         </div>
-         </div>
+         </div> -->
 
-         <div class="col-md-4">
-    	<div class="portlet-grid panel-primary" style="width: 100%;border-radius: 15px"> 
-    		  <div class="panel-body">
+        <!-- <div class="col-md-4">
+    	     <div class="portlet-grid panel-primary" style="width: 100%;border-radius: 15px"> 
+    		      <div class="panel-body">
                   <div class="row">
                       <div class="col-md-3">
                        <img src="images/starbucks.png" class="img-circle" style="width: 50px;height: 50px;"></img>
@@ -252,8 +243,9 @@ input[type=text]:focus {
                     <h5 style="font-weight: bold">Starbucks</h5>
                      <i class="fa fa-map-marker" style="color: #f44195" aria-hidden="true"></i> Mumbai, IND
                 </div>
-              </div>
-              </div> 
+              </div> -->
+              
+              </div>  
         </div>
          </div>
          </div> 	

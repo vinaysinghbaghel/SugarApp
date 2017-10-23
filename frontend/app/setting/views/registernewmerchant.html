@@ -5,7 +5,7 @@
 
 </head>
 <body>
-<div class="container"  ng-controller="settingController" ng-init="getmerchantlevel()">
+<div class="container"  ng-controller="settingController" ng-init="getmerchantlevel();getjyfmerchantlevel()">
  <!-- <div class="form_login" ng-controller="settingController" ng-init="getlevel()"> -->
    <div ng-include="'app/dashboard/views/header.html'"></div>
 			<div class="col-md-6 main_form_right"> 
@@ -49,12 +49,19 @@
 			<input type="text" class="form-control" id="password" name="password" ng-model="merchantregister.merchantcategory" required>
         </div>
         <div class="form-group">
-			<label for="phone">Merchant Level</label>
+			<label for="phone">Merchant Regular Level</label>
             <!-- <input type="text" class="form-control" id="password" name="password" ng-model="merchantregister.merchantlevel" required> -->
         <!-- <select ng-model="selectedName" ng-options="x for x in items">
         </select> -->
         <select ng-model="merchantregister.merchantlevel">
-        <option ng-repeat="x in items">{{x.levelname}}</option>
+        <option ng-repeat="x in item">{{x.levelname}}</option>
+       </select>
+
+        </div>
+       <div class="form-group">
+		<label for="phone">Merchant JYF Level</label>
+        <select ng-model="merchantregister.merchantjyflevel">
+        <option ng-repeat="jyf in items">{{jyf.levelname}}</option>
        </select>
 
 		</div>

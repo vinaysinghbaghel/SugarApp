@@ -14,8 +14,12 @@ let mail = require('./utils/mail');
 const session = require('express-session');
 const busboy = require('connect-busboy');
 const passport = require('passport');
-var cookieParser = require('cookie-parser');
-var server = http.createServer(app);
+let cookieParser = require('cookie-parser');
+let server = http.createServer(app);
+let admin = require("firebase-admin");
+
+
+
 
 // var serviceAccount = require("path/to/serviceAccountKey.json");
 // server.listen(config.app.port);
@@ -65,8 +69,19 @@ app.use(bodyParser.urlencoded({
 }));
 
 
+{/* */}
+{/* <script> */}
+  // Initialize Firebase
+  
 
 //
+// var config = {
+//   apiKey: "<API_KEY>",
+//   authDomain: "<PROJECT_ID>.firebaseapp.com",
+//   databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+//   storageBucket: "<BUCKET>.appspot.com",
+// };
+// firebase.initializeApp(config);
 
 
 app.use(express.static(path.join(__dirname, './../frontend')));

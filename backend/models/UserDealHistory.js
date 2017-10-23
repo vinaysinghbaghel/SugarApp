@@ -7,7 +7,6 @@ var mongoose = require('mongoose');
 var userdealhistorySchema = new mongoose.Schema({
     dealID: {
         type: String,
-        unique:true
     },
     //  custID: {
     //     type: String,

@@ -3,11 +3,23 @@ const express = require('express');
 var app = express();
 let VenderProfile = require('./../models/VenderProfile');
 let DealDataId = require('./../models/DealDataId');
+let LevelCreation = require('./../models/LevelCreation');
+let vendorcustomerlist = require('./../models/VenderCustomerList');
 const moment = require('moment');
 const scheduler = require('node-schedule');
 const cron = require('node-cron');
+const async = require('async');
 
+/* @api {post} /api/merchantid  This Api allocating level.
+ * @apiName dealLevelAllocation.
+ * @apiVersion 1.0.0.
+ * @apiSuccess {Boolean} success true.
+ * @apiSuccess {String} message Level Allocated successfully.
+ * @apiError {Boolean} success false.
+ * @apiError {String} message Error in processing your request.
+ */
 exports.dealLevelAllocation = function(req, res, next) {
+    console.log(req.body,'HIIIIIIIIIIIIIIIII vinay is here and thereeeeee')
     var merchantObj = {
         'merchantlevel': req.body.levelname
     };
@@ -26,6 +38,26 @@ exports.dealLevelAllocation = function(req, res, next) {
             'data': null
         });
     });
+}
+
+exports.getalltypesoflevel = function(req, res, next){
+    LevelCreation.find(function(err,data){
+    if (err) {
+                return res.status(500).json({
+                    'message': 'Error in processing your request',
+                    'success': false,
+                    'data': []
+                });
+            }
+            return res.json({
+                'message': 'Here are your available levels. Enjoy!',
+                'success': true,
+                'data': data
+            });
+        });
+
+    // })
+
 }
 
 exports.specialDealAllocation = function(req, res) {
@@ -285,6 +317,264 @@ exports.dealVerification = function(req, res) {
             });
         });
 };  
+exports.editTerms = function(req,res){
+try {
+let dealID = req.body.dealID;
+let dealtermsobj ={'dealterms':req.body.dealterms};
+DealDataId.findOneAndUpdate({dealID:dealID},{ $set: dealtermsobj},{new:true},function(err,data){
+    if(err){
+    res.json({
+        success : false,
+        message : "Error in processing the request. Please try again."
+    });
+    }else{
+        res.json({
+        success : true,
+        message : "Deal terms updated successfully."
+        })
+        
+    }
+
+})
+}catch (e){
+console.error(e);
+}
+};
+
+exports.updateEndTime = function(req,res){
+
+    try{
+        let dealID = req.body.dealID;
+        let dealendtimeObj = {'endtime':req.body.endtime}
+        DealDataId.findOneAndUpdate({dealID:dealID},{ $set: dealendtimeObj},{new:true},function(err,changeendtime){
+         if(err){
+             res.json({
+                 success : false,
+                 message : "Error in processing the request. please try again."
+             });
+         }else{
+             res.json({
+             success : true,
+             message : "End time updated successfully"
+             })
+         }
+        })
+
+    }catch(e){
+     console.log(e);
+}
+};
+exports.getSubscriptionlist = function(req,res){
+    try{
+        let dealID = req.body.dealID;
+         console.log('dealID',dealID);
+        DealDataId.find({dealID:dealID},function(err,subscriptionlist){
+            if(err){
+             res.json({
+                success : false,
+                message : "Error in processing the request. please try again." 
+             })
+            }else{
+             res.json({
+                 success : true,
+                 data:subscriptionlist[0].subscriptionlist
+             })
+            }
+        })
+    }catch(e){
+        console.log(e);
+    }
+};
+exports.getRedemptionlist = function(req,res){
+    try{
+        let dealID = req.body.dealID;
+         console.log('dealID',dealID);
+        DealDataId.find({dealID:dealID},function(err,redemptionlist){
+            if(err){
+             res.json({
+                success : false,
+                message : "Error in processing the request. please try again." 
+             })
+            }else{
+             res.json({
+                 success : true,
+                 data:redemptionlist[0].redemptionlist
+             })
+            }
+        })
+    }catch(e){
+        console.log(e);
+    }
+};
+exports.getCustomerlist = function(req,res){
+    try{
+        async.parallel([
+    function(callback) {
+    vendorcustomerlist.find(function(err,customerlist){
+     if(err){
+      res.json({
+          success : false,
+          message : "Error in processing the request. please try again."
+      })
+     }else{
+         res.json({
+             success:true,
+             customerlist:customerlist
+         })
+
+     }
+     })
+    },
+    function(callback) {
+        vendorcustomerlist.aggregate([{
+        $project : {
+            year : {
+                $year : "$date"
+            },
+            month : {
+                $month : "$date"
+            },
+            week : {
+                $week : "$date"
+            },
+            day : {
+                $dayOfWeek : "$date"
+            },
+            _id : 1,
+            weight : 1
+        }
+    }, {
+        $group : {
+            _id : {
+                year : "$year",
+                month : "$month",
+                week : "$week",
+                day : "$day"
+            },
+            totalWeightDaily : {
+                $sum : "$weight"
+            }
+        }
+    },
+    {
+        $group : {
+
+            _id : {
+                year : "$_id.year",
+                month : "$_id.month",
+                week : "$_id.week"
+            },
+            totalWeightWeekly : {
+                $sum : "$totalWeightDaily"
+            },
+            totalWeightDay : {
+                $push : {
+                    totalWeightDay : "$totalWeightDaily",
+                    dayOfWeek : "$_id.day"
+                }
+            }
+        }
+    }, {
+        $match : {
+            "_id.month" : 1
+        }
+    }
+])
+    }
+], function(err, results) {
+    console.log("result of day month",results)
+    // results now equals to: [one: 'abc\n', two: 'xyz\n']
+});
+    
+    }catch(e){
+
+    }
+};
+exports.insertImeiNuber = function(req,res){
+try{
+        let email = req.body.email;
+        let imeiObj = {'imei':req.body.imei}
+        VenderProfile.findOneAndUpdate({email:email},{ $set: imeiObj},{new:true},function(err,insertimei){
+         if(err){
+             res.json({
+                 success : false,
+                 message : "Error in processing the request. please try again."
+             });
+         }else{
+             res.json({
+             success : true,
+             message : "Imei insert successfully"
+             })
+         }
+        })
+
+    }catch(e){
+     console.log(e);
+}
+
+}
 
 
+exports.createJyfDealId = function (req,res){
+     var dealidObj = {
+        'dealinfo':req.body.dealinfo,
+        'dealterms':req.body.dealterms,
+        'enddate':req.body.enddate,
+        'vendorcustomerlist':req.body.vendorcustomerlist,
+        'status':'live',
+    };
+    DealDataId.findOneAndUpdate({ 'dealID': req.body.dealID },{'$set': dealidObj},{'new': true    
+    }, function(err, createdealID) {
+        if (err) {
+            return res.status(500).json({
+                'message': 'Error in processing your request',
+                'success': false,
+                'data': null
+            });
+        }
+        return res.json({
+            'message': ' ID Created successfully',
+            'success': true,
+            'data': null
+        });
+    });
+}
+var checkdealid = scheduler.scheduleJob("* * * * *", function() {
+     var date = moment.utc().format("YYYY-MM-DD hh:mm:ss");
+     var dates=  moment.utc().format("YYYY-MM-DD")
+     var stillUtc = moment.utc(date).toDate();
+     var local = moment(stillUtc).local().format("hh:mm");
+     var timeArrays =[];
+     timeArrays.push(local)
+     DealDataId.find({"status" : { "$in": ["live"] },
+                 "enddate":{"$in": [dates]} 
+    },function(err, data) { 
+    if (err) { return res.status(500).json({'message': 'Error in processing your request','success': false,'data': []});}   
+      for(var i=0;i<data.length;i++){
+     DealDataId.update({dealID:data[i].dealID},{'status': 'close'
+     }, function(err, tweet) {
+    if (err) { return res.status(500).json({'message': 'Error in processing your request', 'success': false, 'data': null });}
+    });
+}
+ });
+     });
+
+exports.getAllJyfDealId = function(req,res){
+    DealDataId.find({idtype:"jyf"}, function(err, AllJyfDealId) {
+        if (err) {
+            return res.status(500).json({
+                'message': 'Error in processing your request',
+                'success': false,
+                'data': null
+            });
+        }
+        return res.json({
+            'message': ' ID Created successfully',
+            'success': true,
+            'data': AllJyfDealId
+        });
+    }).sort([
+                        ['dealID', -1]
+                    ]);
+}
 // module.exports=exports;
