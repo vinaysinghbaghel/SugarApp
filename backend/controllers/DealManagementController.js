@@ -172,7 +172,7 @@ exports.createDealId = function (req,res){
         'dealterms':req.body.dealterms,
         'setdate':req.body.setdate,
         'settime':req.body.settime,
-        'endtime':req.body.duration,
+        'endtime':req.body.endtime,
         'status':'create',
         'numbersofcoupons':5
     };
@@ -236,7 +236,7 @@ var checkdealid = scheduler.scheduleJob("* * * * *", function() {
  });
      });
  exports.searchdealsID = function(req,res){
-  DealDataId.find({status:'live',address:req.body.location},function(err, dealsid) {
+  DealDataId.find({status:'live',address:req.query.location},function(err, dealsid) {
             if (err) {
                 return res.status(500).json({
                     'message': 'Error in processing your request',
@@ -246,7 +246,7 @@ var checkdealid = scheduler.scheduleJob("* * * * *", function() {
             }
             console.log(dealsid,'live data is heree')
             return res.json({
-                'message': 'Here are your available deals ID. Enjoy!',
+                'message': 'Here are your Live deals ID. Enjoy!',
                 'success': true,
                 'data': dealsid
             });
@@ -569,7 +569,7 @@ exports.getAllJyfDealId = function(req,res){
             });
         }
         return res.json({
-            'message': ' ID Created successfully',
+            'message': ' get all JYF DealID',
             'success': true,
             'data': AllJyfDealId
         });

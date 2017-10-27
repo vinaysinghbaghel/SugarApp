@@ -897,6 +897,7 @@ exports.randomLogin = function(req,res){
         VenderProfile.findOne({
             password: password
         }).exec(function(err, user) {
+             console.log(user,'password generated random');
             if (err) {
                 return res.json({
                     success: false,

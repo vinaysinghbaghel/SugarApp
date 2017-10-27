@@ -45,7 +45,6 @@ let vendorsupport = require('./../controllers/VendorSupport');
  router.get('/api/getdealsfortoday',LiveDataController.getDealsForToday);
  router.get('/api/getdealsalive',LiveDataController.getDealsAlive);
  router.get('/api/getdealscompletedtoday',LiveDataController.getDealsCompletedToday);
- router.post('/api/createdealid',DealManagementController.createDealId);
  router.post('/api/getdealid',DealManagementController.searchdealsID);
  router.get('/api/gettodayregisteruser',UserProfileController.getTodayRegisterUser);
  router.get('/api/getRegisterUserTillDate',UserProfileController.getRegisterUserTillDate);

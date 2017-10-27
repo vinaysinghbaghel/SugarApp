@@ -18,7 +18,6 @@ const fs = require('fs');
 var moment = require('moment');
 
 exports.createUserProfile = function(req, res, next) {
-    console.log(req.query.email,'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj');
     try {
 
         UserProfile.findOne({
@@ -129,7 +128,9 @@ exports.createUserProfile = function(req, res, next) {
 };
 
 exports.usersignin = function(req, res) {
+     
     passport.authenticate('local', function(err, user, info) {
+        console.log(user,'kya he bhai kya chl raha he bhai');
 
         if (err) {
             return res.json({
@@ -174,6 +175,25 @@ exports.getUserProfile = function(req, res, next) {
                 'message': 'Here are your userprofile. Enjoy!',
                 'success': true,
                 'data': userprofiledata
+            });
+        });
+};
+    exports.getUser = function(req, res, next) {
+        console.log(req.query.custID,'custom id is heteafsfdasfdsafsdfsdfsdafsa')
+    UserProfile
+        .findOne({'custID':req.query.custID}, function(err, user) {
+            console.log('user data is',user);
+            if (err) {
+                return res.status(500).json({
+                    'message': 'Error in processing your request',
+                    'success': false,
+                    'data': []
+                });
+            }
+            return res.json({
+                'message': 'Here are your user',
+                'success': true,
+                'data': user
             });
         });
 };
@@ -282,7 +302,7 @@ exports.getRegisterUserTillDate = function(req,res){
 };   
 exports.updateUserProfile=function(req,res){
     console.log('jiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
-    var custID = req.body.userID;
+    var custID = req.body.custID;
     console.log(custID,'hiiiiiiiiii')
    var tweetObj = {
                  'merchant':req.body.merchant,
@@ -291,7 +311,7 @@ exports.updateUserProfile=function(req,res){
                  'phonenumber':req.body.phonenumber
                  };
                  UserProfile.findOneAndUpdate({
-                '_id': custID
+                'custID': custID
                 }, {
                 '$set': tweetObj
                 }, {

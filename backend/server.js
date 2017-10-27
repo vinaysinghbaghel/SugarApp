@@ -17,16 +17,12 @@ const passport = require('passport');
 let cookieParser = require('cookie-parser');
 let server = http.createServer(app);
 let admin = require("firebase-admin");
+let swaggerUi = require('swagger-ui-express');
+let swaggerDocument = require('./swagger.json');
+var argv = require('minimist')(process.argv.slice(2));
+var swagger = require("swagger-node-express");
 
-
-
-
-// var serviceAccount = require("path/to/serviceAccountKey.json");
-// server.listen(config.app.port);
-
-// var io = require('socket.io')(server);
-// const busboyBodyParser = require('busboy-body-parser');
-// app.use(busboyBodyParser.js());
+ var subpath = express();
 /**
  * Connection to DB
  */
@@ -48,12 +44,6 @@ app.use(bodyParser.raw({
     limit: 10000000000
 }));
 
-// app.use(bodyParser.json({
-//     limit: 10000000
-// }));
-// app.use(bodyParser.urlencoded({
-//     extended: true
-// }));
 //////////////
 app.use(cookieParser());
 app.use(bodyParser.raw({
@@ -68,25 +58,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
-{/* */}
-{/* <script> */}
-  // Initialize Firebase
-  
-
-//
-// var config = {
-//   apiKey: "<API_KEY>",
-//   authDomain: "<PROJECT_ID>.firebaseapp.com",
-//   databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
-//   storageBucket: "<BUCKET>.appspot.com",
-// };
-// firebase.initializeApp(config);
-
-
 app.use(express.static(path.join(__dirname, './../frontend')));
 app.set('frontend', __dirname + './../frontend');
-
+// app.use(express.static('./../frontend/dist'));
+    
 app.use(function(req, res, next) {
 
     /* Log each request to the console */
@@ -113,31 +88,20 @@ app.use(busboy());
 // passport initialization
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use('/api/v1', apiRoutes);
 require('./config/passport')(passport);
 /* Routes */
 
 app.use('/', apiRoutes);
 app.use('/', webRoutes).io;
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/', function(req, res) {
     return res.sendFile(path.join(__dirname, './../frontend/app.html'));
 });
 
+   
 app.listen(config.app.port, function() {
     console.log("App listening on port " + config.app.port);
 })
-// production error handler
-// no stacktraces leaked to user
-//noinspection JSUnusedLocalSymbols
-app.use(function (err, req, res, next) {
-    if (err.status !== 404) {
-        console.error(err.message);
-        console.error(err.stack);
-    }
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
+
 module.exports = app;

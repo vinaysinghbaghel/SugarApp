@@ -1,0 +1,769 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Yet Another Node.js SugarApp Application API"
+  },
+  "host": "localhost:5000",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "SugarApp",
+      "description": "API for SugarApp"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/userprofileimage": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Signup user into the system",
+        "description": "",
+        "operationId": "createUsersWithArrayInput",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+     "/api/userlogin": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Login user into the system",
+        "description": "",
+        "operationId": "loginUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "login user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful Login",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "400": {
+            "description": "Invalid username/password supplied"
+          }
+      }
+    },
+    "/api/createuserprofile": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "This is User APi use to Create user profile",
+        "description": "",
+        "operationId": "updateUserProfile",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create user profile",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/userfrofiles"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/getuser": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Finds user by customID",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "findcustomID",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customID",
+            "in": "query",
+            "description": "customID values that need to be considered for filter",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/createdealid": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Create Deal ID",
+        "description": "",
+        "operationId": "createdealid",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dealdataids"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deal ID create SuccessFully",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/getdealid": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "This Api get all live deals location wise",
+        "description": "",
+        "operationId": "getdeallive",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+           {
+            "name": "location",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "get All live deals successfully"
+          }
+        }
+      }
+    },
+    "/api/createcustomervendorlist": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "This Api is used for Grap DealID",
+        "description": "",
+        "operationId": "grapdealid",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dealids"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/createvenderredemptionlist": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "This Api is used for Redemp DealID",
+        "description": "",
+        "operationId": "redeamdealid",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/dealids"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+     "/api/randomlogin": {
+      "post": {
+        "tags": [
+          "Merchant"
+        ],
+        "summary": "This is Merchant API used to login by random key",
+        "description": "",
+        "operationId": "randomlogin",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ramdomkey"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/changepassword": {
+      "post": {
+        "tags": [
+          "Merchant"
+        ],
+        "summary": "This is Merchant Api used to  change password",
+        "description": "",
+        "operationId": "changepassword",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ramdomkey"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/merchantlogin": {
+      "post": {
+        "tags": [
+          "Merchant"
+        ],
+        "summary": "This is Merchant Api used to login",
+        "description": "",
+        "operationId": "merchantlogin",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/editterms": {
+      "put": {
+        "tags": [
+          "Merchant"
+        ],
+        "summary": "This Merchanrt Api is used to edit Deal Term",
+        "description": "",
+        "operationId": "editterms",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/editdealterm"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/updateendtime": {
+      "put": {
+        "tags": [
+          "Merchant"
+        ],
+        "summary": "This Merchant Api used to Edit DealID end time",
+        "description": "",
+        "operationId": "updateendtime",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Edittime"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/getsubscriptionlist": {
+      "post": {
+        "tags": [
+          "Merchant"
+        ],
+        "summary": "This is Merchant Api used to get subscription list",
+        "description": "",
+        "operationId": "getsubscriptionlist",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/scriptionlist"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/getredemptionlist": {
+      "post": {
+        "tags": [
+          "Merchant"
+        ],
+        "summary": "This is Merchant Api used to get Redemption list ",
+        "description": "",
+        "operationId": "getredemptionlist",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/scriptionlist"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/getcustomerlist": {
+      "get": {
+        "tags": [
+          "Merchant"
+        ],
+        "summary": "This is Merchant Api  used to get customer list",
+        "description": "",
+        "operationId": "getcustomerlist",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+         
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/insertimei": {
+      "post": {
+        "tags": [
+          "Merchant"
+        ],
+        "summary": "This is Merchant Api  used to insert IEMI Number",
+        "description": "",
+        "operationId": "insertimei",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IMEI"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/createjyfdealid": {
+      "post": {
+        "tags": [
+          "Merchant"
+        ],
+        "summary": "This is Merchant Api  used to create JYF DealID",
+        "description": "",
+        "operationId": "createjyfdealid",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createjyfdealid"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/getalljyfdealid": {
+      "get": {
+        "tags": [
+          "Merchant"
+        ],
+        "summary": "This is Merchant Api  used to get all jyf dealid",
+        "description": "",
+        "operationId": "getalljyfdealid",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": [
+        "email",
+        "_id"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type":"string"
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "$ref": "#/definitions/User"
+    },
+     "userfrofiles": {
+      "required": [
+        "custID"
+      ],
+      "properties": {
+        "custID": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "merchant": {
+          "type":"string"
+        },
+        "food": {
+          "type":"string"
+        },
+        "preferenceslocation": {
+          "type":"string"
+        },
+        "phonenumber": {
+          "type":"string"
+        }
+      }
+    },
+    "dealdataids": {
+      "required": [
+        "dealID"
+      ],
+      "properties": {
+        "dealID": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "dealinfo": {
+          "type":"string"
+        },
+        "dealterms": {
+          "type":"string"
+        },
+        "setdate": {
+          "type":"string"
+        },
+        "settime": {
+          "type":"string"
+        },
+        "endtime": {
+          "type":"string"
+        }
+      }
+    },
+    "dealdataid": {
+      "type": "array",
+      "$ref": "#/definitions/dealdataids"
+    },
+    "dealids": {
+      "required": [
+        "custID"
+      ],
+      "properties": {
+        "custID": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "dealID": {
+          "type":"string"
+        }
+      }
+    },
+    "ramdomkey": {
+      "required": [
+        "password"
+      ],
+      "properties": {
+        "password": {
+          "type": "string",
+          "uniqueItems": true
+        }
+      }
+    },
+     "ramdomkeys": {
+      "type": "array",
+      "$ref": "#/definitions/ramdomkey"
+    },
+    "editdealterm": {
+      "required": [
+        "dealID"
+      ],
+      "properties": {
+        "dealID": {
+          "type": "string",
+          "uniqueItems": true
+        },
+         "dealterms": {
+          "type": "string"
+        }
+      }
+    },
+    "Edittime":{
+      "required": [
+        "dealID"
+      ],
+      "properties": {
+        "dealID": {
+          "type": "string",
+          "uniqueItems": true
+        },
+         "endtime": {
+          "type": "string"
+        }
+      }
+    },
+    "scriptionlist":{
+      "required": [
+        "dealID"
+      ],
+      "properties": {
+        "dealID": {
+          "type": "string",
+          "uniqueItems": true
+        }
+      }
+    },
+    "IMEI":{
+      "required": [
+        "email"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "imei": {
+          "type": "array"
+        }
+      }
+    },
+    "createjyfdealid":{
+       "required": [
+        "dealID"
+      ],
+      "properties": {
+        "dealID": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "dealinfo": {
+          "type":"string"
+        },
+        "dealterms": {
+          "type":"string"
+        },
+        "enddate": {
+          "type":"string"
+        },
+        "vendorcustomerlist": {
+          "type":"array"
+        }
+      }
+    }
+  }
+}
