@@ -539,14 +539,30 @@ try{
 
 
 exports.createJyfDealId = function (req,res){
+     var fstream, update;
+         req.pipe(req.busboy);
+         var imageurl = "";
+
+         req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+        var type = mimetype.split('/')[1];
+        var newName = (new Date()).valueOf();
+        var saveTo = path.join('frontend/photos/profile/', newName + '.' + type);
+        imageurl = path.join('photos/profile/', newName + '.' + type);
+        fstream = fs.createWriteStream(saveTo);
+        file.pipe(fstream);
+        });
+        req.busboy.on("finish", function() {
+        let rand = Math.floor(10 + Math.random() * 99);
+        var time = (new Date() / 1) * 1 * rand + '';
      var dealidObj = {
-        'dealinfo':req.body.dealinfo,
-        'dealterms':req.body.dealterms,
-        'enddate':req.body.enddate,
-        'vendorcustomerlist':req.body.vendorcustomerlist,
+        'dealinfo':req.query.dealinfo,
+        'dealterms':req.query.dealterms,
+        'enddate':req.query.enddate,
+        'vendorcustomerlist':req.query.vendorcustomerlist,
+         'image': imageurl,
         'status':'live',
     };
-    DealDataId.findOneAndUpdate({ 'dealID': req.body.dealID },{'$set': dealidObj},{'new': true    
+    DealDataId.findOneAndUpdate({ 'dealID': req.query.dealID },{'$set': dealidObj},{'new': true    
     }, function(err, createdealID) {
         if (err) {
             return res.status(500).json({
@@ -560,6 +576,7 @@ exports.createJyfDealId = function (req,res){
             'success': true,
             'data': null
         });
+    });
     });
 }
 var checkdealid = scheduler.scheduleJob("* * * * *", function() {

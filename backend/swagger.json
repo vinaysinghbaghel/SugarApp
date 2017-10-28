@@ -575,22 +575,50 @@
           "Merchant"
         ],
         "summary": "This is Merchant Api  used to create JYF DealID",
-        "description": "",
+        "consumes": [
+          "multipart/form-data"
+        ],
         "operationId": "createjyfdealid",
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
-            "in": "body",
-            "name": "body",
-            "description": "",
+            "name": "dealID",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/createjyfdealid"
-            }
-          }
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "dealinfo",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dealterms",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "enddate",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name":"vendorcustomerlist",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+          "name": "image",
+          "in": "formData",
+          "required": false,
+          "type": "file"
+        }
         ],
         "responses": {
           "default": {
