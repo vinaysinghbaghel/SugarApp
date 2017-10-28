@@ -667,6 +667,90 @@
           }
         }
       }
+    },
+    "/api/getdealsbydates": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "This is User Api  used to filter deals based on today dates",
+        "description": "",
+        "operationId": "getdealsbydates",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+         
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+     "/api/getDealsByWeak": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "This is User Api  used to filter deals based on weakly",
+        "description": "",
+        "operationId": "getDealsByWeak",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fromDate",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+     "/api/getDealsByMonth": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "This is User Api  used to filter deals based on monthly",
+        "description": "",
+        "operationId": "getDealsByMonth",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fromDate",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
     }
   },
   "definitions": {

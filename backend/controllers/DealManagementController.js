@@ -617,52 +617,93 @@ exports.getDealsByMerchant = function(req, res) {
         });
 };
 exports.getDealsByDates = function(req,res){
-    console.log("hi vinay how are you ")
-   DealDataId.aggregate([
-    // First total per day. Rounding dates with math here
-    { "$group": {
-        "_id": {
-            "$add": [
-                { "$subtract": [
-                    { "$subtract": [ "$created_at", new Date(0) ] },
-                    { "$mod": [
-                        { "$subtract": [ "$created_at", new Date(0) ] },
-                        1000 * 60 * 60 * 24
-                    ]}                        
-                ]},
-                new Date(0)
-            ]
-        },
-        "week": { "$first": { "$week": "$created_at" } },
-        "month": { "$first": { "$month": "$created_at" } },
-        "total": { "$sum": "$num" }
-    }},
 
-    // Then group by week
-    { "$group": {
-        "_id": "$week",
-        "month": { "$first": "$month" },
-        "days": {
-            "$push": {
-                "day": "$_id",
-                "total": "$total"
-            }
-        },
-        "total": { "$sum": "$total" }
-    }},
+ DealDataId.aggregate({
+   "$project": {
+      "year": {
+      "$year": "$created_at"
+     },
+     "month": {
+      "$month": "$created_at"
+     },
+    "  day": {
+      "$dayOfMonth": "$created_at"
+     }
+   }
+  }, {
+  "$match": {
+    "year": new Date().getFullYear(),
+    "month": new Date().getMonth() + 1, //because January starts with 0
+    "day": new Date().getDate()
+  }
+}).exec(function ( err, data ) {
+    console.log(data.length,"hiiiiiiiiiiiiiiiiiiiiiiiiiihhhhhhhhhi vinay how are you ")
+    if(err){
+        return res.status(500).json({
+            'message':'Error in processing your requet',
+            'success':false,
+            'data':[]
+        });
+    }
+    return res.json({
+        'message':'success',
+        'success':true,
+        'data':data
+    })
+            
+});
 
-    // Then group by month
-    { "$group": {
-        "_id": "$month",
-        "weeks": {
-            "$push": {
-                "week": "$_id",
-                "total": "$total",
-                "days": "$days"
-            }
-        },
-        "total": { "$sum": "$total" }
-    }}
-])
-}    
+} 
+
+exports.getDealsByWeak = function(req,res){
+    var gteDate = req.query.fromDate;
+    var lteDate = req.query.toDate;
+    var query = DealDataId.find({ 
+    "created_at": { 
+        "$gte": new Date(gteDate), "$lte": new Date(lteDate)
+        // "$gte": new Date("2014-05-21"), "$lte": new Date("2014-05-29")
+    }
+}).count()
+
+query.exec(function(err, weakcount) {
+    if(err){
+        return res.status(500).json({
+            'message':'Error in processing your requet',
+            'success':false,
+            'data':[]
+        });
+    }
+    return res.json({
+        'message':'success',
+        'success':true,
+        'data':weakcount
+    })
+});
+}
+
+
+exports.getDealsByMonth = function(req,res){
+    var gteDate = req.query.fromDate;
+    var lteDate = req.query.toDate;
+    var query = DealDataId.find({ 
+    "created_at": { 
+        "$gte": new Date(gteDate), "$lte": new Date(lteDate)
+    }
+}).count()
+
+query.exec(function(err, monthcount) {
+    if(err){
+        return res.status(500).json({
+            'message':'Error in processing your requet',
+            'success':false,
+            'data':[]
+        });
+    }
+    return res.json({
+        'message':'success',
+        'success':true,
+        'data':monthcount
+    })
+});
+}
 // module.exports=exports;

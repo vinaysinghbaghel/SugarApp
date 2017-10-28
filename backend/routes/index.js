@@ -31,5 +31,7 @@ router.post('/api/getdealid',DealManagementController.searchdealsID);
 router.get('/api/getavailabledeals',DealManagementController.getAvailableDeals);
 router.post('/api/getdealsbymerchantname',DealManagementController.getDealsByMerchant);
 router.get('/api/getdealsbydates',DealManagementController.getDealsByDates);
+router.get('/api/getDealsByWeak',DealManagementController.getDealsByWeak);
+router.get('/api/getDealsByMonth',DealManagementController.getDealsByMonth);
 
 module.exports = router;
