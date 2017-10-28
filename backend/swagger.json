@@ -35,11 +35,11 @@
           "application/json"
         ],
         "parameters": [
-          // {
-          //   "name": "name",
-          //   "in": "query",
-          //   "type": "string"
-          // },
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string"
+          },
           {
             "name": "email",
             "in": "query",
