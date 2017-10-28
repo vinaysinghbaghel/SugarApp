@@ -28,5 +28,8 @@ router.post('/api/createjyfdealid',DealManagementController.createJyfDealId);
 router.get('/api/getalljyfdealid',DealManagementController.getAllJyfDealId)
 router.post('/api/createdealid',DealManagementController.createDealId);
 router.post('/api/getdealid',DealManagementController.searchdealsID);
+router.get('/api/getavailabledeals',DealManagementController.getAvailableDeals);
+router.post('/api/getdealsbymerchantname',DealManagementController.getDealsByMerchant);
+router.get('/api/getdealsbydates',DealManagementController.getDealsByDates);
 
 module.exports = router;

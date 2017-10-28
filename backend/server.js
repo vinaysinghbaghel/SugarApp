@@ -95,9 +95,9 @@ require('./config/passport')(passport);
 app.use('/', apiRoutes);
 app.use('/', webRoutes).io;
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/', function(req, res) {
-    return res.sendFile(path.join(__dirname, './../frontend/app.html'));
-});
+// app.use('/', function(req, res) {
+//     return res.sendFile(path.join(__dirname, './../frontend/app.html'));
+// });
 
    
 app.listen(config.app.port, function() {

@@ -35,11 +35,11 @@
           "application/json"
         ],
         "parameters": [
-          {
-            "name": "name",
-            "in": "query",
-            "type": "string"
-          },
+          // {
+          //   "name": "name",
+          //   "in": "query",
+          //   "type": "string"
+          // },
           {
             "name": "email",
             "in": "query",
@@ -160,22 +160,56 @@
           "user"
         ],
         "summary": "Create Deal ID",
-        "description": "",
+        "consumes": [
+          "multipart/form-data"
+        ],
         "operationId": "createdealid",
         "produces": [
-          "application/xml",
           "application/json"
         ],
         "parameters": [
           {
-            "in": "body",
-            "name": "body",
-            "description": "",
+            "name": "dealID",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/dealdataids"
-            }
-          }
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "dealinfo",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dealterms",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "setdate",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "settime",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "endtime",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+          "name": "image",
+          "in": "formData",
+          "required": false,
+          "type": "file"
+        }
         ],
         "responses": {
           "200": {
@@ -585,6 +619,54 @@
           }
         }
       }
+    },
+    "/api/getavailabledeals": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "This is User Api  used to get Availble deals",
+        "description": "",
+        "operationId": "getavailabledeals",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+         
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/getdealsbymerchantname": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "This is User Api  used to Filter All Deals by Merchant Name",
+        "description": "",
+        "operationId": "getdealsbymerchantname",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+         {
+            "name": "merchant",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -653,6 +735,10 @@
         },
         "endtime": {
           "type":"string"
+        },
+        "image":{
+          "type":"string",
+          "format":"binary"
         }
       }
     },

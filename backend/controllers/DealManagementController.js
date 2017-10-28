@@ -9,6 +9,8 @@ const moment = require('moment');
 const scheduler = require('node-schedule');
 const cron = require('node-cron');
 const async = require('async');
+const path = require('path');
+const fs = require('fs');
 
 /* @api {post} /api/merchantid  This Api allocating level.
  * @apiName dealLevelAllocation.
@@ -167,16 +169,36 @@ exports.specialDealAllocation = function(req, res) {
     });
 }
 exports.createDealId = function (req,res){
+
+      var fstream, update;
+         req.pipe(req.busboy);
+         var imageurl = "";
+
+         req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+        var type = mimetype.split('/')[1];
+        var newName = (new Date()).valueOf();
+        var saveTo = path.join('frontend/photos/profile/', newName + '.' + type);
+        imageurl = path.join('photos/profile/', newName + '.' + type);
+        fstream = fs.createWriteStream(saveTo);
+        file.pipe(fstream);
+        });
+        req.busboy.on("finish", function() {
+        let rand = Math.floor(10 + Math.random() * 99);
+        var time = (new Date() / 1) * 1 * rand + '';
+        // let string = randomString({
+        // length: 3
+        // });
      var dealidObj = {
-        'dealinfo':req.body.dealinfo,
-        'dealterms':req.body.dealterms,
-        'setdate':req.body.setdate,
-        'settime':req.body.settime,
-        'endtime':req.body.endtime,
+        'dealinfo':req.query.dealinfo,
+        'dealterms':req.query.dealterms,
+        'setdate':req.query.setdate,
+        'settime':req.query.settime,
+        'endtime':req.query.endtime,
+        'image': imageurl,
         'status':'create',
         'numbersofcoupons':5
     };
-    DealDataId.findOneAndUpdate({ 'dealID': req.body.dealID },{'$set': dealidObj},{'new': true    
+    DealDataId.findOneAndUpdate({ 'dealID': req.query.dealID },{'$set': dealidObj},{'new': true    
     }, function(err, createdealID) {
         if (err) {
             return res.status(500).json({
@@ -191,6 +213,7 @@ exports.createDealId = function (req,res){
             'data': null
         });
     });
+     });
 }
  var jobDate = moment().startOf('day');
  var checkdealid = scheduler.scheduleJob('* * * * *', function() {
@@ -577,4 +600,69 @@ exports.getAllJyfDealId = function(req,res){
                         ['dealID', -1]
                     ]);
 }
+exports.getDealsByMerchant = function(req, res) {
+    DealDataId.find({merchant:req.query.merchant},function(err, dealsid) {
+            if (err) {
+                return res.status(500).json({
+                    'message': 'Error in processing your request',
+                    'success': false,
+                    'data': []
+                });
+            }
+            return res.json({
+                'message': 'Get All Deals ID By Merchant Name',
+                'success': true,
+                'data': dealsid
+            });
+        });
+};
+exports.getDealsByDates = function(req,res){
+    console.log("hi vinay how are you ")
+   DealDataId.aggregate([
+    // First total per day. Rounding dates with math here
+    { "$group": {
+        "_id": {
+            "$add": [
+                { "$subtract": [
+                    { "$subtract": [ "$created_at", new Date(0) ] },
+                    { "$mod": [
+                        { "$subtract": [ "$created_at", new Date(0) ] },
+                        1000 * 60 * 60 * 24
+                    ]}                        
+                ]},
+                new Date(0)
+            ]
+        },
+        "week": { "$first": { "$week": "$created_at" } },
+        "month": { "$first": { "$month": "$created_at" } },
+        "total": { "$sum": "$num" }
+    }},
+
+    // Then group by week
+    { "$group": {
+        "_id": "$week",
+        "month": { "$first": "$month" },
+        "days": {
+            "$push": {
+                "day": "$_id",
+                "total": "$total"
+            }
+        },
+        "total": { "$sum": "$total" }
+    }},
+
+    // Then group by month
+    { "$group": {
+        "_id": "$month",
+        "weeks": {
+            "$push": {
+                "week": "$_id",
+                "total": "$total",
+                "days": "$days"
+            }
+        },
+        "total": { "$sum": "$total" }
+    }}
+])
+}    
 // module.exports=exports;
